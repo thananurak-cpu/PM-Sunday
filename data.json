@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792732582153,
+ "updatedAt": 1792732639336,
  "by": "TA",
  "data": {
   "people": [
@@ -347,7 +347,7 @@
      "p10",
      "p12",
      "p17",
-     "p3",
+     "p4",
      "p5"
     ],
     "teams": [
@@ -377,9 +377,10 @@
       "p10",
       "p12",
       "p17",
-      "p3",
+      "p4",
       "p5"
-     ]
+     ],
+     "edited": true
     }
    ],
    "teams": [
@@ -391,10 +392,16 @@
   "pinHash": "788b2085",
   "lockAll": false,
   "swaps": [],
-  "rev": 0,
-  "revAt": 1792732582153,
+  "rev": 1,
+  "revAt": 1792732639335,
   "revBy": "TA",
   "revLog": [
+   {
+    "rev": 1,
+    "at": 1792732639335,
+    "by": "TA",
+    "note": "เปลี่ยน Joke → Mod"
+   },
    {
     "rev": 0,
     "at": 1792732582153,
