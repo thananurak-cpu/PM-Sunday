@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733231459,
+ "updatedAt": 1792733235284,
  "by": "TA",
  "data": {
   "people": [
@@ -363,7 +363,7 @@
    "B"
   ],
   "per": 3,
-  "impPer": 2,
+  "impPer": 1,
   "weeks": 1,
   "block": 2,
   "fair": true,
