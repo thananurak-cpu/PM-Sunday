@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733113875,
+ "updatedAt": 1792733117772,
  "by": "TA",
  "data": {
   "people": [
@@ -17,7 +17,7 @@
     "name": "Varatit",
     "nick": "IN",
     "role": "Leader / Programmer",
-    "team": "A",
+    "team": "IMP",
     "active": true
    },
    {
@@ -129,7 +129,7 @@
     "name": "NINE",
     "nick": "น้อย",
     "role": "Programmer Support",
-    "team": "IMP",
+    "team": "",
     "active": true
    },
    {
