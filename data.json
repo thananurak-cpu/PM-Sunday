@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733033035,
+ "updatedAt": 1792733113875,
  "by": "TA",
  "data": {
   "people": [
@@ -9,7 +9,7 @@
     "name": "Pakhin Jomiongpun",
     "nick": "Pakhin",
     "role": "Head Section",
-    "team": "A",
+    "team": "",
     "active": true
    },
    {
