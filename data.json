@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733027988,
+ "updatedAt": 1792733033035,
  "by": "TA",
  "data": {
   "people": [
@@ -25,7 +25,7 @@
     "name": "Natchanon",
     "nick": "Joke",
     "role": "TE Improvement",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
@@ -33,7 +33,7 @@
     "name": "Bundit",
     "nick": "Mod",
     "role": "PM & Document",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
@@ -41,7 +41,7 @@
     "name": "Pongsakorn",
     "nick": "Nine",
     "role": "DOE / AOI / Document",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
@@ -49,7 +49,7 @@
     "name": "Thananurak",
     "nick": "TA",
     "role": "ME Designer",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
@@ -57,7 +57,7 @@
     "name": "Anuwat",
     "nick": "Oat",
     "role": "Winding Center",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
@@ -65,7 +65,7 @@
     "name": "Kotchakorn",
     "nick": "Beam",
     "role": "PM & Document",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
@@ -73,7 +73,7 @@
     "name": "Yuttapop",
     "nick": "Bost",
     "role": "TE Improvement",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
