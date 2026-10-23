@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792732449033,
+ "updatedAt": 1792732451724,
  "by": "TA",
  "data": {
   "people": [
@@ -323,6 +323,22 @@
      "B"
     ],
     "batch": 1792727318338
+   },
+   {
+    "date": "2027-01-24",
+    "team": "A",
+    "ids": [
+     "p14",
+     "p15",
+     "p13",
+     "p8",
+     "p6"
+    ],
+    "teams": [
+     "A",
+     "B"
+    ],
+    "batch": 1792732449030
    }
   ],
   "teams": [
@@ -354,14 +370,22 @@
     "A",
     "B"
    ],
-   "saved": false
+   "saved": true
   },
   "pinHash": "788b2085",
   "lockAll": false,
   "swaps": [],
   "rev": 0,
-  "revAt": 0,
-  "revLog": [],
+  "revAt": 1792732451722,
+  "revBy": "TA",
+  "revLog": [
+   {
+    "rev": 0,
+    "at": 1792732451722,
+    "by": "TA",
+    "note": "บันทึกครั้งแรก · 1 อาทิตย์"
+   }
+  ],
   "revPending": []
  }
 }
