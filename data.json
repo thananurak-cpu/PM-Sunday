@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733561195,
+ "updatedAt": 1792733566675,
  "by": "TA",
  "data": {
   "people": [
@@ -526,10 +526,16 @@
   "pinHash": "788b2085",
   "lockAll": false,
   "swaps": [],
-  "rev": 0,
-  "revAt": 1792733534843,
+  "rev": 1,
+  "revAt": 1792733566675,
   "revBy": "TA",
   "revLog": [
+   {
+    "rev": 1,
+    "at": 1792733566675,
+    "by": "TA",
+    "note": "เปลี่ยน Tum → Pakhin"
+   },
    {
     "rev": 0,
     "at": 1792733534843,
@@ -567,12 +573,6 @@
     "note": "บันทึกครั้งแรก · 1 อาทิตย์"
    }
   ],
-  "revPending": [
-   {
-    "note": "เปลี่ยน Tum → Pakhin",
-    "at": 1792733561195,
-    "by": "TA"
-   }
-  ]
+  "revPending": []
  }
 }
