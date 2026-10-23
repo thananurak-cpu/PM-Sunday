@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733135763,
+ "updatedAt": 1792733137883,
  "by": "TA",
  "data": {
   "people": [
@@ -41,7 +41,7 @@
     "name": "Pongsakorn",
     "nick": "Nine",
     "role": "DOE / AOI / Document",
-    "team": "A",
+    "team": "IMP",
     "active": true
    },
    {
