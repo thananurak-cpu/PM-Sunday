@@ -1,0 +1,1783 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>เวร PM วันอาทิตย์</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="เวร PM">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: iOS 27 grouped app — large title, inset grouped cards, floating Liquid Glass tab bar; #board is the exportable widget */
+:root{
+  --bg:#f2f2f7; --surface:#ffffff; --sunk:#ececf1; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8;
+  --accent:#007aff; --accent-ink:#ffffff; --danger:#ff3b30; --ok:#34c759;
+  --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0;
+  --glass:rgba(255,255,255,.64); --glass-edge:rgba(255,255,255,.95); --glass-rim:rgba(0,0,0,.08); --glass-shadow:0 10px 30px rgba(0,0,0,.10),0 1px 3px rgba(0,0,0,.06);
+  --switch-off:#e9e9ea; --knob:#ffffff; --scrim:rgba(0,0,0,.28);
+  --blob1:#b9d4ff; --blob2:#ffd9b0; --blob3:#c9c6ff;
+  --f-display:"IBM Plex Sans Thai",-apple-system,system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Thai",-apple-system,system-ui,sans-serif;
+  --f-mono:"IBM Plex Sans Thai",-apple-system,system-ui,sans-serif;
+  --r-card:26px; --r-inner:16px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --surface:#1c1c1e; --sunk:#2c2c2e; --fill:rgba(118,118,128,.24); --ink:#ffffff; --muted:#8d8d93; --line:#38383a;
+  --accent:#0a84ff; --accent-ink:#ffffff; --danger:#ff453a; --ok:#30d158;
+  --imp:#40c8e0; --imp-soft:#0e2f35; --a:#7d7aff; --a-soft:#211f40; --b:#ff9f0a; --b-soft:#36260b; --none:#98989d; --none-soft:#2a2a2d;
+  --glass:rgba(38,38,42,.6); --glass-edge:rgba(255,255,255,.16); --glass-rim:rgba(0,0,0,.5); --glass-shadow:0 10px 30px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.4);
+  --switch-off:#39393d; --knob:#ffffff; --scrim:rgba(0,0,0,.55);
+  --blob1:#0b2a5c; --blob2:#4a2a08; --blob3:#241f5a; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#000000; --surface:#1c1c1e; --sunk:#2c2c2e; --fill:rgba(118,118,128,.24); --ink:#ffffff; --muted:#8d8d93; --line:#38383a;
+  --accent:#0a84ff; --accent-ink:#ffffff; --danger:#ff453a; --ok:#30d158;
+  --imp:#40c8e0; --imp-soft:#0e2f35; --a:#7d7aff; --a-soft:#211f40; --b:#ff9f0a; --b-soft:#36260b; --none:#98989d; --none-soft:#2a2a2d;
+  --glass:rgba(38,38,42,.6); --glass-edge:rgba(255,255,255,.16); --glass-rim:rgba(0,0,0,.5); --glass-shadow:0 10px 30px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.4);
+  --switch-off:#39393d; --knob:#ffffff; --scrim:rgba(0,0,0,.55);
+  --blob1:#0b2a5c; --blob2:#4a2a08; --blob3:#241f5a; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ambient i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.ambient i:nth-child(1){width:60vw;height:60vw;left:-15vw;top:8vh;background:var(--blob1)}
+.ambient i:nth-child(2){width:55vw;height:55vw;right:-18vw;top:40vh;background:var(--blob2)}
+.ambient i:nth-child(3){width:50vw;height:50vw;left:10vw;bottom:-10vh;background:var(--blob3)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:8px calc(110px + env(safe-area-inset-bottom,0px))}
+
+/* glass material */
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
+  box-shadow:inset 0 1px 0 var(--glass-edge),inset 0 0 0 .5px var(--glass-rim),var(--glass-shadow)}
+@media (prefers-reduced-transparency:reduce){.glass{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}.ambient{display:none}}
+
+header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-block:14px 16px}
+.eyebrow{font-size:13px;font-weight:600;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:700;font-size:34px;line-height:1.1;letter-spacing:-.01em;margin:2px 0 0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:700;font-size:20px;margin:0}
+h3{font-family:var(--f-display);font-weight:600;font-size:16px;margin:0}
+.muted{color:var(--muted)}
+.small{font-size:13.5px}
+#nextSun{background:var(--fill);border-radius:14px;padding:6px 12px;line-height:1.35}
+
+.panel{background:var(--surface);border-radius:var(--r-card);padding:18px;display:grid;gap:14px}
+.stack{display:grid;gap:16px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.label{font-size:13px;font-weight:600;color:var(--muted)}
+
+.btn{border:0;background:var(--fill);color:var(--accent);border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:6px;min-height:44px;transition:transform .15s ease,opacity .15s}
+.btn:active{transform:scale(.96);opacity:.85}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.big{width:100%;justify-content:center;font-size:19px;font-weight:700;min-height:56px;box-shadow:0 8px 22px rgba(0,122,255,.28)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--danger)}
+.btn:disabled{opacity:.4}
+
+/* team chips */
+.chips{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.chip{position:relative;border:0;background:var(--sunk);border-radius:20px;padding:14px;text-align:left;display:grid;gap:2px;box-shadow:inset 0 0 0 2px transparent;transition:box-shadow .2s,background .2s}
+.chip b{font-family:var(--f-display);font-size:17px}
+.chip span{font-size:13px;color:var(--muted)}
+.chip[aria-pressed="true"].a{background:var(--a-soft);box-shadow:inset 0 0 0 2px var(--a)}
+.chip[aria-pressed="true"].b{background:var(--b-soft);box-shadow:inset 0 0 0 2px var(--b)}
+.chip[aria-pressed="true"].imp{background:var(--imp-soft);box-shadow:inset 0 0 0 2px var(--imp)}
+.chip .ord{position:absolute;top:12px;right:12px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:700;color:#fff}
+.chip.imp .ord{background:var(--imp)} .chip.a .ord{background:var(--a)} .chip.b .ord{background:var(--b)}
+.imp-box{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--imp-soft);border-radius:20px;padding:12px 14px}
+.imp-box b{font-family:var(--f-display);font-size:16px;color:var(--imp)}
+.order{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:14px}
+.order .arrow{color:var(--muted)}
+
+.stepper{display:flex;align-items:center;background:var(--fill);border-radius:10px;overflow:hidden;height:36px}
+.stepper button{border:0;background:transparent;width:46px;height:36px;font-size:22px;line-height:1;color:var(--ink)}
+.stepper button:active{background:var(--fill)}
+.stepper output{min-width:34px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums;font-size:16px;border-inline:1px solid var(--line);line-height:22px}
+.field{display:grid;gap:6px;flex:1 1 140px;min-width:0}
+.field input,.field select{border:0;background:var(--fill);border-radius:12px;padding:10px 12px;min-height:44px;width:100%;font-size:16px}
+.toggle{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:4px 0}
+.toggle > span{order:-1;flex:1;min-width:0}
+.toggle input{appearance:none;-webkit-appearance:none;flex:none;width:51px;height:31px;border-radius:999px;background:var(--switch-off);position:relative;margin:0;transition:background .2s}
+.toggle input::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:var(--knob);box-shadow:0 3px 8px rgba(0,0,0,.15),0 1px 1px rgba(0,0,0,.16);transition:transform .22s cubic-bezier(.3,.7,.4,1.2)}
+.toggle input:checked{background:var(--ok)}
+.toggle input:checked::after{transform:translateX(20px)}
+
+/* badges */
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap;line-height:1.4}
+.badge.imp{background:var(--imp-soft);color:var(--imp)}
+.badge.a{background:var(--a-soft);color:var(--a)}
+.badge.b{background:var(--b-soft);color:var(--b)}
+.badge.none{background:var(--none-soft);color:var(--none)}
+
+/* draw results */
+.day{background:var(--surface);border-radius:var(--r-card);overflow:hidden}
+.day-h{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:14px 16px 6px;font-family:var(--f-display);font-weight:700;font-size:17px}
+.slot{display:flex;align-items:center;gap:12px;padding:11px 16px;position:relative}
+.slot + .slot::before{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--line)}
+.slot .nm{flex:1;min-width:0}
+.slot .nm b{font-family:var(--f-display);font-size:18px}
+.slot .nm div{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot.rolling .nm b{color:var(--muted)}
+.reroll{border:0;background:var(--fill);color:var(--accent);border-radius:50%;width:34px;height:34px;flex:none;font-weight:700}
+.notice{padding:12px 14px;border-radius:18px;background:var(--fill);font-size:14px}
+.notice.warn{color:var(--danger)}
+
+/* segmented control */
+.seg{display:flex;background:var(--fill);border-radius:999px;padding:3px;gap:2px;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:1 0 auto;white-space:nowrap;border:0;background:transparent;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;color:var(--ink);transition:background .2s}
+.seg button[aria-pressed="true"]{background:var(--surface);box-shadow:0 3px 8px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04)}
+
+/* ===== the board (exported) — solid colors only ===== */
+#board{border-radius:28px;overflow:hidden}
+.bd-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.bd-head .eyebrow{color:var(--accent)}
+.bd-head h2{font-size:28px;font-weight:700;line-height:1.1;margin-top:2px}
+.bd-stamp{font-size:11px;font-weight:600;text-align:right;color:var(--muted);line-height:1.5;flex:none;background:var(--sunk);border-radius:12px;padding:6px 10px}
+.bd-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+.bd-empty{padding:36px 8px;text-align:center;color:var(--muted)}
+
+/* poster: calendar-icon date tiles */
+.p-day{display:grid;grid-template-columns:72px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.p-day:last-of-type{border-bottom:0}
+.p-date{display:grid;align-content:start;justify-items:center;background:var(--sunk);border-radius:18px;padding:8px 4px 10px;text-align:center}
+.p-date .wd{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--danger)}
+.p-date .dn{font-family:var(--f-display);font-size:34px;font-weight:700;line-height:1.05;color:var(--ink)}
+.p-date .mo{font-size:12px;font-weight:600;color:var(--muted)}
+.p-date .wd + .wd, .p-date .mo + .wd{color:var(--ink);font-size:10px}
+.p-people{display:grid;gap:12px;min-width:0}
+.p-card{display:grid;grid-template-columns:6px 1fr;gap:12px;align-items:stretch}
+.p-card .bar{border-radius:3px}
+.p-card .bar.imp{background:var(--imp)} .p-card .bar.a{background:var(--a)} .p-card .bar.b{background:var(--b)} .p-card .bar.none{background:var(--none)}
+.p-card .nick{font-family:var(--f-display);font-size:22px;font-weight:700;line-height:1.2}
+.p-card .meta{font-size:13px;color:var(--muted)}
+.p-card .tel{font-size:13px;font-variant-numeric:tabular-nums;color:var(--accent);font-weight:500}
+
+/* table */
+.tbl-wrap{overflow-x:auto;margin-top:12px}
+table.t{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+table.t th{font-size:12px;font-weight:600;color:var(--muted);text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+table.t td{padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+table.t td.d{font-family:var(--f-display);font-weight:700;white-space:nowrap}
+table.t td.mono{font-size:13px;white-space:nowrap}
+
+/* team board */
+.tb{display:grid;gap:10px;margin-top:14px}
+.tb-col{border-radius:20px;padding:12px;display:grid;gap:8px;align-content:start}
+.tb-col.imp{background:var(--imp-soft)} .tb-col.a{background:var(--a-soft)} .tb-col.b{background:var(--b-soft)}
+.tb-col h3{display:flex;justify-content:space-between;padding:2px 4px}
+.tb-col.imp h3{color:var(--imp)} .tb-col.a h3{color:var(--a)} .tb-col.b h3{color:var(--b)}
+.tb-item{background:var(--surface);border-radius:14px;padding:9px 12px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.tb-item b{font-family:var(--f-display);font-size:16px}
+.tb-item span{font-size:12.5px;color:var(--muted);white-space:nowrap}
+
+/* stats */
+.st-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:12px}
+.st-legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-2px;margin-right:4px}
+.st{display:grid;gap:8px;margin-top:12px}
+.st-row{display:grid;grid-template-columns:78px 1fr 26px;gap:8px;align-items:center;font-size:13.5px}
+.st-row .n{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-track{height:14px;background:var(--sunk);border-radius:999px;display:flex;overflow:hidden}
+.st-seg{height:100%}
+.st-seg.imp{background:var(--imp)} .st-seg.a{background:var(--a)} .st-seg.b{background:var(--b)} .st-seg.none{background:var(--none)}
+.st-seg.plan.imp{background:var(--imp-soft);border:1.5px solid var(--imp)} .st-seg.plan.a{background:var(--a-soft);border:1.5px solid var(--a)} .st-seg.plan.b{background:var(--b-soft);border:1.5px solid var(--b)} .st-seg.plan.none{background:var(--none-soft);border:1.5px solid var(--none)}
+.st-row .c{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.st-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.st-sum div{background:var(--sunk);border-radius:16px;padding:10px 12px}
+.st-sum b{display:block;font-family:var(--f-display);font-size:24px}
+.st-sum span{font-size:12px;color:var(--muted)}
+
+/* people list (inset grouped) */
+.team-h{display:flex;justify-content:space-between;align-items:center;padding:6px 16px 0}
+.plist{display:grid;border-radius:var(--r-card);background:var(--surface);overflow:hidden}
+.pr{position:relative}
+.pr + .pr::before{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--line)}
+.pr summary{list-style:none;display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer}
+.pr summary::-webkit-details-marker{display:none}
+.pr .who{flex:1;min-width:0}
+.pr .who b{font-family:var(--f-display);font-size:17px}
+.pr .who div{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pr.off .who{opacity:.4}
+.tseg{display:flex;background:var(--fill);border-radius:999px;padding:2px;gap:1px;flex:none}
+.tseg button{border:0;background:transparent;width:32px;height:28px;border-radius:999px;font-size:13px;font-weight:700;color:var(--muted)}
+.tseg button[aria-pressed="true"]{color:#fff}
+.tseg button[aria-pressed="true"].imp{background:var(--imp)}
+.tseg button[aria-pressed="true"].a{background:var(--a)}
+.tseg button[aria-pressed="true"].b{background:var(--b)}
+.tseg button[aria-pressed="true"].none{background:var(--none)}
+.pr-edit{display:grid;gap:10px;padding:4px 16px 16px}
+.pr-edit .row .field{flex:1 1 120px}
+
+/* history */
+.h-item{display:flex;gap:12px;align-items:center;padding:12px 16px;position:relative}
+.h-item + .h-item::before{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--line)}
+.h-item .d{font-family:var(--f-display);font-weight:700;width:96px;flex:none}
+.h-item .ns{flex:1;min-width:0;font-size:14px;display:flex;gap:4px;flex-wrap:wrap}
+
+/* floating Liquid Glass tab bar */
+nav.tabs{position:fixed;z-index:20;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));
+  bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:480px;margin:0 auto;border-radius:999px;padding:5px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+nav.tabs button{border:0;background:transparent;display:grid;justify-items:center;gap:1px;padding:6px 2px 5px;border-radius:999px;font-size:11px;font-weight:600;color:var(--ink);transition:background .25s,color .25s}
+nav.tabs button svg{width:24px;height:24px}
+nav.tabs button[aria-current="page"]{color:var(--accent);background:var(--fill)}
+
+/* sheet & toast */
+.modal{position:fixed;inset:0;z-index:40;background:var(--scrim);display:grid;place-items:end center;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+.modal-c{border-radius:34px;padding:18px;width:100%;max-width:560px;max-height:100%;overflow:auto;display:grid;gap:12px;animation:sheet .35s cubic-bezier(.2,.9,.3,1)}
+@keyframes sheet{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.modal-c img{width:100%;border-radius:20px;-webkit-touch-callout:default}
+.modal-c textarea{width:100%;min-height:200px;border:0;border-radius:16px;padding:12px;background:var(--fill);font-size:15px}
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;padding:11px 18px;border-radius:999px;font-size:14.5px;font-weight:600;max-width:calc(100% - 32px);text-align:center}
+
+/* board skins (export colours) — fixed palettes, independent of the page theme */
+#board{background:var(--b-bg,var(--surface));padding:var(--b-pad,0px)}
+.bd-in{padding:22px 18px 18px;background:var(--surface);border-radius:var(--b-inr,0px)}
+#board[data-skin="white"]{--surface:#ffffff; --sunk:#f2f2f7; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8; --accent:#007aff; --danger:#ff3b30; --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0; color:var(--ink); --b-bg:#ffffff; --export:#ffffff}
+#board[data-skin="dark"]{--surface:#1c1c1e; --sunk:#2c2c2e; --fill:rgba(118,118,128,.24); --ink:#ffffff; --muted:#8d8d93; --line:#38383a; --accent:#0a84ff; --danger:#ff453a; --imp:#40c8e0; --imp-soft:#0e2f35; --a:#7d7aff; --a-soft:#211f40; --b:#ff9f0a; --b-soft:#36260b; --none:#98989d; --none-soft:#2a2a2d; color:var(--ink); --b-bg:#1c1c1e; --export:#000000}
+#board[data-skin="rainbow"]{--surface:#ffffff; --sunk:#f2f2f7; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8; --accent:#007aff; --danger:#ff3b30; --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0; color:var(--ink); --b-bg:linear-gradient(135deg,#ff5f6d 0%,#ffa26b 18%,#ffd86b 34%,#6ee7a8 52%,#4fb3ff 70%,#9b7bff 86%,#ff6ac1 100%); --b-pad:12px; --b-inr:22px; --export:#ffffff}
+#board[data-skin="pastel"]{--surface:#ffffff; --sunk:#f2f2f7; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8; --accent:#007aff; --danger:#ff3b30; --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0; color:var(--ink); --sunk:#f6f1fb; --b-bg:linear-gradient(160deg,#ffd9e8 0%,#e4e2ff 50%,#d6f5ea 100%); --b-pad:12px; --b-inr:22px; --export:#ffffff}
+#board[data-skin="rainbow"] .bd-head .eyebrow{color:#ff3d7f}
+#board[data-skin="rainbow"] .p-date .wd,#board[data-skin="rainbow"] .p-date .dn,#board[data-skin="rainbow"] .p-date .mo{color:#ffffff}
+#board[data-skin="rainbow"] .p-date.r0{background:#ff5f6d} #board[data-skin="rainbow"] .p-date.r1{background:#ff9b4a} #board[data-skin="rainbow"] .p-date.r2{background:#f5b800}
+#board[data-skin="rainbow"] .p-date.r3{background:#2fbf71} #board[data-skin="rainbow"] .p-date.r4{background:#2f8cff} #board[data-skin="rainbow"] .p-date.r5{background:#8b5cf6}
+#board[data-skin="pastel"] .p-date.r0{background:#ffe0ea} #board[data-skin="pastel"] .p-date.r1{background:#ffecd6} #board[data-skin="pastel"] .p-date.r2{background:#fff6c9}
+#board[data-skin="pastel"] .p-date.r3{background:#dcf7e6} #board[data-skin="pastel"] .p-date.r4{background:#dcebff} #board[data-skin="pastel"] .p-date.r5{background:#ece0ff}
+.skins{display:flex;align-items:center;gap:12px;overflow-x:auto;padding:4px 2px 2px;scrollbar-width:none}
+.skins::-webkit-scrollbar{display:none}
+.skins .label{flex:none}
+.sw{flex:none}
+.sw{border:0;background:transparent;display:grid;justify-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--muted);padding:0}
+.sw i{width:36px;height:36px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14);display:block}
+.sw[aria-pressed="true"]{color:var(--ink)}
+.sw[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--bg),0 0 0 4.5px var(--accent)}
+.sw.white i{background:#ffffff} .sw.dark i{background:#1c1c1e}
+.sw.rainbow i{background:conic-gradient(#ff5f6d,#ffd86b,#6ee7a8,#4fb3ff,#9b7bff,#ff6ac1,#ff5f6d)}
+.sw.pastel i{background:linear-gradient(135deg,#ffd9e8,#e4e2ff,#d6f5ea)}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.skipchip{border:0;cursor:pointer;font-size:12.5px;padding:5px 10px}
+.help summary{font-family:var(--f-display);font-weight:600;font-size:16px}
+.help summary::after{content:"›";margin-left:auto;color:var(--muted);font-size:22px;line-height:1;transition:transform .2s}
+.help[open] summary::after{transform:rotate(90deg)}
+.help .body{padding:0 16px 14px;font-size:14.5px;color:var(--ink);display:grid;gap:6px}
+.help .body ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.help .body b{color:var(--accent)}
+.nm-btn{border:0;background:transparent;padding:0;text-align:left;color:inherit;cursor:pointer;display:block}
+.nm-btn b::after{content:" ✎";font-size:13px;font-weight:500;color:var(--accent)}
+.addp{border:0;width:100%;background:transparent;color:var(--accent);font-weight:600;font-size:15px;padding:11px 16px;text-align:left;border-top:1px solid var(--line)}
+.edited{font-size:11.5px;font-weight:600;color:var(--accent);background:var(--fill);border-radius:999px;padding:2px 8px}
+.pk-q{border:0;background:var(--fill);border-radius:12px;padding:10px 12px;min-height:44px;width:100%;font-size:16px}
+.pk-list{position:relative;display:grid;max-height:55vh;overflow:auto;border-radius:18px;background:var(--surface)}
+.pk-h{padding:10px 14px 4px;position:sticky;top:0;background:var(--surface);z-index:1}
+.pk{border:0;background:transparent;display:flex;align-items:center;gap:10px;padding:10px 14px;text-align:left;width:100%;border-top:1px solid var(--line)}
+.pk .who{flex:1;min-width:0;display:grid}
+.pk .who b{font-family:var(--f-display);font-size:16px}
+.pk .who span{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pk-r{font-size:12px;color:var(--muted);white-space:nowrap}
+.pk:disabled{opacity:.4}
+.h-item .ns{cursor:pointer}
+.h-item .ns::after{content:"✎";color:var(--accent);font-size:13px;align-self:center}
+/* extra board skins + tile tokens */
+#board{font-family:var(--f-body)}
+#board[data-skin="rainbow"]{--t0:#ff5f6d; --t1:#ff9b4a; --t2:#f5b800; --t3:#2fbf71; --t4:#2f8cff; --t5:#8b5cf6; --t-ink:#ffffff; --t-wd:#ffffff;}
+#board[data-skin="pastel"]{--t0:#ffe0ea; --t1:#ffecd6; --t2:#fff6c9; --t3:#dcf7e6; --t4:#dcebff; --t5:#ece0ff; --t-ink:#1c1c1e; --t-wd:#ff3b30;}
+#board[data-skin="ocean"]{--surface:#ffffff; --sunk:#f2f2f7; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8; --accent:#007aff; --danger:#ff3b30; --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0; color:var(--ink); --accent:#0a6fd6; --b-bg:linear-gradient(160deg,#0b63c9 0%,#1aa6d1 55%,#6fe0cf 100%); --b-pad:12px; --b-inr:22px; --export:#ffffff; --t0:#0b63c9; --t1:#1287d6; --t2:#14a0cf; --t3:#12b5b0; --t4:#22b98f; --t5:#3a6fd5; --t-ink:#ffffff; --t-wd:#dff3ff;}
+#board[data-skin="sunset"]{--surface:#ffffff; --sunk:#f2f2f7; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8; --accent:#007aff; --danger:#ff3b30; --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0; color:var(--ink); --accent:#e8505b; --b-bg:linear-gradient(160deg,#ff5e62 0%,#ff9966 55%,#ffc371 100%); --b-pad:12px; --b-inr:22px; --export:#ffffff; --t0:#ff5e62; --t1:#ff7a59; --t2:#f98c4c; --t3:#f2a23a; --t4:#e8505b; --t5:#c94b7b; --t-ink:#ffffff; --t-wd:#fff1e6;}
+#board[data-skin="sakura"]{--surface:#ffffff; --sunk:#f2f2f7; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8; --accent:#007aff; --danger:#ff3b30; --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0; color:var(--ink); --accent:#d6457c; --sunk:#fff4f7; --b-bg:linear-gradient(160deg,#ffc2d4 0%,#fff0f4 55%,#ffd3e2 100%); --b-pad:12px; --b-inr:22px; --export:#ffffff; --t0:#ffd9e5; --t1:#ffcfdd; --t2:#fde1ec; --t3:#f8d6e6; --t4:#ffe4ed; --t5:#f5cde0; --t-ink:#5a1f36; --t-wd:#d6457c;}
+#board[data-skin="mint"]{--surface:#ffffff; --sunk:#f2f2f7; --fill:rgba(118,118,128,.12); --ink:#1c1c1e; --muted:#86868c; --line:#e3e3e8; --accent:#007aff; --danger:#ff3b30; --imp:#1aa3bb; --imp-soft:#dff4f8; --a:#5856d6; --a-soft:#ebebfb; --b:#f08c00; --b-soft:#fff1dc; --none:#8e8e93; --none-soft:#ececf0; color:var(--ink); --accent:#0f9d7a; --sunk:#f1fbf7; --b-bg:linear-gradient(160deg,#a8ecd2 0%,#e9fbf4 55%,#bfeee5 100%); --b-pad:12px; --b-inr:22px; --export:#ffffff; --t0:#cdf3e3; --t1:#c4ece6; --t2:#dcf5cf; --t3:#d0ecf5; --t4:#e1f4e6; --t5:#c6ebdc; --t-ink:#0f3a2f; --t-wd:#0f9d7a;}
+#board[data-skin="galaxy"]{--surface:#1c1c1e; --sunk:#2c2c2e; --fill:rgba(118,118,128,.24); --ink:#ffffff; --muted:#8d8d93; --line:#38383a; --accent:#0a84ff; --danger:#ff453a; --imp:#40c8e0; --imp-soft:#0e2f35; --a:#7d7aff; --a-soft:#211f40; --b:#ff9f0a; --b-soft:#36260b; --none:#98989d; --none-soft:#2a2a2d; color:var(--ink); --surface:#16132e; --sunk:#221d45; --line:#302a5c; --accent:#a78bfa; --muted:#a39fc6; --b-bg:linear-gradient(160deg,#1d1450 0%,#3a1f7a 50%,#0d3b78 100%); --b-pad:12px; --b-inr:22px; --export:#0b0a1a; --t0:#4c3bcf; --t1:#6a3fd1; --t2:#3b5bdb; --t3:#7c3aed; --t4:#2563eb; --t5:#9333ea; --t-ink:#ffffff; --t-wd:#e0d7ff;}
+#board .p-date.r0{background:var(--t0,var(--sunk))} #board .cal-c.duty.r0,#board .cd-top.r0{background:var(--t0,var(--accent))}
+#board .p-date.r1{background:var(--t1,var(--sunk))} #board .cal-c.duty.r1,#board .cd-top.r1{background:var(--t1,var(--accent))}
+#board .p-date.r2{background:var(--t2,var(--sunk))} #board .cal-c.duty.r2,#board .cd-top.r2{background:var(--t2,var(--accent))}
+#board .p-date.r3{background:var(--t3,var(--sunk))} #board .cal-c.duty.r3,#board .cd-top.r3{background:var(--t3,var(--accent))}
+#board .p-date.r4{background:var(--t4,var(--sunk))} #board .cal-c.duty.r4,#board .cd-top.r4{background:var(--t4,var(--accent))}
+#board .p-date.r5{background:var(--t5,var(--sunk))} #board .cal-c.duty.r5,#board .cd-top.r5{background:var(--t5,var(--accent))}
+#board .p-date .dn{color:var(--t-ink,var(--ink))} #board .p-date .wd{color:var(--t-wd,var(--danger))} #board .p-date .mo{color:var(--t-ink,var(--muted));opacity:.85} #board .p-date .mo + .wd{color:var(--t-ink,var(--ink))}
+#board .bd-head .eyebrow{color:var(--accent)} #board .p-card .tel{color:var(--accent)}
+.sw.ocean i{background:linear-gradient(160deg,#0b63c9,#1aa6d1,#6fe0cf)} .sw.sunset i{background:linear-gradient(160deg,#ff5e62,#ff9966,#ffc371)}
+.sw.sakura i{background:linear-gradient(160deg,#ffc2d4,#fff0f4,#ffd3e2)} .sw.mint i{background:linear-gradient(160deg,#a8ecd2,#e9fbf4,#bfeee5)}
+.sw.galaxy i{background:linear-gradient(160deg,#1d1450,#3a1f7a,#0d3b78)}
+/* calendar */
+.cal-m{margin-top:14px} .cal-m h3{margin-bottom:8px;font-size:17px}
+.cal{display:grid;grid-template-columns:1.9fr repeat(6,minmax(0,1fr));gap:3px}
+.cal-h{font-size:11px;font-weight:600;color:var(--muted);text-align:center;padding:2px 0}
+.cal-h.sun{color:var(--danger)}
+.cal-c{min-height:42px;border-radius:10px;padding:4px 5px;display:flex;flex-direction:column;gap:1px;min-width:0}
+.cal-c .n{font-size:11px;color:var(--muted);font-weight:600}
+.cal-c.sunoff{background:var(--sunk)}
+.cal-c.duty{color:var(--t-ink,#ffffff)} .cal-c.duty .n{color:inherit;opacity:.85}
+.cal-c .nk{font-size:11.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:3px;line-height:1.3}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;flex:none;box-shadow:0 0 0 1.5px rgba(255,255,255,.85)}
+.dot.imp{background:var(--imp)} .dot.a{background:var(--a)} .dot.b{background:var(--b)} .dot.none{background:var(--none)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.cd{border-radius:20px;overflow:hidden;background:var(--sunk)}
+.cd-top{display:flex;align-items:center;gap:8px;padding:10px 12px;color:var(--t-ink,#ffffff)}
+.cd-d{font-size:30px;font-weight:700;line-height:1}
+.cd-m{font-size:11.5px;font-weight:600;line-height:1.3;opacity:.92}
+.cd-b{padding:10px 12px 12px;display:grid;gap:5px}
+.cd-p{display:flex;align-items:center;gap:7px;font-size:15.5px;min-width:0}
+.cd-p b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* per person */
+.pl{display:grid;margin-top:6px}
+.pl-r{display:grid;grid-template-columns:5px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.pl-r:last-child{border-bottom:0}
+.pl-r .bar{align-self:stretch;border-radius:3px}
+.pl-r .bar.imp{background:var(--imp)} .pl-r .bar.a{background:var(--a)} .pl-r .bar.b{background:var(--b)} .pl-r .bar.none{background:var(--none)}
+.pl-n{display:grid;min-width:0} .pl-n b{font-size:16.5px} .pl-n span{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pl-d{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;max-width:150px}
+/* logo + PIN lock */
+.hdr-logo{height:26px;width:auto;display:block;margin-bottom:8px}
+.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.lock-btn{border:0;background:var(--fill);color:var(--ink);width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
+.lock-btn svg{width:18px;height:18px}
+.lock-btn.open{color:var(--ok)}
+.lang-btn{width:auto;min-width:38px;padding:0 10px;border-radius:999px;font-size:13px;font-weight:700}
+.bd-logo{height:22px;width:auto;display:block;margin-bottom:8px}
+.lock{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lock-c{display:grid;justify-items:center;gap:10px;width:100%;max-width:320px;position:relative;z-index:1}
+.lock-logo{height:40px;width:auto;margin-bottom:10px}
+.lock-t{font-size:22px;font-weight:700}
+.dots{display:flex;gap:18px;margin:14px 0 18px}
+.dots i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--ink);transition:background .15s}
+.dots i.on{background:var(--ink)}
+.dots.err{animation:shake .4s}
+.dots.err i{box-shadow:inset 0 0 0 1.5px var(--danger)}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.keys{display:grid;grid-template-columns:repeat(3,76px);gap:16px 22px}
+.keys button{width:76px;height:76px;border-radius:50%;border:0;background:var(--fill);font-size:30px;font-weight:500;color:var(--ink);display:grid;place-items:center;line-height:1}
+.keys button:active{background:var(--line)}
+.keys button.blank{visibility:hidden}
+.keys button.del{background:transparent;font-size:16px;font-weight:600}
+/* v2.6 */
+.modal-c.glass{background:var(--surface)}
+.offchips{display:flex;gap:6px;flex-wrap:wrap}
+.offtag{color:var(--danger);font-weight:600}
+.sw-day{display:grid;gap:6px;padding:10px 0;border-top:1px solid var(--line)}
+.sw-day:first-child{border-top:0}
+.sw-day h3{font-size:14.5px}
+.sw-ppl{display:flex;gap:6px;flex-wrap:wrap}
+.sw-p{border:0;border-radius:999px;padding:7px 12px;font-weight:600;font-size:14.5px;background:var(--fill);color:var(--ink)}
+.sw-p.sel{background:var(--accent);color:#fff}
+.sw-p:disabled{opacity:.35}
+.sw-list{max-height:55vh;overflow:auto}
+.log{display:grid;gap:4px;font-size:13.5px}
+.log div{display:flex;gap:8px;justify-content:space-between;padding:6px 0;border-top:1px solid var(--line)}
+.log span{color:var(--muted);white-space:nowrap}
+.rep{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.rep th{font-size:12px;font-weight:600;color:var(--muted);text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
+.rep td{padding:8px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.rep td.n{text-align:center;font-weight:700}
+.rep td.d{font-size:12.5px;color:var(--muted)}
+.ics-opt{display:grid;gap:8px}
+.bd-rev{margin-left:auto;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.bd-rev.draft{color:var(--danger)}
+.rev-row{display:flex;gap:10px;align-items:baseline;padding:9px 16px;font-size:13.5px;position:relative}
+.rev-row + .rev-row::before{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--line)}
+.rev-row b{font-variant-numeric:tabular-nums;flex:none}
+.rev-row .nt{flex:1;min-width:0}
+.rev-row .tm{color:var(--muted);font-size:12px;white-space:nowrap}
+.toast-act{border:0;margin-left:12px;background:var(--accent);color:#fff;font-weight:700;font-size:14px;border-radius:999px;padding:5px 12px}
+.upd-bar{display:block;width:100%;margin:6px 0 2px;border:0;border-radius:999px;padding:11px 18px;font-weight:700;font-size:14.5px;color:#fff;background:var(--accent)!important;box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 28%,transparent)}
+@media (min-width:560px){ .tb.cols3{grid-template-columns:repeat(3,1fr)} .tb.cols2{grid-template-columns:repeat(2,1fr)} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* ===== iOS 27 Liquid Glass layer (screen only — #board stays solid for export) ===== */
+:root{
+  --lg-bg:rgba(255,255,255,.82); --lg-strong:rgba(255,255,255,.95); --lg-spec:rgba(255,255,255,.98); --lg-spec2:rgba(255,255,255,.5);
+  --lg-edge:rgba(0,0,0,.08); --lg-shadow:0 6px 18px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+  --lg-blur:blur(24px) saturate(180%); --lg-ink:#1c1c1e;
+  --wall0:#f2f2f7; --wall1:#b9d4ff; --wall2:#ffd9b0; --wall3:#c9c6ff; --wall4:transparent;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --lg-bg:rgba(28,28,30,.86); --lg-strong:rgba(58,58,62,.9); --lg-spec:rgba(255,255,255,.14); --lg-spec2:rgba(255,255,255,.05);
+  --lg-edge:rgba(0,0,0,.5); --lg-shadow:0 6px 18px rgba(0,0,0,.4); --lg-ink:#ffffff;
+  --wall0:#000000; --wall1:#0b2a5c; --wall2:#4a2a08; --wall3:#241f5a; --wall4:transparent }}
+:root[data-theme="dark"]{
+  --lg-bg:rgba(28,28,30,.86); --lg-strong:rgba(58,58,62,.9); --lg-spec:rgba(255,255,255,.14); --lg-spec2:rgba(255,255,255,.05);
+  --lg-edge:rgba(0,0,0,.5); --lg-shadow:0 6px 18px rgba(0,0,0,.4); --lg-ink:#ffffff;
+  --wall0:#000000; --wall1:#0b2a5c; --wall2:#4a2a08; --wall3:#241f5a; --wall4:transparent }
+
+/* wallpaper */
+body{background:var(--wall0)}
+body::before{background:transparent}
+.ambient{background:var(--wall0)}
+.ambient i{filter:blur(60px);opacity:.55}
+.ambient i:nth-child(1){width:60vw;height:60vw;left:-15vw;top:8vh;background:var(--wall1)}
+.ambient i:nth-child(2){width:55vw;height:55vw;right:-18vw;top:40vh;background:var(--wall2)}
+.ambient i:nth-child(3){width:50vw;height:50vw;left:10vw;bottom:-10vh;background:var(--wall3)}
+.ambient i:nth-child(4){display:none}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(4vw,3vh) scale(1.08)}}
+
+/* the material: translucent fill + blur, bright specular top rim, darkened outer edge */
+.panel,.day,.plist,.chip,.imp-box,#nextSun,.seg,.notice,.lock-btn,.stepper,.reroll,.pk-list,
+.btn:not(.primary):not(.ghost),.field input,.field select,.pk-q,.modal-c textarea,.keys button:not(.blank):not(.del){
+  background:var(--lg-bg);-webkit-backdrop-filter:var(--lg-blur);backdrop-filter:var(--lg-blur);
+  box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 -1px 0 var(--lg-spec2),inset 0 0 0 .5px var(--lg-edge),var(--lg-shadow)}
+/* nested glass: no extra drop shadow */
+.panel .chip,.panel .stepper,.panel .btn:not(.primary):not(.ghost),.panel .field input,.panel .field select,.panel .notice,
+.day .reroll,.imp-box .stepper,.modal-c .btn:not(.primary):not(.ghost),.modal-c .day,.modal-c .pk-q,.modal-c .pk-list,.modal-c .notice{
+  box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 0 0 .5px var(--lg-edge)}
+.panel,.day,.plist{border-radius:28px}
+.field input,.field select,.pk-q{border-radius:14px}
+.stepper{border-radius:999px;height:40px}
+.stepper button{height:40px}
+.stepper output{border-inline-color:var(--lg-edge)}
+
+/* tinted glass */
+.imp-box{background:color-mix(in srgb,var(--imp) 16%,var(--lg-bg))}
+.chip[aria-pressed="true"].a{background:color-mix(in srgb,var(--a) 18%,var(--lg-bg));box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 0 0 2px var(--a)}
+.chip[aria-pressed="true"].b{background:color-mix(in srgb,var(--b) 18%,var(--lg-bg));box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 0 0 2px var(--b)}
+.notice.warn{background:color-mix(in srgb,var(--danger) 12%,var(--lg-bg))}
+#dashNote{background:color-mix(in srgb,#ff9500 14%,var(--lg-bg))}
+
+/* primary = tinted liquid glass */
+.btn.primary{color:#fff;background:var(--accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 16px color-mix(in srgb,var(--accent) 28%,transparent)}
+.btn.primary.update{background:#ff9500;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 16px rgba(255,149,0,.28)}
+.btn.big{border-radius:999px;min-height:58px}
+.btn{transition:transform .25s cubic-bezier(.3,.7,.4,1.3),filter .2s}
+.btn:active{transform:scale(.95);filter:brightness(1.08)}
+
+/* segmented control with a glass "lens" */
+.seg{border-radius:999px;padding:4px}
+.seg button{color:var(--lg-ink);transition:background .25s,box-shadow .25s,transform .25s}
+.seg button[aria-pressed="true"]{background:var(--lg-strong);box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 0 0 .5px var(--lg-edge),0 6px 16px rgba(0,0,0,.14);transform:scale(1.02)}
+
+/* header: glass buttons + compact glass bar on scroll */
+.lock-btn{width:40px;height:40px}
+.lang-btn{width:auto}
+#nextSun{border-radius:18px}
+.minibar{position:fixed;z-index:15;top:calc(env(safe-area-inset-top,0px) + 6px);left:50%;transform:translate(-50%,-140%);
+  padding:8px 18px;border-radius:999px;font-weight:700;font-size:15px;opacity:0;transition:transform .35s cubic-bezier(.2,.9,.3,1.2),opacity .25s;pointer-events:none;white-space:nowrap}
+.minibar.show{transform:translate(-50%,0);opacity:1}
+
+/* tab bar */
+nav.tabs{border-radius:999px;padding:6px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 -1px 0 var(--lg-spec2),inset 0 0 0 .5px var(--lg-edge),0 18px 40px rgba(0,0,0,.18)}
+nav.tabs button{color:var(--lg-ink)}
+nav.tabs button[aria-current="page"]{color:var(--accent);background:var(--lg-strong);box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 0 0 .5px var(--lg-edge),0 4px 12px rgba(0,0,0,.10)}
+
+/* sheets & lock screen */
+.modal{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.modal-c{border-radius:38px;box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 0 0 .5px var(--lg-edge),0 30px 60px rgba(0,0,0,.30)}
+.lock{background:transparent}
+.lock::before{content:"";position:absolute;inset:0;background:var(--bg)}
+.keys button{font-weight:400}
+.keys button:active{background:var(--lg-strong)}
+.dots i{box-shadow:inset 0 0 0 1.5px var(--lg-ink)} .dots i.on{background:var(--lg-ink)}
+.toast{box-shadow:inset 0 1px 0 var(--lg-spec),inset 0 0 0 .5px var(--lg-edge),0 12px 30px rgba(0,0,0,.2)}
+
+/* Rev states */
+.bd-rev.pend{color:#e07f00}
+.pend-box{background:color-mix(in srgb,#ff9500 12%,var(--lg-bg))}
+.pend-l{margin:0;padding-left:20px;font-size:13.5px;display:grid;gap:3px}
+
+/* the export board keeps its own solid look */
+#board{box-shadow:0 1px 0 rgba(255,255,255,.4)}
+
+@media (prefers-reduced-transparency:reduce){
+  .panel,.day,.plist,.chip,.imp-box,#nextSun,.seg,.notice,.lock-btn,.stepper,.reroll,.pk-list,.btn:not(.primary):not(.ghost),.field input,.field select,.pk-q,.keys button,.minibar{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .ambient i{display:none} .lock::before{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media (prefers-reduced-motion:reduce){.ambient i{animation:none}}
+</style>
+</head>
+<body>
+
+
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="minibar glass" id="miniBar" aria-hidden="true"></div>
+<div class="wrap">
+  <button id="updBar" class="upd-bar glass" hidden></button>
+  <header class="top">
+    <div>
+      <img class="logo-img hdr-logo" alt="DELTA">
+      <div class="eyebrow">ME/TE STF AUTO · Sunday PM <span id="syncPill"></span></div>
+      <h1 id="viewTitle">Dashboard</h1>
+    </div>
+    <div class="hdr-r">
+      <div class="row" style="gap:6px;flex-wrap:nowrap"><button id="langBtn" class="lock-btn lang-btn" aria-label="Language"></button><button id="lockBtn" class="lock-btn" aria-label="ล็อก"></button></div>
+      <div id="nextSun" class="small muted" style="text-align:right"></div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD -->
+  <section id="v-dash" class="stack">
+    <div class="seg" role="group" aria-label="รูปแบบ dashboard">
+      <button data-style="poster">ประกาศ</button>
+      <button data-style="table">ตาราง</button>
+      <button data-style="team">แยกทีม</button>
+      <button data-style="cal">ปฏิทิน</button>
+      <button data-style="cards">การ์ด</button>
+      <button data-style="person">รายคน</button>
+      <button data-style="stats">สถิติ</button>
+    </div>
+    <div class="skins" role="group" aria-label="สีภาพ">
+      <span class="label">สีภาพ</span>
+      <button class="sw white" data-skin="white"><i></i>ขาว</button>
+      <button class="sw rainbow" data-skin="rainbow"><i></i>เรนโบว์</button>
+      <button class="sw pastel" data-skin="pastel"><i></i>พาสเทล</button>
+      <button class="sw ocean" data-skin="ocean"><i></i>ทะเล</button>
+      <button class="sw sunset" data-skin="sunset"><i></i>ซันเซ็ต</button>
+      <button class="sw sakura" data-skin="sakura"><i></i>ซากุระ</button>
+      <button class="sw mint" data-skin="mint"><i></i>มิ้นต์</button>
+      <button class="sw galaxy" data-skin="galaxy"><i></i>กาแล็กซี</button>
+      <button class="sw dark" data-skin="dark"><i></i>ดำ</button>
+    </div>
+    <div id="board"></div>
+    <div class="row">
+      <button class="btn primary" id="btnJpg" style="flex:1;justify-content:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        Export .jpg</button>
+      <button class="btn primary" id="btnPdf" style="flex:1;justify-content:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 14h8M8 17h5"/></svg>
+        Export .pdf</button>
+    </div>
+    <div class="row">
+      <button class="btn" id="btnCopy" style="flex:1;justify-content:center">คัดลอกข้อความ (LINE)</button>
+      <button class="btn" id="btnIcs" style="flex:1;justify-content:center">📅 เพิ่มลงปฏิทิน</button>
+    </div>
+    <div id="dashNote" class="notice small" hidden></div>
+    <button class="btn primary update" id="btnRevUp" style="justify-content:center" hidden></button>
+  </section>
+
+  <!-- DRAW -->
+  <section id="v-draw" class="stack" hidden>
+    <div class="panel">
+      <div class="row between"><span class="label">1 · เลือกทีม (ลำดับที่แตะ = ลำดับเวร)</span><span id="poolInfo" class="small muted"></span></div>
+      <div class="chips" id="teamChips"></div>
+      <div class="imp-box">
+        <div><b>+ Improve ร่วมทุกอาทิตย์</b><div class="small muted" id="impInfo"></div></div>
+        <div class="stepper" style="background:var(--surface)"><button id="impMinus" aria-label="ลด">−</button><output id="impOut">1</output><button id="impPlus" aria-label="เพิ่ม">+</button></div>
+      </div>
+      <div class="order" id="orderLine"></div>
+    </div>
+    <div class="panel">
+      <span class="label">2 · ตั้งค่า</span>
+      <div class="row" style="gap:16px">
+        <div class="field" style="flex:0 0 auto"><span class="small muted">คนจากกะ A/B ต่อวัน</span>
+          <div class="stepper"><button id="perMinus" aria-label="ลด">−</button><output id="perOut">2</output><button id="perPlus" aria-label="เพิ่ม">+</button></div></div>
+        <div class="field" style="flex:0 0 auto"><span class="small muted">อาทิตย์ต่อทีม</span>
+          <div class="stepper"><button id="blkMinus" aria-label="ลด">−</button><output id="blkOut">2</output><button id="blkPlus" aria-label="เพิ่ม">+</button></div></div>
+        <div class="field" style="flex:0 0 auto"><span class="small muted">จำนวนอาทิตย์ทั้งหมด</span>
+          <div class="stepper"><button id="wkMinus" aria-label="ลด">−</button><output id="wkOut">4</output><button id="wkPlus" aria-label="เพิ่ม">+</button></div></div>
+        <label class="field"><span class="small muted">เริ่มวันอาทิตย์ที่</span><input type="date" id="startDate"></label>
+      </div>
+      <label class="toggle"><input type="checkbox" id="optFair" checked><span>ให้คนที่ทำเวรน้อยได้ก่อน<br><span class="small muted">นับจากประวัติที่บันทึกไว้ ไม่ซ้ำคนจนกว่าจะครบรอบ</span></span></label>
+      <button class="btn small" id="btnFull" style="justify-self:start">ตั้งให้ครบ 1 รอบทุกทีม</button>
+      <div class="field" style="flex:1 1 100%"><span class="small muted">งดเวร (วันหยุดยาว / ปิดโรงงาน) — ข้ามวันนี้ แล้วเลื่อนเวรไปอาทิตย์ถัดไป</span>
+        <div class="row" style="flex-wrap:nowrap"><input type="date" id="skipDate" style="flex:1;min-width:0"><button class="btn" id="btnSkip" style="flex:none">เพิ่มวันงด</button></div>
+        <div class="row" id="skipList" style="gap:6px"></div></div>
+    </div>
+    <button class="btn primary big" id="btnDraw">สุ่มเวร</button>
+    <div id="drawMsg" class="notice warn" hidden></div>
+    <div id="result" class="stack"></div>
+    <div id="resultActions" class="row" hidden>
+      <button class="btn primary" id="btnSave" style="flex:1;justify-content:center">บันทึกลงประวัติ</button>
+      <button class="btn" id="btnToDash" style="flex:1;justify-content:center">ดู Dashboard</button>
+    </div>
+    <button class="btn" id="btnSwap2" style="justify-content:center" hidden>⇄ แลกเวร</button>
+  </section>
+
+  <!-- TEAMS -->
+  <section id="v-team" class="stack" hidden>
+    <div class="notice small">แตะปุ่ม <b>I / A / B / –</b> เพื่อย้ายทีม · แตะชื่อเพื่อแก้ไข หรือปิดชั่วคราว (ลา/ไม่สะดวก) · <b>–</b> = ไม่เข้าเวร</div>
+    <div id="teamLists" class="stack"></div>
+    <div class="panel">
+      <span class="label">เพิ่มคน</span>
+      <div class="row">
+        <label class="field"><span class="small muted">ชื่อเล่น</span><input id="addNick" placeholder="เช่น Mint"></label>
+        <label class="field"><span class="small muted">ชื่อ</span><input id="addName" placeholder="ชื่อจริง"></label>
+      </div>
+      <div class="row">
+        <label class="field"><span class="small muted">หน้าที่ / Line</span><input id="addRole" placeholder="STF_31"></label>
+        <label class="field"><span class="small muted">เบอร์โทร</span><input id="addTel" inputmode="tel" placeholder="08x-xxx-xxxx"></label>
+      </div>
+      <div class="row">
+        <label class="field"><span class="small muted">ทีม</span>
+          <select id="addTeam"><option value="IMP">Improve</option><option value="A">Team A</option><option value="B">Team B</option><option value="">ไม่เข้าเวร</option></select></label>
+        <button class="btn primary" id="btnAdd" style="align-self:end">เพิ่ม</button>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="label">เบอร์โทร</span>
+      <div class="small muted">เบอร์โทรเก็บเฉพาะในเครื่องนี้ ไม่ถูกส่งขึ้น GitHub เพื่อป้องกันข้อมูลส่วนบุคคลรั่ว (PDPA) · เครื่องอื่นจะไม่เห็นเบอร์ จนกว่าจะนำเข้าเอง</div>
+      <button class="btn" id="btnTelImport" style="justify-self:start">📞 นำเข้าเบอร์โทร</button>
+    </div>
+    <button class="btn ghost small" id="btnReset">คืนค่ารายชื่อเริ่มต้น</button>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="v-hist" class="stack" hidden>
+    <div class="team-h"><h2>แลกเวร</h2></div>
+    <div class="panel">
+      <div class="small muted">สลับวันเวรระหว่าง 2 คน ใช้ได้กับเวรที่ยังไม่ถึงวัน ระบบจะเก็บประวัติว่าใครแลกกับใคร</div>
+      <button class="btn primary" id="btnSwap" style="justify-self:start">⇄ แลกเวร</button>
+      <div id="swapLog"></div>
+    </div>
+
+    <div class="team-h"><h2>รายงานสรุป</h2></div>
+    <div class="panel">
+      <div class="row">
+        <label class="field"><span class="small muted">ช่วงเวลา</span><select id="repRange"></select></label>
+        <button class="btn primary" id="btnCsv" style="align-self:end">Export Excel (.csv)</button>
+      </div>
+      <div id="repView"></div>
+    </div>
+
+    <div class="team-h"><h2>ประวัติเวร</h2><span id="histCount" class="small muted"></span></div>
+    <div id="histList"></div>
+    <div class="team-h"><h2>ประวัติการแก้ไข (Rev)</h2><span id="revNow" class="small muted"></span></div>
+    <div id="revPend" class="panel pend-box" hidden></div>
+    <div id="revLog" class="plist"></div>
+    <button class="btn danger" id="btnClear">ลบประวัติทั้งหมด</button>
+
+    <div class="team-h"><h2>ซิงก์กับ GitHub</h2></div>
+    <div class="panel">
+      <div id="ghStatus" class="notice small">—</div>
+      <div id="ghBox" class="stack" style="gap:12px">
+        <div id="ghCfg" class="small muted"></div>
+        <label class="field"><span class="small muted">GitHub Token (ใส่เฉพาะเครื่องที่แก้ไขเวร)</span><input type="password" id="ghTok" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…"></label>
+        <div class="row"><button class="btn primary" id="ghSaveTok">บันทึก Token</button><button class="btn" id="ghPushBtn">บันทึกขึ้น GitHub</button><button class="btn" id="ghPullBtn">โหลดจาก GitHub</button></div>
+        <button class="btn danger small" id="ghForget" style="justify-self:start">ลบ Token จากเครื่องนี้</button>
+      </div>
+    </div>
+
+    <div class="team-h"><h2>ผู้ใช้เครื่องนี้</h2></div>
+    <div class="panel">
+      <div class="row between"><div><b id="meName" style="font-size:18px">—</b><div class="small muted">ชื่อนี้จะถูกบันทึกในประวัติการแก้ไข (Rev) และใน GitHub ว่าใครเป็นคนแก้</div></div><button class="btn" id="btnMe">เปลี่ยน</button></div>
+    </div>
+
+    <div class="team-h"><h2>PIN ล็อกการแก้ไข</h2></div>
+    <div class="panel">
+      <div class="small muted">ดู Dashboard ได้โดยไม่ต้องใส่ PIN ส่วนแท็บ สุ่มเวร · ทีม · เพิ่มเติม ต้องใส่ PIN ก่อน ปลดล็อกแล้วอยู่ได้จนปิดแอป หรือไม่ได้ใช้นานเกิน 5 นาที</div>
+      <label class="toggle"><input type="checkbox" id="optLockAll"><span>ต้องใส่ PIN ก่อนเปิดแอป<br><span class="small muted">ล็อกทั้งแอป รวมถึง Dashboard</span></span></label>
+      <div class="row"><button class="btn primary" id="btnChangePin">เปลี่ยน PIN</button><button class="btn" id="btnLockNow">ล็อกตอนนี้</button></div>
+      <div class="small muted">PIN ใช้กันการแก้ไขโดยไม่ตั้งใจ ไม่ใช่ระบบความปลอดภัยเต็มรูปแบบ · ถ้าซิงก์ GitHub ไว้ PIN ใหม่จะใช้กับทุกเครื่อง</div>
+    </div>
+
+    <div class="team-h"><h2>สำรอง / กู้คืนข้อมูล</h2></div>
+    <div class="panel">
+      <div class="small muted">ข้อมูลเก็บในเครื่องนี้เท่านั้น ไม่ได้อยู่บน GitHub สำรองเป็นไฟล์เก็บไว้ในแอป Files หรือคัดลอกส่งเข้า LINE ตัวเอง เพื่อกู้คืนเมื่อข้อมูลหายหรือเปลี่ยนเครื่อง</div>
+      <div class="row"><button class="btn primary" id="btnBackup">บันทึกไฟล์สำรอง</button><button class="btn" id="btnBackupCopy">คัดลอกข้อมูล</button></div>
+      <div class="row"><label class="btn" for="restoreFile">กู้คืนจากไฟล์</label><input type="file" id="restoreFile" class="vh" accept=".json,application/json,text/plain"><button class="btn" id="btnPaste">กู้คืนจากข้อความ</button></div>
+      <div id="lastBackup" class="small muted"></div>
+    </div>
+
+    <div class="team-h"><h2>จุดคืนค่าอัตโนมัติ</h2><span class="small muted">เก็บในเครื่องนี้ 8 จุดล่าสุด</span></div>
+    <div id="snapList" class="plist"></div>
+
+    <div class="team-h"><h2>วิธีใช้</h2></div>
+    <div class="plist" id="helpList"></div>
+    <div class="small muted" style="text-align:center">เวร PM วันอาทิตย์ · v3.0 · ME/TE STF AUTO</div>
+  </section>
+</div>
+
+<nav class="tabs glass" aria-label="เมนู">
+  <button data-view="dash" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Dashboard</button>
+  <button data-view="draw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>สุ่มเวร</button>
+  <button data-view="team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.6.1 4.4 1.8 5 4.8"/></svg>ทีม</button>
+  <button data-view="hist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="8" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="16" cy="12" r="1.2" fill="currentColor"/></svg>เพิ่มเติม</button>
+</nav>
+
+<div id="modal" class="modal" hidden><div class="modal-c glass" id="modalC"></div></div>
+<div id="toast" class="toast glass" hidden></div>
+<div id="lock" class="lock" hidden>
+  <div class="lock-c">
+    <img class="logo-img lock-logo" alt="DELTA">
+    <div class="lock-t" id="lockTitle">ใส่ PIN</div>
+    <div class="small muted" id="lockSub">เพื่อแก้ไขเวร PM</div>
+    <div class="dots" id="lockDots"><i></i><i></i><i></i><i></i></div>
+    <div class="keys" id="lockKeys"></div>
+    <button class="btn ghost" id="lockCancel">ยกเลิก</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+const TEAMS={IMP:{name:'Improve',short:'I',cls:'imp'},A:{name:'Team A',short:'A',cls:'a'},B:{name:'Team B',short:'B',cls:'b'}};
+const teamCls=t=>TEAMS[t]?TEAMS[t].cls:'none';
+const teamName=t=>TEAMS[t]?TEAMS[t].name:'ไม่เข้าเวร';
+
+const SEED=[
+ ['Pakhin Jomiongpun','Pakhin','Head Section','',''],
+ ['Varatit','IN','Leader / Programmer','','IMP'],
+ ['Natchanon','Joke','TE Improvement','','IMP'],
+ ['Bundit','Mod','PM & Document','','IMP'],
+ ['Pongsakorn','Nine','DOE / AOI / Document','','IMP'],
+ ['Thananurak','TA','ME Designer','','IMP'],
+ ['Anuwat','Oat','Winding Center','','IMP'],
+ ['Kotchakorn','Beam','PM & Document','','IMP'],
+ ['Yuttapop','Bost','TE Improvement','','IMP'],
+ ['Nuttana','Frong','STF_38, STF_30','','A'],
+ ['Phanarin','Now','STF_31, STF_32','','A'],
+ ['Parin','Best','STF_36, STF_33','','A'],
+ ['Natthawat','Fluke','STF_36, STF_33','','A'],
+ ['Surasak','Num','STF_35','','A'],
+ ['Pongsapak','Bloom','STF-39, STF-50','','A'],
+ ['NINE','น้อย','Programmer Support','','IMP'],
+ ['Thanapa','Tum','B Shift Leader','','B'],
+ ['Parinya','Nam-Pu','STF_38, STF_30','','B'],
+ ['Krittidech','DO','STF_31, STF_32','','B'],
+ ['Sarawut','Ball','STF_36, STF_33','','B'],
+ ['Pimug','Phu','STF_34, STF_37','','B'],
+ ['Nipon','Nack','STF_35','','B'],
+ ['Kantapong','Benz','STF-39, STF-50','','B'],
+];
+const seedPeople=()=>SEED.map((r,i)=>({id:'p'+(i+1),name:r[0],nick:r[1],role:r[2],tel:r[3],team:r[4],active:true}));
+
+const KEY='pm-sunday-v1';
+const I18N={"E": {"อา": "Sun", "จ": "Mon", "อ": "Tue", "พ": "Wed", "พฤ": "Thu", "ศ": "Fri", "ส": "Sat", "งด": "Off", "ลบ": "Del", "ทีม": "Team", "เวร": "Duty", "ล็อก": "Lock", "กด": "Tap", "แตะ": "Tap", "ก่อน": "first", "หรือ": "or", "แบบ": "styles", "ครั้ง": "Times", "คน": "ppl", "อาทิตย์": "Sunday", "วันที่": "Date", "โทร": "Tel", "ปิด": "Close", "กลับ": "Back", "เสร็จ": "Done", "ยกเลิก": "Cancel", "กู้คืน": "Restore", "เพิ่ม": "Add", "ลด": "Less", "ชื่อ": "Name", "ทั้งหมด": "All", "ดู": "View", "บันทึก": "Save", "เปลี่ยน": "Change", "ใส่": "Enter", "ตัวอย่าง": "Preview", "ข้อความ": "Text", "พิมพ์": "Print", "ไม่ว่าง": "Unavailable", "ขาว": "White", "เรนโบว์": "Rainbow", "พาสเทล": "Pastel", "ทะเล": "Ocean", "ซันเซ็ต": "Sunset", "ซากุระ": "Sakura", "มิ้นต์": "Mint", "กาแล็กซี": "Galaxy", "ดำ": "Black", "สีภาพ": "Theme", "เปิด": "On", "ประวัติ": "history", "รายชื่อ": "People", "ช่วง": "Period", "ลำดับ": "No.", "สุ่มเวร": "Draw", "เพิ่มเติม": "More", "เมนู": "Menu", "ไม่เข้าเวร": "Not on duty", "ชื่อเล่น": "Nickname", "ไฟล์ข้อมูล": "Data file"}, "P": {"ไฟล์ข้อมูล": "Data file", "เบอร์โทรเก็บเฉพาะในเครื่องนี้ ไม่ถูกส่งขึ้น GitHub เพื่อป้องกันข้อมูลส่วนบุคคลรั่ว (PDPA) · เครื่องอื่นจะไม่เห็นเบอร์ จนกว่าจะนำเข้าเอง": "Phone numbers are kept on this device only and never pushed to GitHub (PDPA). Other devices won't see them until imported.", "นำเข้าเบอร์โทร": "Import phones", "วางรายชื่อ บรรทัดละคน ต้องมีชื่อเล่นหรือชื่อ และเบอร์ เช่น": "Paste one person per line with a nickname or name and a number, e.g.", "วางรายชื่อที่นี่": "Paste the list here", "นำเข้า": "Import", "ผู้ใช้เครื่องนี้": "This device user", "ยังไม่ได้ตั้งชื่อ": "Not set", "ชื่อนี้จะถูกบันทึกในประวัติการแก้ไข (Rev) และใน GitHub ว่าใครเป็นคนแก้": "This name is recorded in the Rev history and on GitHub as the editor", "คุณคือใคร? (ตั้งครั้งเดียว)": "Who are you? (one-time)", "เปลี่ยนผู้ใช้เครื่องนี้": "Change device user", "เครื่องนี้": "This device", "จุดคืนค่าอัตโนมัติ": "Automatic restore points", "เก็บในเครื่องนี้ 8 จุดล่าสุด": "Last 8, on this device", "คืนค่า": "Restore", "แตะอีกครั้ง": "Tap again", "ยังไม่มีจุดคืนค่า · ระบบจะเก็บให้เองก่อนลบ กู้คืน แลกเวร หรือสุ่มทับ": "No restore points yet · saved automatically before delete, restore, swap or re-draw", "ย้อนกลับแล้ว": "Restored", "ย้อนกลับ": "Undo", "ก่อนย้อนกลับ": "Before undo", "ก่อนสุ่มใหม่": "Before re-draw", "ก่อนกู้คืน": "Before restore", "ก่อนลบประวัติทั้งหมด": "Before clearing history", "ก่อนลบเวร": "Before deleting duty", "ก่อนลบ": "Before deleting", "ก่อนแลกเวร": "Before swap", "ก่อนคืนค่ารายชื่อ": "Before list reset", "ก่อนโหลดจาก GitHub": "Before pulling from GitHub", "ก่อนรวมการแก้ไข": "Before merge", "รวมการแก้ไขจากเครื่องอื่นแล้ว": "Merged changes from another device", "โดย": "by", "มีเวอร์ชันใหม่": "New version", "แตะเพื่ออัปเดต": "tap to update", "อัปเดตเบอร์โทร": "Updated phones for", "เบอร์โทร": "Phone", "รายการที่รอ Update": "Changes waiting for Update", "อัปเดต →": "Update →", "ตารางยังเป็น": "the schedule is still", "ยังไม่ได้กด Update": "not updated yet", "ประวัติการแก้ไข (Rev)": "Revision history (Rev)", "บันทึกครั้งแรก": "First saved", "ลบเวร": "Deleted duty", "แก้ไขเวร": "Edited duty", "ยังไม่มีการแก้ไข · Rev.00 เริ่มเมื่อกดบันทึกลงประวัติ": "No revisions yet · Rev.00 starts when you tap Save to history", "ปัจจุบัน": "Current", "เวร PM วันอาทิตย์": "Sunday PM Duty", "สุ่มเวร PM": "PM Duty Draw", "จัดทีม": "Teams", "ประวัติ & ข้อมูล": "History & Data", "ประกาศ": "Poster", "ตาราง": "Table", "แยกทีม": "By team", "ปฏิทิน": "Calendar", "การ์ด": "Cards", "รายคน": "By person", "สถิติ": "Stats", "อาทิตย์นี้": "This Sunday", "รูปแบบ dashboard": "Dashboard style", "คัดลอกข้อความ (LINE)": "Copy text (LINE)", "เพิ่มลงปฏิทิน": "Add to Calendar", "เลือกทีม (ลำดับที่แตะ = ลำดับเวร)": "Choose shifts (tap order = duty order)", "ร่วมทุกอาทิตย์": "joins every week", "ตั้งค่า": "Settings", "คนจากกะ A/B ต่อวัน": "Shift A/B people per day", "อาทิตย์ต่อทีม": "Weeks per shift", "จำนวนอาทิตย์ทั้งหมด": "Total weeks", "เริ่มวันอาทิตย์ที่": "Start Sunday", "ให้คนที่ทำเวรน้อยได้ก่อน": "Prioritise people with fewer duties", "นับจากประวัติที่บันทึกไว้ ไม่ซ้ำคนจนกว่าจะครบรอบ": "Based on saved history — no repeats until everyone has had a turn", "ตั้งให้ครบ 1 รอบทุกทีม": "Set to one full rotation", "งดเวร (วันหยุดยาว / ปิดโรงงาน) — ข้ามวันนี้ แล้วเลื่อนเวรไปอาทิตย์ถัดไป": "Skip dates (holidays / plant shutdown) — duty moves to the next Sunday", "เพิ่มวันงด": "Add skip date", "ไม่มีวันงด": "No skip dates", "ยกเลิกวันงด": "Remove skip date", "งดเวร": "Skip", "ยังไม่ได้เลือกทีม": "No shift selected", "ลำดับเวร": "Order", "บันทึกลงประวัติ": "Save to history", "ดู Dashboard": "View Dashboard", "เลือกอย่างน้อย 1 ทีม": "Choose at least 1 shift", "ลดจำนวนคน หรือแก้วันไม่ว่างในแท็บทีม": "reduce people or edit unavailable dates in Teams", "แก้ไขเอง": "edited", "เพิ่มคนในวันนี้": "Add person to this day", "สุ่มคนนี้ใหม่": "Re-draw this person", "เลือกวันที่ก่อน": "Pick a date first", "คนปัจจุบัน": "Current", "อยู่วันนี้แล้ว": "Already on this day", "ไม่ว่างวันนี้": "Unavailable today", "ปิดอยู่": "paused", "ไม่พบชื่อ": "No match", "ค้นหาชื่อ / ชื่อเล่น / Line": "Search name / nickname / Line", "เอาคนนี้ออกจากวันนี้": "Remove from this day", "แก้ไขแล้ว": "Edited", "แตะชื่อเพื่อเปลี่ยนคน หรือเอาออก": "Tap a name to change or remove", "แตะปุ่ม": "Tap", "เพื่อย้ายทีม · แตะชื่อเพื่อแก้ไข หรือปิดชั่วคราว (ลา/ไม่สะดวก)": "to change team · tap a name to edit or pause (leave)", "ไม่เข้าเวร": "Not on duty", "หน้าที่ / Line": "Role / Line", "เบอร์โทร": "Phone", "พร้อมเข้าเวร": "Available for duty", "ปิดเมื่อลา / ไม่สะดวกช่วงนี้": "turn off when on leave", "ทำเวรล่าสุด": "Last duty", "วันไม่ว่าง (ลา / ติดธุระ) — ตอนสุ่มจะข้ามคนนี้เฉพาะวันนั้น": "Unavailable dates (leave / busy) — skipped only on those days", "ว่างทุกอาทิตย์": "Available every week", "ลบคนนี้": "Remove person", "แตะอีกครั้งเพื่อยืนยัน": "Tap again to confirm", "เพิ่มคน": "Add person", "ชื่อจริง": "First name", "เช่น": "e.g.", "คืนค่ารายชื่อเริ่มต้น": "Reset to default list", "คืนค่ารายชื่อแล้ว": "List reset", "ใส่ชื่อเล่นหรือชื่อก่อน": "Enter a nickname or name first", "ยังไม่มีคน": "No one yet", "ชื่อเล่น": "Nickname", "ย้ายไป": "Move to", "สลับวันเวรระหว่าง 2 คน ใช้ได้กับเวรที่ยังไม่ถึงวัน ระบบจะเก็บประวัติว่าใครแลกกับใคร": "Swap duty dates between 2 people (upcoming duties only). Every swap is logged.", "แลกเวร": "Swap duty", "ยังไม่มีการแลกเวร": "No swaps yet", "รายงานสรุป": "Summary report", "ช่วงเวลา": "Period", "ยังไม่มีเวรที่บันทึกในช่วงนี้": "No saved duties in this period", "ประวัติเวร": "Duty history", "กำลังจะถึง": "Upcoming", "แก้ไขเวรวันนี้": "Edit this day", "ลบประวัติทั้งหมด": "Clear all history", "ลบประวัติแล้ว": "History cleared", "ยังไม่มีประวัติ · สุ่มเวรแล้วกด \"บันทึกลงประวัติ\" ข้อมูลจะมาแสดงที่นี่ และใช้คำนวณให้คนที่ทำน้อยได้ก่อน": "No history yet · draw, then tap \"Save to history\". Saved weeks appear here and keep the rotation fair", "ไม่มีข้อมูลในช่วงนี้": "No data in this period", "ซิงก์กับ GitHub": "GitHub sync", "ใส่เฉพาะเครื่องที่แก้ไขเวร": "only on devices that edit", "บันทึก Token": "Save token", "บันทึกขึ้น GitHub": "Push to GitHub", "โหลดจาก GitHub": "Pull from GitHub", "ลบ Token จากเครื่องนี้": "Remove token from this device", "มี Token แล้ว": "Token saved", "มีการแก้ไข · รอบันทึกขึ้น GitHub…": "Changed · waiting to push…", "ซิงก์แล้ว": "Synced", "กำลังซิงก์…": "Syncing…", "ซิงก์ไม่ได้": "Sync error", "ข้อมูลจาก GitHub": "Data from GitHub", "Token ไม่ถูกต้องหรือหมดอายุ": "Invalid or expired token", "ถูกจำกัดการเข้าถึงชั่วคราว ลองใหม่อีกครั้ง": "Temporarily rate-limited, try again", "กำลังโหลดจาก GitHub…": "Loading from GitHub…", "ยังไม่มีข้อมูลบน GitHub · กำลังบันทึกครั้งแรก…": "No data on GitHub yet · saving for the first time…", "ยังไม่มีข้อมูลบน GitHub · ใช้ข้อมูลในเครื่องนี้": "No data on GitHub yet · using this device", "โหลดข้อมูลจาก GitHub แล้ว": "Loaded from GitHub", "มีการอัปเดตจากเครื่องอื่น": "Updated from another device", "ตรงกับ GitHub · อัปเดตล่าสุด": "In sync with GitHub · last update", "โหมดดูอย่างเดียว · ข้อมูลจาก GitHub อัปเดต": "View-only · GitHub data updated", "โหลดจาก GitHub ไม่ได้": "Couldn't load from GitHub", "ใช้ข้อมูลในเครื่องแทน": "using local data", "กำลังบันทึกขึ้น GitHub…": "Saving to GitHub…", "บน GitHub มีข้อมูลใหม่กว่า · โหลดมาแทนแล้ว": "Newer data on GitHub · loaded it", "ตรงกับ GitHub": "In sync with GitHub", "Token ไม่ถูกต้อง หรือไม่มีสิทธิ์เขียน repo นี้": "Invalid token, or no write access to this repo", "บันทึกบน GitHub แล้ว": "Saved to GitHub", "บันทึกขึ้น GitHub ไม่ได้": "Couldn't save to GitHub", "ซิงก์ไม่สำเร็จ · ข้อมูลยังอยู่ในเครื่อง": "Sync failed · data is still on this device", "ซิงก์ใช้ได้เมื่อเปิดจากเว็บ GitHub Pages (….github.io) เท่านั้น ในหน้านี้ข้อมูลเก็บในเครื่อง": "Sync works only on the GitHub Pages site (….github.io). Here, data stays on this device", "วาง Token ก่อน": "Paste a token first", "กำลังตรวจ Token…": "Checking token…", "เข้าถึง repo ไม่ได้": "Can't access repo", "Token นี้ไม่มีสิทธิ์เขียน (ต้องตั้ง Contents: Read and write)": "This token has no write access (set Contents: Read and write)", "บันทึก Token แล้ว": "Token saved", "ใช้ Token นี้ไม่ได้": "Can't use this token", "ลบ Token แล้ว · เครื่องนี้เป็นโหมดดูอย่างเดียว": "Token removed · this device is view-only", "Token ไม่ถูกต้อง": "Invalid token", "PIN ล็อกการแก้ไข": "PIN edit lock", "ดู Dashboard ได้โดยไม่ต้องใส่ PIN ส่วนแท็บ สุ่มเวร · ทีม · เพิ่มเติม ต้องใส่ PIN ก่อน ปลดล็อกแล้วอยู่ได้จนปิดแอป หรือไม่ได้ใช้นานเกิน 5 นาที": "Dashboard is open to everyone. Draw · Teams · More need the PIN. It stays unlocked until the app is closed or idle for 5 minutes", "ต้องใส่ PIN ก่อนเปิดแอป": "Require PIN to open the app", "ล็อกทั้งแอป รวมถึง": "Locks the whole app, including", "เปลี่ยน PIN": "Change PIN", "ล็อกตอนนี้": "Lock now", "ใช้กันการแก้ไขโดยไม่ตั้งใจ ไม่ใช่ระบบความปลอดภัยเต็มรูปแบบ · ถ้าซิงก์ GitHub ไว้ PIN ใหม่จะใช้กับทุกเครื่อง": "prevents accidental edits; it is not full security · with GitHub sync, a new PIN applies to every device", "ใส่ PIN": "Enter PIN", "เพื่อแก้ไขเวร PM": "to edit PM duty", "เพื่อเปิดแอปเวร PM": "to open PM Duty", "ล็อกแล้ว": "Locked", "ปลดล็อกแล้ว": "Unlocked", "ปลดล็อก": "Unlock", "ดู Dashboard ได้โดยไม่ต้องใส่ PIN": "Dashboard viewable without PIN", "ใส่ PIN ปัจจุบัน": "Enter current PIN", "ยืนยันก่อนเปลี่ยน PIN": "Confirm before changing PIN", "ตั้ง PIN ใหม่": "Set new PIN", "ตัวเลข 4 หลัก": "4 digits", "ยืนยัน PIN ใหม่": "Confirm new PIN", "ใส่ PIN ใหม่อีกครั้ง": "Enter the new PIN again", "PIN ไม่ตรงกัน ลองใหม่": "PINs don't match, try again", "เปลี่ยน PIN แล้ว": "PIN changed", "สำรอง / กู้คืนข้อมูล": "Backup / Restore", "ข้อมูลเก็บในเครื่องนี้เท่านั้น ไม่ได้อยู่บน GitHub สำรองเป็นไฟล์เก็บไว้ในแอป Files หรือคัดลอกส่งเข้า LINE ตัวเอง เพื่อกู้คืนเมื่อข้อมูลหายหรือเปลี่ยนเครื่อง": "Save a backup file to Files or copy it to your own LINE, so you can restore if data is lost or you change phones", "บันทึกไฟล์สำรอง": "Save backup file", "คัดลอกข้อมูล": "Copy data", "กู้คืนจากไฟล์": "Restore from file", "กู้คืนจากข้อความ": "Restore from text", "สำรองล่าสุด": "Last backup", "ยังไม่เคยสำรองข้อมูล": "Never backed up", "บันทึกไฟล์สำรองแล้ว": "Backup saved", "บันทึกไม่ได้ ลองปุ่มคัดลอกข้อมูลแทน": "Couldn't save, try Copy data instead", "เลือก \"บันทึกไปยังไฟล์\" เพื่อเก็บ": "Choose \"Save to Files\" to keep it", "ข้อมูลสำรอง": "Backup data", "กดค้างในช่อง → เลือกทั้งหมด → คัดลอก": "Long-press the box → Select All → Copy", "คัดลอกแล้ว วางเก็บใน LINE Keep ได้เลย": "Copied — paste it into LINE Keep", "อ่านข้อมูลไม่ได้ ตรวจว่าคัดลอกมาครบ": "Can't read the data — check it was copied completely", "ไม่ใช่ไฟล์สำรองของเวร PM": "Not a PM Duty backup", "กู้คืนแล้ว": "Restored", "กู้คืนข้อมูล?": "Restore data?", "ไฟล์สำรองวันที่": "Backup from", "ข้อมูลปัจจุบันในเครื่องนี้จะถูกแทนที่ทั้งหมด": "All current data on this device will be replaced", "วางข้อมูลสำรอง": "Paste backup data", "กดค้าง → วาง ข้อความที่คัดลอกไว้": "Long-press → Paste the copied text", "ตรวจและกู้คืน": "Check & restore", "วิธีใช้": "How to use", "ลำดับกะ": "Shift order", "ทุกอาทิตย์": "every week", "ติดต่อเปลี่ยนเวร แจ้งหัวหน้าก่อนวันศุกร์": "To change duty, tell your lead before Friday", "ผลสุ่มนี้ยังไม่ได้บันทึก — ไปที่แท็บ \"สุ่มเวร\" แล้วกด \"บันทึกลงประวัติ\" เพื่อเก็บสถิติ": "This draw is not saved yet — go to \"Draw\" and tap \"Save to history\" to keep stats", "สถิติการทำเวร PM": "PM duty stats", "ยังไม่มีผลสุ่ม": "No draw yet", "ไปสุ่มเวร": "Go to Draw", "เวร PM แยกตามทีม": "PM duty by team", "ปฏิทินเวร PM": "PM duty calendar", "เวร PM รายคน": "PM duty by person", "วันอาทิตย์": "Sunday", "ผู้รับผิดชอบ": "Assigned", "ไม่มีเวรในรอบนี้": "No duty this round", "อาทิตย์ที่บันทึก": "Saved weeks", "ครั้งรวม": "Total duties", "คนยังไม่เคยทำ": "Never on duty", "แผนที่ยังไม่บันทึก": "Unsaved plan", "ต้องต่ออินเทอร์เน็ตเพื่อโหลดตัว export": "Internet needed to load the exporter", "ภาพพร้อมแล้ว": "Image ready", "กดค้างที่รูป": "long-press the image", "บันทึกลงในรูปภาพ": "Save to Photos", "หรือกดปุ่มด้านล่างเพื่อแชร์ไป": "or tap below to share to", "บันทึก / แชร์": "Save / Share", "สร้างรูปไม่สำเร็จ": "Image failed", "โหลดตัวสร้าง PDF ไม่สำเร็จ ต้องต่ออินเทอร์เน็ต": "Couldn't load the PDF tool — internet needed", "พร้อมแล้ว": "ready", "กดปุ่มด้านล่าง แล้วเลือก": "Tap below, then choose", "บันทึกไปยังไฟล์": "Save to Files", "สร้าง PDF ไม่สำเร็จ": "PDF failed", "กดค้างในช่องแล้วเลือก \"คัดลอก\"": "Long-press the box and choose \"Copy\"", "คัดลอกแล้ว วางใน LINE ได้เลย": "Copied — paste into LINE", "บันทึกไม่ได้ในหน้านี้": "Can't save on this page", "บันทึกแล้ว": "Saved", "ของใคร": "For whom", "ทุกวันเวร (ทั้งทีม)": "All duties (whole team)", "แจ้งเตือน": "Reminder", "คืนวันเสาร์": "Saturday evening", "เช้าวันอาทิตย์": "Sunday morning", "เช้าวันเสาร์": "Saturday morning", "ไม่เตือน": "No reminder", "ดาวน์โหลดไฟล์ปฏิทิน (.ics)": "Download calendar file (.ics)", "เปิดไฟล์ → กด": "Open the file → tap", "เพิ่มทั้งหมด": "Add All", "เลือกปฏิทิน · ส่งไฟล์นี้ใน LINE ให้แต่ละคนกดเพิ่มเองได้": "choose a calendar · send this file in LINE so each person can add it", "ยังไม่มีเวรที่กำลังจะถึง": "No upcoming duties", "คนนี้ยังไม่มีเวร": "This person has no duties", "ทั้งทีม": "whole team", "วันเวร": "duty days", "บันทึกแล้ว · เปลี่ยนนามสกุลเป็น .ics ก่อนเปิด": "Saved · rename to .ics before opening", "เพิ่มลงปฏิทินใช้ได้บนเว็บ GitHub Pages": "Add to Calendar works on the GitHub Pages site", "คนเข้าเวร": "On duty", "พรุ่งนี้เวร PM วันอาทิตย์": "Sunday PM duty tomorrow", "ต้องมีเวรที่กำลังจะถึงอย่างน้อย 2 อาทิตย์": "Need at least 2 upcoming duty weeks", "แตะคนที่จะแลกกับ": "Tap the person to swap with", "แตะคนที่": "Tap the person who wants to", "ขอแลก": "swap", "เลือกใหม่": "Choose again", "แลกต่างทีม": "Cross-team swap", "ยืนยันแลกเวร": "Confirm swap", "เหตุผล (ไม่บังคับ)": "Reason (optional)", "เช่น ติดธุระต่างจังหวัด": "e.g. out of town", "แลกเวรแล้ว": "Swapped", "รายงานเวร PM วันอาทิตย์": "Sunday PM duty report", "จำนวนอาทิตย์": "Weeks", "จำนวนครั้ง": "Count", "วันที่เข้าเวร": "Duty dates", "รายละเอียดรายวัน": "Daily detail", "รายงานเวร": "PM-duty-report"}, "R": [["อัปเดตเป็น (Rev\\.\\d+) แล้ว", "Updated to $1"], ["แก้ไข (\\d+) รายการ รอ Update", "$1 changes pending Update"], ["มีการแก้ไข (\\d+) รายการ", "$1 changes"], ["\\((\\d+) รายการ\\)", "($1 changes)"], ["รายการที่รอ Update \\((\\d+)\\)", "Changes waiting for Update ($1)"], ["(\\d+) คนพร้อม · สุ่ม (\\d+) คน ไปคู่กับกะทุกอาทิตย์", "$1 available · $2 picked to join the shift each week"], ["รวม (\\d+) คน/อาทิตย์", "Total $1 ppl/week"], ["(\\d+) / (\\d+) คนพร้อม", "$1 / $2 available"], ["(\\d+) คนพร้อม", "$1 available"], ["× (\\d+) อาทิตย์", "× $1 wk"], ["มีคนพร้อม (\\d+) คน น้อยกว่าที่ต้องการ \\((\\d+) คน/วัน\\)", "has only $1 available, needs $2/day"], ["ว่างวันที่ (.+?) แค่ (\\d+) คน \\(ต้องการ (\\d+) คน\\)", "has only $2 free on $1 (needs $3)"], ["^อาทิตย์ (\\d)", "Sun $1"], ["อา\\. ", "Sun "], ["เวร (\\d+) ครั้ง", "$1 duties"], ["ไม่ว่าง (\\d+) วัน", "$1 days off"], ["ไม่ว่าง (\\d)", "Off $1"], ["งด (\\d)", "Skip $1"], ["^เปลี่ยนคน · ", "Change person · "], ["^เพิ่มคน · ", "Add person · "], ["^เปลี่ยน (.+) → (.+)$", "Changed $1 → $2"], ["^เปลี่ยนเป็น (.+)$", "Changed to $1"], ["^เอา (.+) ออกแล้ว$", "Removed $1"], ["^เพิ่ม (.+) แล้ว$", "Added $1"], ["^ลบ (.+) แล้ว$", "Removed $1"], ["^แก้ไขเวร (.+)$", "Edit duty $1"], ["^แก้ไข (.+)$", "Edit $1"], ["^ไม่มีคนอื่นใน (.+) ให้สุ่มแทนแล้ว$", "No one else in $1 to draw"], ["^บันทึกเวร (\\d+) อาทิตย์แล้ว$", "Saved $1 weeks"], ["ขนาด A4 · (\\d+) หน้า", "A4 · $1 pages"], ["ลงไว้ว่าไม่ว่างวันที่ (.+)", "is marked unavailable on $1"], ["(\\d+) อาทิตย์ · (\\d+) คน", "$1 weeks · $2 people"], ["(\\d+) คน · ประวัติ (\\d+) อาทิตย์", "$1 people · history $2 weeks"], ["(\\d+) วันเวร", "$1 duty days"], ["(\\d+) คน/อาทิตย์", "$1/week"], ["(\\d+) คน/วัน", "$1/day"], ["(\\d+) อาทิตย์", "$1 weeks"], ["(\\d+) ครั้ง", "$1×"], ["(\\d+) คน", "$1 ppl"], ["(\\d+) หน้า", "$1 pages"]]}
+;
+const HELP_EN=[["Teams", "<ul><li>Tap <b>I / A / B / –</b> after a name to change team (– = not on duty)</li><li>Tap a name to edit nickname, name, role, phone</li><li>Turn off <b>Available for duty</b> while someone is on leave</li><li>Add new people at the bottom of the page</li></ul>"], ["Shift order A / B", "<ul><li>The shift you tap <b>first</b> gets number 1 and goes first</li><li><b>Weeks per shift</b> = consecutive weeks per shift, e.g. 2 → A, A, B, B, then repeat</li><li>To change the order, tap the shifts off and on again</li></ul>"], ["Improve every week", "<ul><li>Each week includes people from Improve together with the shift (0–3 people)</li><li>Set to 0 if not needed</li></ul>"], ["Fair draw", "<ul><li>With <b>Prioritise people with fewer duties</b> on, nobody repeats until everyone in the team has had a turn</li><li>Turn it off for a pure random draw</li><li>Tap <b>↻</b> to re-draw one person (same team)</li></ul>"], ["Manual edit", "<ul><li>After drawing, tap a <b>name ✎</b> to pick someone else (search, any team)</li><li><b>Remove from this day</b> is in the picker</li><li><b>+ Add person to this day</b> adds an extra person</li><li>Saved duties can be edited in Draw or by tapping a row in History ✎</li><li>Edited days are tagged <b>✎ edited</b></li></ul>"], ["Unavailable dates", "<ul><li>Teams → tap a name → <b>Unavailable dates</b> → pick a date → Add</li><li>The draw skips that person only on that day</li><li>The picker shows <b>Unavailable today</b> as a warning</li></ul>"], ["Swap duty", "<ul><li>More → <b>⇄ Swap duty</b></li><li>Tap the person asking to swap, then a person on another week → reason → confirm</li><li>You are warned if the other person is unavailable; every swap is logged</li></ul>"], ["Add to iPhone Calendar", "<ul><li>Dashboard → <b>📅 Add to Calendar</b></li><li>Pick one person or the whole team → pick a reminder time</li><li>Open the file → <b>Add All</b></li><li>Send the file in LINE so each person can add their own</li></ul>"], ["Excel summary", "<ul><li>More → <b>Summary report</b> → choose month / year / all</li><li><b>Export Excel (.csv)</b> opens in Excel or Numbers with Thai text intact</li><li>Counts saved duties only</li></ul>"], ["Revision number (Rev)", "<ul><li><b>Save to history</b> = <b>Rev.00</b></li><li>After saving, edits, swaps and deleted days collect as <b>pending</b></li><li>When done, tap <b>Update → Rev.01</b>; the number goes up once however many changes</li><li>The Rev and last-edit time appear at the <b>bottom-right</b> of the Dashboard, .jpg and .pdf</li><li>An unsaved draw shows a red <b>DRAFT</b> instead</li><li>See past revisions in More → Revision history (Rev)</li></ul>"], ["Skip dates", "<ul><li>Add holidays / shutdowns; the duty moves to the next Sunday and the shift order is kept</li><li>Any date is rounded to its Sunday</li><li>Tap a skip chip to remove it</li></ul>"], ["Save & next round", "<ul><li>A draw stays <b>DRAFT</b> until you tap <b>Save to history</b></li><li>After saving, the next start date is set to the week after the last duty</li><li>Saving over an existing date replaces it</li></ul>"], ["Dashboard & Export", "<ul><li>7 styles: Poster / Table / By team / Calendar / Cards / By person / Stats (swipe the bar)</li><li>9 themes: White / Rainbow / Pastel / Ocean / Sunset / Sakura / Mint / Galaxy / Black</li><li><b>Export .jpg</b> → long-press → Save to Photos or share to LINE</li><li><b>Export .pdf</b> → A4 for print, email or LINE</li><li><b>Copy text</b> → paste straight into a LINE group</li></ul>"], ["PIN lock", "<ul><li>Default PIN is <b>4444</b></li><li>Dashboard is open; Draw / Teams / More need the PIN</li><li>Padlock top-right: 🔒 locked · 🔓 unlocked (tap to lock)</li><li>Change it in More → PIN edit lock</li><li>Turn on <b>Require PIN to open the app</b> to hide everything</li><li>Locks itself after 5 minutes idle</li></ul>"], ["Data safety", "<ul><li><b>Phone numbers stay on this device</b> and are never pushed to GitHub · import on other devices via Teams → 📞 Import phones</li><li>If two devices edit at the same time, changes are <b>merged</b> instead of overwritten (same day: the later save wins)</li><li>Set <b>This device user</b> on first unlock; the name appears in the Rev history</li><li>Before delete, restore, swap or re-draw, a <b>restore point</b> is saved and an <b>Undo</b> button shows for 7 s</li></ul>"], ["Offline & updates", "<ul><li>On the GitHub site the app is stored on the device, so it opens offline and can export after one online visit</li><li>When a new version is uploaded, a <b>New version</b> bar appears at the top; tap to update</li></ul>"], ["GitHub sync", "<ul><li>On <b>github.io</b>, data is stored in <b>data.json</b> in the repo, so every device sees the same data</li><li>Devices with a <b>Token</b> can edit and push automatically</li><li>Devices without a token are view-only</li><li>Every device checks for updates every 15 s; changes reach others in about 15–60 s · tap ☁︎ to refresh now</li><li>Never share the token or put it in index.html</li></ul>"], ["Backup / Restore", "<ul><li>Back up after each saved round</li><li><b>Save backup file</b> → a .json file in Files</li><li><b>Copy data</b> → send to your own LINE (Keep)</li><li>New phone: open the site → More → Restore</li><li>Using the Home Screen icon keeps data longer than Safari</li></ul>"]];
+const LOGO='data:image/png;base64,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';
+let unlocked=false;try{unlocked=sessionStorage.getItem('pm-unlocked')==='1';}catch(e){}
+let S;
+function phash(p){let h=2166136261;for(const ch of 'pm-sunday:'+p){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return (h>>>0).toString(16);}
+function defaults(){return{pinHash:phash('4444'),lockAll:false,people:seedPeople(),history:[],current:null,teams:['A','B'],per:2,impPer:1,weeks:4,block:2,fair:true,style:'poster',skin:'white',skip:[],swaps:[],rev:0,revAt:0,revLog:[],revPending:[],lastBackup:0,view:'dash'};}
+try{S=Object.assign(defaults(),JSON.parse(localStorage.getItem(KEY)||'{}'));}catch(e){S=defaults();}
+S.teams=(S.teams||[]).filter(t=>t==='A'||t==='B');
+const LANG=S.lang==='en'?'en':'th';
+const LOC=()=>LANG==='en'?'en-GB':'th-TH';
+const hasThai=s=>/[\u0E00-\u0E7F]/.test(s);
+const PH_KEYS=Object.keys(I18N.P).sort((a,b)=>b.length-a.length);
+const RX=I18N.R.map(([a,b])=>[new RegExp(a,'g'),b]),RX1=RX.slice(0,-6);
+function TR(s){
+  if(LANG!=='en'||s==null)return s;s=String(s);if(!hasThai(s))return s;
+  const ex=v=>{const t=v.trim();return I18N.E[t]!==undefined?v.replace(t,I18N.E[t]):v;};
+  let o=ex(s);if(!hasThai(o))return o;
+  RX1.forEach(([r,b])=>{o=o.replace(r,b);});
+  for(const k of PH_KEYS){if(o.includes(k))o=o.split(k).join(I18N.P[k]);}
+  RX.forEach(([r,b])=>{o=o.replace(r,b);});
+  return ex(o);
+}
+function save(){markDirty();try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ---------- GitHub sync: data.json in the same repo ---------- */
+const GH=(()=>{const h=location.hostname;if(!h.endsWith('.github.io'))return null;
+  const owner=h.split('.')[0],seg=location.pathname.split('/').filter(Boolean)[0];
+  return{owner,repo:seg&&!seg.includes('.')?seg:owner+'.github.io',path:'data.json'};})();
+let ghToken='';try{ghToken=localStorage.getItem('pm-gh-token')||'';}catch(e){}
+const SYNC_KEYS=['people','history','teams','per','impPer','weeks','block','fair','skip','current','pinHash','lockAll','swaps','rev','revAt','revBy','revLog','revPending'];
+const syncData=()=>{const o={};SYNC_KEYS.forEach(k=>o[k]=S[k]);o.people=(S.people||[]).map(({tel,...p})=>p);return o;};
+let ghSha, ghBusy=false, pushTimer=null;
+function markDirty(){
+  const str=JSON.stringify(syncData());
+  if(S.lastHash===undefined){S.lastHash=str;return;}
+  if(str===S.lastHash)return;
+  S.lastHash=str;S.updatedAt=Date.now();
+  if(GH&&ghToken){clearTimeout(pushTimer);pushTimer=setTimeout(ghPush,1500);setSync('มีการแก้ไข · รอบันทึกขึ้น GitHub…','wait');}
+}
+const ghUrl=()=>'https://api.github.com/repos/'+GH.owner+'/'+GH.repo+'/contents/'+GH.path;
+const ghHead=()=>{const h={'Accept':'application/vnd.github+json'};if(ghToken)h.Authorization='Bearer '+ghToken;return h;};
+function b64enc(str){const b=new TextEncoder().encode(str);let s='';for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s);}
+function b64dec(b){const bin=atob(b.replace(/\s/g,''));const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new TextDecoder().decode(u);}
+const hm=t=>new Date(t).toLocaleString(LOC(),{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+function setSync(msg,state){
+  const st=document.getElementById('ghStatus');if(st)st.textContent=msg;
+  const p=document.getElementById('syncPill');if(!p)return;
+  p.textContent=!GH?'':state==='ok'?'· ☁︎ ซิงก์แล้ว':state==='wait'?'· ☁︎ กำลังซิงก์…':state==='err'?'· ⚠︎ ซิงก์ไม่ได้':state==='ro'?'· ☁︎ ข้อมูลจาก GitHub':'';
+  p.style.color=state==='err'?'var(--danger)':state==='ok'||state==='ro'?'var(--ok)':'';
+}
+let ghEtag='';
+async function ghGet(useEtag){
+  const h=ghHead();if(useEtag&&ghEtag)h['If-None-Match']=ghEtag;
+  const r=await fetch(ghUrl(),{headers:h,cache:'no-store'});
+  if(r.status===304)return{same:true};
+  if(r.status===404)return{sha:null,obj:null};
+  if(r.status===401)throw new Error('Token ไม่ถูกต้องหรือหมดอายุ');
+  if(r.status===403)throw new Error('ถูกจำกัดการเข้าถึงชั่วคราว ลองใหม่อีกครั้ง');
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  ghEtag=r.headers.get('ETag')||'';
+  const j=await r.json();return{sha:j.sha,obj:JSON.parse(b64dec(j.content))};
+}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const stable=o=>JSON.stringify(o,(k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.keys(v).sort().reduce((a,x)=>(a[x]=v[x],a),{}):v);
+const same=(a,b)=>stable(a)===stable(b);
+/* 3-way merge: base = last version both sides agreed on. A side that did not touch an item takes the other side's version. */
+function mergeById(B,L,R,key){
+  const m=a=>{const o=new Map();(a||[]).forEach(x=>o.set(x[key],x));return o;};
+  const b=m(B),l=m(L),r=m(R),out=[],seen=new Set();
+  const order=[...(L||[]).map(x=>x[key]),...(R||[]).map(x=>x[key])];
+  for(const k of order){
+    if(seen.has(k))continue;seen.add(k);
+    const bv=b.get(k),lv=l.get(k),rv=r.get(k);
+    if(lv&&rv)out.push(same(lv,bv)?rv:lv);
+    else if(lv){if(!(bv&&same(lv,bv)))out.push(lv);}
+    else if(rv){if(!(bv&&same(rv,bv)))out.push(rv);}
+  }
+  return out;
+}
+function mergeSet(B,L,R,kf){
+  const bk=new Set((B||[]).map(kf)),lk=new Set((L||[]).map(kf)),rk=new Set((R||[]).map(kf));
+  const all=[...(L||[]),...(R||[]).filter(x=>!lk.has(kf(x)))];
+  return all.filter(x=>{const k=kf(x);return (lk.has(k)&&rk.has(k))||(lk.has(k)&&!bk.has(k))||(rk.has(k)&&!bk.has(k));});
+}
+function mergeData(B,L,R){
+  B=B||{};const o={};
+  SYNC_KEYS.forEach(k=>{o[k]=same(L[k],B[k])?R[k]:L[k];});
+  o.people=mergeById(B.people,L.people,R.people,'id');
+  o.history=mergeById(B.history,L.history,R.history,'date').sort((a,b)=>a.date<b.date?-1:1);
+  o.skip=mergeSet(B.skip,L.skip,R.skip,x=>x).sort();
+  o.swaps=mergeSet(B.swaps,L.swaps,R.swaps,x=>x.ts+'|'+x.a+'|'+x.b).sort((a,b)=>b.ts-a.ts).slice(0,200);
+  o.revLog=mergeSet(B.revLog,L.revLog,R.revLog,x=>x.at+'|'+x.rev).sort((a,b)=>b.at-a.at).slice(0,100);
+  o.revPending=mergeSet(B.revPending,L.revPending,R.revPending,x=>x.at+'|'+x.note).sort((a,b)=>a.at-b.at);
+  o.rev=Math.max(L.rev||0,R.rev||0);
+  if((R.revAt||0)>(L.revAt||0)){o.revAt=R.revAt;o.revBy=R.revBy;}else{o.revAt=L.revAt;o.revBy=L.revBy;}
+  return o;
+}
+function applyData(d,stamp){
+  const tel={};(S.people||[]).forEach(p=>{if(p.tel)tel[p.id]=p.tel;});
+  SYNC_KEYS.forEach(k=>{if(d&&k in d)S[k]=d[k];});
+  S.people=(S.people||[]).map(p=>Object.assign({},p,{tel:tel[p.id]||p.tel||''}));
+  S.teams=(S.teams||[]).filter(t=>t==='A'||t==='B');
+  S.updatedAt=stamp||Date.now();S.lastHash=JSON.stringify(syncData());persist();
+  const sd=document.getElementById('startDate');if(sd)sd.value='';
+  show(S.view||'dash',true);
+}
+function applyRemote(obj){applyData(obj.data||{},obj.updatedAt);S.baseJson=stable(obj.data||{});persist();}
+async function ghPull(manual,quiet){
+  if(!GH)return;
+  if(!quiet)setSync('กำลังโหลดจาก GitHub…','wait');
+  try{
+    const g=await ghGet(quiet);
+    if(g.same){S.syncedAt=Date.now();return;}
+    ghSha=g.sha;
+    if(!g.obj){
+      if(ghToken){setSync('ยังไม่มีข้อมูลบน GitHub · กำลังบันทึกครั้งแรก…','wait');await ghPush();}
+      else setSync('ยังไม่มีข้อมูลบน GitHub · ใช้ข้อมูลในเครื่องนี้','');
+      return;
+    }
+    const Rd=g.obj.data||{},Rs=stable(Rd),L=syncData(),Ls=stable(L);
+    const ok=()=>setSync(ghToken?'✓ ตรงกับ GitHub · อัปเดตล่าสุด '+hm(g.obj.updatedAt||Date.now())+(g.obj.by?' · '+g.obj.by:''):'โหมดดูอย่างเดียว · ข้อมูลจาก GitHub อัปเดต '+hm(g.obj.updatedAt||Date.now()),ghToken?'ok':'ro');
+    S.syncedAt=Date.now();
+    if(Rs===Ls){S.baseJson=Rs;persist();ok();return;}
+    if(manual){snapshot('ก่อนโหลดจาก GitHub');applyRemote(g.obj);undoToast('โหลดข้อมูลจาก GitHub แล้ว');ok();return;}
+    if(!ghToken){applyRemote(g.obj);if(quiet)toast('มีการอัปเดตจากเครื่องอื่น');ok();return;}
+    const base=S.baseJson||((S.updatedAt||0)>(g.obj.updatedAt||0)?Rs:Ls);
+    if(Ls===base){applyRemote(g.obj);if(quiet)toast('มีการอัปเดตจากเครื่องอื่น');ok();return;}
+    if(Rs===base){S.baseJson=Rs;persist();await ghPush();return;}
+    snapshot('ก่อนรวมการแก้ไข');
+    applyData(mergeData(JSON.parse(base),L,Rd),Date.now());S.baseJson=Rs;persist();
+    undoToast('รวมการแก้ไขจากเครื่องอื่นแล้ว');await ghPush();
+  }catch(e){if(!quiet)setSync('โหลดจาก GitHub ไม่ได้: '+e.message+' · ใช้ข้อมูลในเครื่องแทน','err');}
+}
+async function ghPush(){
+  pushTimer=null;
+  if(!GH||!ghToken)return;
+  if(ghBusy){clearTimeout(pushTimer);pushTimer=setTimeout(ghPush,1500);return;}
+  ghBusy=true;setSync('กำลังบันทึกขึ้น GitHub…','wait');
+  const mk=()=>{const d=syncData();return{d,body:JSON.stringify({app:'pm-sunday',updatedAt:S.updatedAt||Date.now(),by:S.me||'',data:d},null,1)};};
+  const put=(sha,body)=>fetch(ghUrl(),{method:'PUT',headers:Object.assign(ghHead(),{'Content-Type':'application/json'}),
+    body:JSON.stringify(Object.assign({message:'อัปเดตเวร PM '+new Date().toLocaleString(LOC())+(S.me?' · '+S.me:''),content:b64enc(body)},sha?{sha}:{}))});
+  try{
+    if(ghSha===undefined)ghSha=(await ghGet()).sha;
+    let p=mk(),r=await put(ghSha,p.body);
+    if(r.status===409||r.status===422){
+      const g=await ghGet();ghSha=g.sha;
+      if(g.obj){
+        const Rd=g.obj.data||{},Rs=stable(Rd);
+        if(Rs!==S.baseJson){snapshot('ก่อนรวมการแก้ไข');applyData(mergeData(S.baseJson?JSON.parse(S.baseJson):Rd,syncData(),Rd),Date.now());undoToast('รวมการแก้ไขจากเครื่องอื่นแล้ว');}
+      }
+      p=mk();r=await put(ghSha,p.body);
+    }
+    if(r.status===401||r.status===403||r.status===404)throw new Error('Token ไม่ถูกต้อง หรือไม่มีสิทธิ์เขียน repo นี้');
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const j=await r.json();ghSha=j.content&&j.content.sha;S.baseJson=stable(p.d);S.syncedAt=Date.now();persist();
+    setSync('✓ บันทึกบน GitHub แล้ว · '+hm(Date.now()),'ok');
+  }catch(e){setSync('บันทึกขึ้น GitHub ไม่ได้: '+e.message,'err');toast('ซิงก์ไม่สำเร็จ · ข้อมูลยังอยู่ในเครื่อง');}
+  ghBusy=false;
+  if(stable(syncData())!==S.baseJson&&!pushTimer)pushTimer=setTimeout(ghPush,1500);
+}
+function renderSync(){
+  const box=document.getElementById('ghBox');if(!box)return;
+  if(!GH){box.hidden=true;setSync('ซิงก์ใช้ได้เมื่อเปิดจากเว็บ GitHub Pages (….github.io) เท่านั้น ในหน้านี้ข้อมูลเก็บในเครื่อง','');return;}
+  box.hidden=false;
+  $('#ghCfg').textContent='ไฟล์ข้อมูล: '+GH.owner+'/'+GH.repo+'/'+GH.path;
+  $('#ghTok').value='';$('#ghTok').placeholder=ghToken?'มี Token แล้ว (••••'+ghToken.slice(-4)+')':'github_pat_…';
+  $('#ghPushBtn').disabled=!ghToken;$('#ghForget').hidden=!ghToken;
+}
+
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const P=id=>S.people.find(p=>p.id===id)||{nick:'(ลบแล้ว)',name:'',role:'',tel:'',team:''};
+
+/* dates */
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const parse=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c);};
+function sundayOnOrAfter(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()+((7-x.getDay())%7));return x;}
+const fmtDate=s=>parse(s).toLocaleDateString(LOC(),{day:'numeric',month:'short',year:'numeric'});
+const fmtShort=s=>parse(s).toLocaleDateString(LOC(),{day:'numeric',month:'short'});
+const fmtMon=s=>parse(s).toLocaleDateString(LOC(),{month:'short',year:LANG==='en'?'numeric':'2-digit'});
+
+function toast(t,act){
+  const el=$('#toast');el.textContent=t;
+  if(act){const b=document.createElement('button');b.className='toast-act';b.textContent=act.label;b.onclick=e=>{e.stopPropagation();el.hidden=true;act.fn();};el.appendChild(b);}
+  el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,act?7000:2200);
+}
+/* ---------- automatic restore points (this device only) ---------- */
+const SNAPKEY='pm-sunday-snaps';
+function getSnaps(){try{return JSON.parse(localStorage.getItem(SNAPKEY)||'[]');}catch(e){return [];}}
+function snapshot(label){
+  try{const a=getSnaps(),copy=JSON.parse(JSON.stringify(S));delete copy.baseJson;delete copy.lastHash;
+    a.unshift({at:Date.now(),label,data:copy});localStorage.setItem(SNAPKEY,JSON.stringify(a.slice(0,8)));}catch(e){}
+}
+function restoreSnap(i){
+  const sn=getSnaps()[i];if(!sn)return;
+  snapshot('ก่อนย้อนกลับ');
+  S=Object.assign(defaults(),sn.data,{view:S.view,lang:S.lang,me:S.me,baseJson:S.baseJson,lastHash:S.lastHash,updatedAt:S.updatedAt});
+  save();const sd=document.getElementById('startDate');if(sd)sd.value='';
+  show(S.view||'dash',true);toast('ย้อนกลับแล้ว · '+sn.label);
+}
+const undoToast=msg=>toast(msg,{label:'ย้อนกลับ',fn:()=>restoreSnap(0)});
+
+/* ---------- nav ---------- */
+const TITLES={dash:'Dashboard',draw:'สุ่มเวร PM',team:'จัดทีม',hist:'ประวัติ & ข้อมูล'};
+function show(v,keep){
+  if(v!=='dash'&&!unlocked){askPin({onOk:()=>show(v)});return;}
+  S.view=v;save();
+  ['dash','draw','team','hist'].forEach(k=>$('#v-'+k).hidden=k!==v);
+  document.querySelectorAll('nav.tabs button').forEach(b=>{if(b.dataset.view===v)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  $('#viewTitle').textContent=TITLES[v];
+  const mb=document.getElementById('miniBar');if(mb)mb.textContent=TITLES[v];
+  if(v==='dash')renderBoard(); if(v==='draw')renderDraw(); if(v==='team')renderTeams(); if(v==='hist')renderHist();
+  if(!keep)window.scrollTo(0,0);
+}
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.view));
+$('#nextSun').innerHTML='อาทิตย์นี้<br><b style="color:var(--ink)">'+fmtDate(iso(sundayOnOrAfter(new Date())))+'</b>';
+
+/* ---------- counts ---------- */
+function savedCounts(){const c={};S.history.forEach(h=>h.ids.forEach(id=>c[id]=(c[id]||0)+1));return c;}
+function lastDuty(){const l={};S.history.forEach(h=>h.ids.forEach(id=>{if(!l[id]||l[id]<h.date)l[id]=h.date;}));return l;}
+const pool=()=>S.people.filter(p=>p.active&&S.teams.includes(p.team));
+
+/* ---------- draw view ---------- */
+function renderDraw(){
+  const ch=$('#teamChips');ch.innerHTML='';
+  Object.entries(TEAMS).filter(([k])=>k!=='IMP').forEach(([k,t])=>{
+    const n=S.people.filter(p=>p.team===k&&p.active).length;
+    const b=document.createElement('button');b.className='chip '+t.cls;b.setAttribute('aria-pressed',S.teams.includes(k));
+    const ord=S.teams.indexOf(k);
+    b.innerHTML='<b>'+t.name+'</b><span>'+n+' คนพร้อม</span>'+(ord>=0?'<em class="ord">'+(ord+1)+'</em>':'');
+    b.onclick=()=>{S.teams=S.teams.includes(k)?S.teams.filter(x=>x!==k):[...S.teams,k];save();renderDraw();};
+    ch.appendChild(b);
+  });
+  $('#poolInfo').textContent='รวม '+(S.per+S.impPer)+' คน/อาทิตย์';
+  $('#impOut').textContent=S.impPer;
+  $('#impInfo').textContent=teamPool('IMP').length+' คนพร้อม · สุ่ม '+S.impPer+' คน ไปคู่กับกะทุกอาทิตย์';
+  $('#perOut').textContent=S.per;$('#wkOut').textContent=S.weeks;$('#blkOut').textContent=S.block;
+  if(!$('#startDate').value){
+    let st=sundayOnOrAfter(new Date());
+    const last=S.history.length?parse(S.history[S.history.length-1].date):null;
+    if(last&&last>=st)st=new Date(last.getFullYear(),last.getMonth(),last.getDate()+7);
+    $('#startDate').value=iso(st);
+  }
+  const sk=$('#skipList');S.skip=(S.skip||[]).filter(d=>d>=iso(new Date())).sort();
+  sk.innerHTML=S.skip.length?S.skip.map(d=>'<button class="badge none skipchip" data-d="'+d+'" aria-label="ยกเลิกวันงด">งด '+fmtDate(d)+' ✕</button>').join(''):'<span class="small muted">ไม่มีวันงด</span>';
+  sk.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{S.skip=S.skip.filter(x=>x!==b.dataset.d);save();renderDraw();});
+  $('#optFair').checked=S.fair;
+  const ol=$('#orderLine');
+  if(!S.teams.length){ol.innerHTML='<span class="muted">ยังไม่ได้เลือกทีม</span>';}
+  else{
+    const seq=[];for(let w=0;w<S.weeks;w++){const t=teamOfWeek(w);if(!seq.length||seq[seq.length-1].t!==t)seq.push({t,n:1});else seq[seq.length-1].n++;}
+    ol.innerHTML='<span class="muted">ลำดับเวร:</span> '+seq.map(s=>'<span class="badge '+teamCls(s.t)+'">'+teamName(s.t)+' × '+s.n+' อาทิตย์</span>').join('<span class="arrow">→</span>')+
+      (S.impPer?' <span class="badge imp">+ Improve '+S.impPer+' คน/อาทิตย์</span>':'');
+  }
+  if(S.current&&!S.current.saved)renderResult(false);
+}
+const step=(k,d,min,max)=>()=>{S[k]=Math.min(max,Math.max(min,S[k]+d));save();renderDraw();};
+$('#perMinus').onclick=step('per',-1,1,6);$('#perPlus').onclick=step('per',1,1,6);
+$('#wkMinus').onclick=step('weeks',-1,1,12);$('#wkPlus').onclick=step('weeks',1,1,12);
+$('#impMinus').onclick=step('impPer',-1,0,3);$('#impPlus').onclick=step('impPer',1,0,3);
+$('#blkMinus').onclick=step('block',-1,1,6);$('#blkPlus').onclick=step('block',1,1,6);
+$('#btnFull').onclick=()=>{S.weeks=Math.min(12,Math.max(1,S.teams.length)*S.block);save();renderDraw();};
+$('#optFair').onchange=e=>{S.fair=e.target.checked;save();};
+$('#btnSkip').onclick=()=>{const v=$('#skipDate').value;if(!v){toast('เลือกวันที่ก่อน');return;}
+  const d=iso(sundayOnOrAfter(parse(v)));if(!S.skip.includes(d))S.skip.push(d);save();$('#skipDate').value='';renderDraw();toast('งดเวร '+fmtDate(d));};
+
+/* ทีมที่เลือกก่อนได้เวรก่อน: ทีมละ S.block อาทิตย์ แล้ววนไปทีมถัดไป */
+function teamOfWeek(w){return S.teams[Math.floor(w/S.block)%S.teams.length];}
+const teamPool=t=>S.people.filter(p=>p.active&&p.team===t);
+
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+function pickOne(cands,cnt){
+  const m=Math.min(...cands.map(p=>cnt[p.id]||0));
+  return rnd(cands.filter(p=>(cnt[p.id]||0)===m));
+}
+function makePlan(){
+  if(!S.teams.length)return 'เลือกอย่างน้อย 1 ทีม';
+  for(const t of S.teams){const n=teamPool(t).length;if(n<S.per)return teamName(t)+' มีคนพร้อม '+n+' คน น้อยกว่าที่ต้องการ ('+S.per+' คน/วัน)';}
+  const ip=teamPool('IMP');if(ip.length<S.impPer)return 'Improve มีคนพร้อม '+ip.length+' คน น้อยกว่าที่ต้องการ ('+S.impPer+' คน/วัน)';
+  const cnt=S.fair?savedCounts():{};
+  let d=sundayOnOrAfter(parse($('#startDate').value||iso(new Date())));
+  const items=[];
+  for(let w=0;w<S.weeks;w++){
+    let guard=0;while((S.skip||[]).includes(iso(d))&&guard++<60)d=new Date(d.getFullYear(),d.getMonth(),d.getDate()+7);
+    const ds=iso(d),free=p=>!(p.off||[]).includes(ds);
+    const team=teamOfWeek(w),pl=teamPool(team).filter(free),ipd=ip.filter(free),ids=[];
+    if(pl.length<S.per)return teamName(team)+' ว่างวันที่ '+fmtDate(ds)+' แค่ '+pl.length+' คน (ต้องการ '+S.per+' คน) · ลดจำนวนคน หรือแก้วันไม่ว่างในแท็บทีม';
+    if(ipd.length<S.impPer)return 'Improve ว่างวันที่ '+fmtDate(ds)+' แค่ '+ipd.length+' คน (ต้องการ '+S.impPer+' คน)';
+    for(let k=0;k<S.per;k++){
+      const p=pickOne(pl.filter(x=>!ids.includes(x.id)),cnt);
+      ids.push(p.id);cnt[p.id]=(cnt[p.id]||0)+1;
+    }
+    for(let k=0;k<S.impPer;k++){
+      const p=pickOne(ipd.filter(x=>!ids.includes(x.id)),cnt);
+      ids.push(p.id);cnt[p.id]=(cnt[p.id]||0)+1;
+    }
+    items.push({date:iso(d),team,ids});d=new Date(d.getFullYear(),d.getMonth(),d.getDate()+7);
+  }
+  return{batch:Date.now(),items,teams:[...S.teams],saved:false};
+}
+$('#btnDraw').onclick=()=>{
+  const r=makePlan();const m=$('#drawMsg');
+  if(typeof r==='string'){m.textContent=r;m.hidden=false;return;}
+  if(S.current)snapshot('ก่อนสุ่มใหม่');
+  m.hidden=true;S.current=r;save();renderResult(true);
+};
+function renderResult(animate){
+  const c=S.current,box=$('#result');box.innerHTML='';
+  if(!c){$('#resultActions').hidden=true;$('#btnSwap2').hidden=true;return;}
+  c.items.forEach((it,di)=>{
+    const day=document.createElement('div');day.className='day';
+    day.innerHTML='<div class="day-h"><span>อาทิตย์ '+fmtDate(it.date)+'</span>'+(it.team?'<span class="row" style="gap:4px"><span class="badge '+teamCls(it.team)+'">'+teamName(it.team)+'</span>'+(it.ids.some(id=>P(id).team==='IMP')?'<span class="badge imp">+ Improve</span>':'')+(it.edited?'<span class="edited">✎ แก้ไขเอง</span>':'')+'</span>':'<span class="small muted">'+it.ids.length+' คน</span>')+'</div>';
+    it.ids.forEach((id,si)=>{
+      const s=document.createElement('div');s.className='slot';s.dataset.d=di;s.dataset.s=si;
+      day.appendChild(s);fillSlot(s,id);
+    });
+    const ad=document.createElement('button');ad.className='addp';ad.textContent='+ เพิ่มคนในวันนี้';ad.onclick=()=>addToDay(di);day.appendChild(ad);
+    box.appendChild(day);
+  });
+  $('#resultActions').hidden=false;$('#btnSwap2').hidden=false;
+  const pn=pendingN(),bs=$('#btnSave');
+  bs.disabled=c.saved&&!pn;bs.classList.toggle('update',c.saved&&!!pn);
+  bs.textContent=!c.saved?'บันทึกลงประวัติ':pn?'อัปเดต → '+nextRev()+' ('+pn+' รายการ)':'บันทึกแล้ว · '+revLabel();
+  if(animate&&!matchMedia('(prefers-reduced-motion: reduce)').matches)rollAll();
+}
+function fillSlot(s,id){
+  const p=P(id);
+  s.innerHTML='<button class="nm nm-btn" aria-label="แก้ไข '+esc(p.nick)+'"><b>'+esc(p.nick)+'</b><div>'+esc(p.name)+' · '+esc(p.role)+'</div></button><span class="badge '+teamCls(p.team)+'">'+teamName(p.team)+'</span>'+
+    (S.current.saved?'':'<button class="reroll" aria-label="สุ่มคนนี้ใหม่" title="สุ่มคนนี้ใหม่">↻</button>');
+  const rb=s.querySelector('.reroll');if(rb)rb.onclick=()=>rerollOne(+s.dataset.d,+s.dataset.s,s);
+  s.querySelector('.nm-btn').onclick=()=>editSlot(+s.dataset.d,+s.dataset.s);
+}
+
+/* ---------- manual edit ---------- */
+function openPicker(o){
+  const cnt=savedCounts(),groups=[...Object.keys(TEAMS),''];
+  const render=q=>groups.map(t=>{
+    const list=S.people.filter(p=>p.team===t&&(!q||(p.nick+' '+p.name+' '+p.role).toLowerCase().includes(q)));
+    if(!list.length)return '';
+    return '<div class="pk-h" data-team="'+t+'"><span class="badge '+teamCls(t)+'">'+teamName(t)+'</span></div>'+list.map(p=>{
+      const isCur=p.id===o.current,inDay=!isCur&&o.dayIds.includes(p.id),busy=o.date&&(p.off||[]).includes(o.date);
+      return '<button class="pk" data-id="'+p.id+'"'+(isCur||inDay?' disabled':'')+'><span class="who"><b>'+esc(p.nick)+'</b><span>'+esc(p.name)+' · '+esc(p.role)+'</span></span><span class="pk-r">'+
+        (isCur?'คนปัจจุบัน':inDay?'อยู่วันนี้แล้ว':(busy?'<span class="offtag">ไม่ว่างวันนี้</span> · ':'')+(p.active?'':'ปิดอยู่ · ')+'เวร '+(cnt[p.id]||0)+' ครั้ง')+'</span></button>';}).join('');
+  }).join('')||'<div class="small muted" style="padding:14px">ไม่พบชื่อ</div>';
+  openModal('<div class="row between"><h2>'+esc(o.title)+'</h2><button class="btn ghost" id="pkClose">'+(o.onCancel?'กลับ':'ปิด')+'</button></div>'+
+    '<input id="pkQ" class="pk-q" placeholder="ค้นหาชื่อ / ชื่อเล่น / Line" autocomplete="off"><div class="pk-list" id="pkL">'+render('')+'</div>'+
+    (o.onRemove?'<button class="btn danger" id="pkRm" style="justify-content:center">เอาคนนี้ออกจากวันนี้</button>':''));
+  const bind=()=>$('#pkL').querySelectorAll('.pk:not([disabled])').forEach(b=>b.onclick=()=>{$('#modal').hidden=true;o.onPick(b.dataset.id);});
+  bind();
+  $('#pkQ').oninput=e=>{$('#pkL').innerHTML=render(e.target.value.trim().toLowerCase());bind();};
+  $('#pkClose').onclick=()=>{$('#modal').hidden=true;if(o.onCancel)o.onCancel();};
+  if(o.onRemove)$('#pkRm').onclick=()=>{$('#modal').hidden=true;o.onRemove();};
+  if(o.team!==undefined){const h=$('#pkL').querySelector('.pk-h[data-team="'+o.team+'"]');if(h)$('#pkL').scrollTop=h.offsetTop-4;}
+}
+function syncDate(date,ids){
+  const h=S.history.find(x=>x.date===date);if(h)h.ids=[...ids];
+  if(S.current){const it=S.current.items.find(x=>x.date===date);if(it){it.ids=[...ids];it.edited=true;}}
+}
+/* ---------- revision number: Rev.00 on first save; edits collect as "pending", Update raises Rev once ---------- */
+const isSavedDate=d=>S.history.some(h=>h.date===d);
+const pendingN=()=>(S.revPending||[]).length;
+function bumpRev(note,dates){
+  if(dates&&!dates.some(isSavedDate))return;
+  S.revPending=[...(S.revPending||[]),{note:note||'',at:Date.now(),by:S.me||''}].slice(-60);
+}
+function commitRev(){
+  const p=S.revPending||[];if(!p.length)return;
+  S.rev=(S.rev||0)+1;S.revAt=Date.now();
+  S.revBy=S.me||'';
+  S.revLog=[{rev:S.rev,at:S.revAt,by:S.revBy,note:p.map(x=>x.note+(x.by&&x.by!==S.revBy?' ('+x.by+')':'')).join(' · ')},...(S.revLog||[])].slice(0,100);
+  S.revPending=[];save();toast('อัปเดตเป็น '+revLabel()+' แล้ว');
+  if(S.view==='draw')renderResult(false);if(S.view==='dash')renderBoard();if(S.view==='hist')renderHist();
+}
+const nextRev=()=>'Rev.'+String((S.rev||0)+1).padStart(2,'0');
+const revLabel=()=>'Rev.'+String(S.rev||0).padStart(2,'0');
+const revWhen=()=>S.revAt?new Date(S.revAt).toLocaleString(LOC(),{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+function afterEdit(it,msg){
+  it.edited=true;
+  if(S.current.saved){syncDate(it.date,it.ids);bumpRev(msg||'แก้ไขเวร',[it.date]);}
+  save();renderResult(false);toast(msg||'แก้ไขแล้ว');
+}
+function editSlot(di,si){
+  const it=S.current.items[di],cur=it.ids[si];
+  openPicker({date:it.date,title:'เปลี่ยนคน · '+fmtDate(it.date),current:cur,dayIds:it.ids,team:P(cur).team,
+    onPick:id=>{it.ids[si]=id;afterEdit(it,'เปลี่ยน '+P(cur).nick+' → '+P(id).nick);},
+    onRemove:it.ids.length>1?()=>{it.ids.splice(si,1);afterEdit(it,'เอา '+P(cur).nick+' ออกแล้ว');}:null});
+}
+function addToDay(di){
+  const it=S.current.items[di];
+  openPicker({date:it.date,title:'เพิ่มคน · '+fmtDate(it.date),dayIds:it.ids,team:'IMP',onPick:id=>{it.ids.push(id);afterEdit(it,'เพิ่ม '+P(id).nick+' แล้ว');}});
+}
+function editHistory(date){
+  const h=S.history.find(x=>x.date===date);if(!h)return;
+  const commit=msg=>{syncDate(date,h.ids);bumpRev(msg,[date]);save();toast(msg);draw();};
+  const draw=()=>{
+    openModal('<div class="row between"><h2>แก้ไขเวร '+fmtDate(date)+'</h2><button class="btn primary" id="hDone">เสร็จ</button></div>'+
+      '<div class="small muted">แตะชื่อเพื่อเปลี่ยนคน หรือเอาออก</div><div class="day">'+
+      h.ids.map((id,i)=>{const p=P(id);return '<div class="slot"><button class="nm nm-btn" data-i="'+i+'"><b>'+esc(p.nick)+'</b><div>'+esc(p.name)+' · '+esc(p.role)+'</div></button><span class="badge '+teamCls(p.team)+'">'+teamName(p.team)+'</span></div>';}).join('')+
+      '<button class="addp" id="hAdd">+ เพิ่มคนในวันนี้</button></div>');
+    $('#hDone').onclick=()=>{$('#modal').hidden=true;renderHist();};
+    $('#modalC').querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const i=+b.dataset.i,cur=h.ids[i];
+      openPicker({date,title:'เปลี่ยนคน · '+fmtDate(date),current:cur,dayIds:h.ids,team:P(cur).team,onCancel:draw,
+        onPick:id=>{h.ids[i]=id;commit('เปลี่ยน '+P(cur).nick+' → '+P(id).nick);},
+        onRemove:h.ids.length>1?()=>{h.ids.splice(i,1);commit('เอา '+P(cur).nick+' ออกแล้ว');}:null});});
+    $('#hAdd').onclick=()=>openPicker({date,title:'เพิ่มคน · '+fmtDate(date),dayIds:h.ids,team:'IMP',onCancel:draw,onPick:id=>{h.ids.push(id);commit('เพิ่ม '+P(id).nick+' แล้ว');}});
+  };
+  draw();
+}
+function rollAll(){
+  const slots=[...document.querySelectorAll('#result .slot')];
+  slots.forEach((s,i)=>{
+    const it=S.current.items[s.dataset.d],final=it.ids[s.dataset.s];
+    const pl=teamPool(P(final).team).length?teamPool(P(final).team):pool();
+    s.classList.add('rolling');const b=s.querySelector('.nm b');
+    const iv=setInterval(()=>{b.textContent=rnd(pl).nick;},65);
+    setTimeout(()=>{clearInterval(iv);s.classList.remove('rolling');fillSlot(s,final);},700+i*260);
+  });
+}
+function rerollOne(di,si,s){
+  const it=S.current.items[di],cur=it.ids[si];
+  const cnt=S.fair?savedCounts():{};
+  S.current.items.forEach(x=>x.ids.forEach(id=>cnt[id]=(cnt[id]||0)+1));
+  const t=P(cur).team||it.team;
+  const cands=teamPool(t).filter(p=>!it.ids.includes(p.id)&&!(p.off||[]).includes(it.date));
+  if(!cands.length){toast('ไม่มีคนอื่นใน '+teamName(t)+' ให้สุ่มแทนแล้ว');return;}
+  const m=Math.min(...cands.map(p=>cnt[p.id]||0));const np=rnd(cands.filter(p=>(cnt[p.id]||0)===m));
+  it.ids[si]=np.id;save();fillSlot(s,np.id);toast('เปลี่ยนเป็น '+np.nick);
+}
+$('#btnSave').onclick=()=>{
+  const c=S.current;if(!c)return;
+  if(c.saved){commitRev();return;}
+  c.items.forEach(it=>{S.history=S.history.filter(h=>h.date!==it.date);S.history.push({date:it.date,team:it.team,ids:[...it.ids],teams:c.teams,batch:c.batch});});
+  S.history.sort((a,b)=>a.date<b.date?-1:1);c.saved=true;
+  S.rev=0;S.revAt=Date.now();S.revBy=S.me||'';S.revPending=[];S.revLog=[{rev:0,at:S.revAt,by:S.revBy,note:'บันทึกครั้งแรก · '+c.items.length+' อาทิตย์'},...(S.revLog||[])].slice(0,100);
+  save();renderResult(false);toast('บันทึกเวร '+c.items.length+' อาทิตย์แล้ว');
+};
+$('#btnToDash').onclick=()=>show('dash');
+$('#btnRevUp').onclick=commitRev;
+
+/* ---------- board ---------- */
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{S.style=b.dataset.style;save();renderBoard();});
+document.querySelectorAll('.sw').forEach(b=>b.onclick=()=>{S.skin=b.dataset.skin;save();renderBoard();});
+function boardData(){
+  if(S.current)return S.current;
+  const today=iso(new Date()),up=S.history.filter(h=>h.date>=today);
+  if(up.length)return{items:up.map(h=>({date:h.date,team:h.team,ids:h.ids})),teams:[...new Set(up.flatMap(h=>h.teams||[]))],saved:true};
+  return null;
+}
+function headHTML(title,c){
+  const range=c&&c.items.length?(c.items.length>1?fmtShort(c.items[0].date)+' – '+fmtDate(c.items[c.items.length-1].date):fmtDate(c.items[0].date)):'';
+  return '<div class="bd-head"><div><img class="bd-logo" src="'+LOGO+'" alt="DELTA"><div class="eyebrow">ME/TE STF AUTO</div><h2>'+title+'</h2><div class="small muted">'+range+'</div></div>'+
+    '<div class="bd-stamp">PM SUNDAY<br>'+(c?(c.saved?'CONFIRMED':'DRAFT'):'—')+'<br>'+new Date().toLocaleDateString(LOC(),{day:'2-digit',month:'2-digit',year:'2-digit'})+'</div></div>';
+}
+function footHTML(c){
+  const t=c&&c.teams&&c.teams.length?c.teams.map(teamName).join(' → '):'-';
+  const imp=c&&c.items.some(it=>it.ids.some(id=>P(id).team==='IMP'));
+  const rev=c?(c.saved?'<span class="bd-rev'+(pendingN()?' pend':'')+'">'+revLabel()+(revWhen()?' · '+revWhen():'')+(S.revBy?' · '+esc(S.revBy):'')+(pendingN()?' · แก้ไข '+pendingN()+' รายการ รอ Update':'')+'</span>':'<span class="bd-rev draft">DRAFT</span>'):'';
+  return '<div class="bd-foot"><span>ลำดับกะ: '+esc(t)+(imp?' · + Improve ทุกอาทิตย์':'')+'</span><span>ติดต่อเปลี่ยนเวร แจ้งหัวหน้าก่อนวันศุกร์</span>'+rev+'</div>';
+}
+function renderBoard(){
+  document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.style===S.style));
+  const c=boardData(),bd=$('#board'),note=$('#dashNote');
+  const pn=pendingN(),saved=!!(c&&c.saved);
+  note.hidden=!(c&&(!saved||pn));
+  note.textContent=!saved?'ผลสุ่มนี้ยังไม่ได้บันทึก — ไปที่แท็บ "สุ่มเวร" แล้วกด "บันทึกลงประวัติ" เพื่อเก็บสถิติ':'มีการแก้ไข '+pn+' รายการ ยังไม่ได้กด Update · ตารางยังเป็น '+revLabel();
+  const ub=$('#btnRevUp');ub.hidden=!(saved&&pn);ub.textContent='อัปเดต → '+nextRev()+' ('+pn+' รายการ)';
+  bd.dataset.skin=S.skin||'white';document.querySelectorAll('.sw').forEach(b=>b.setAttribute('aria-pressed',b.dataset.skin===bd.dataset.skin));
+  const W=h=>'<div class="bd-in">'+h+'</div>';
+  if(S.style==='stats'){bd.innerHTML=W(headHTML('สถิติการทำเวร PM',c)+statsHTML(c)+footHTML(c));return;}
+  if(!c){bd.innerHTML=W(headHTML('เวร PM วันอาทิตย์',null)+'<div class="bd-empty">ยังไม่มีผลสุ่ม<br><button class="btn primary" style="margin-top:12px" id="goDraw">ไปสุ่มเวร</button></div>');$('#goDraw').onclick=()=>show('draw');return;}
+  const fn={poster:posterHTML,table:tableHTML,team:teamHTML,cal:calHTML,cards:cardsHTML,person:personHTML}[S.style]||posterHTML;
+  const ttl={team:'เวร PM แยกตามทีม',cal:'ปฏิทินเวร PM',person:'เวร PM รายคน'}[S.style]||'เวร PM วันอาทิตย์';
+  bd.innerHTML=W(headHTML(ttl,c)+fn(c)+footHTML(c));
+}
+function posterHTML(c){
+  return c.items.map((it,ix)=>{const d=parse(it.date);
+    return '<div class="p-day"><div class="p-date r'+(ix%6)+'"><span class="wd">SUN</span><span class="dn">'+d.getDate()+'</span><span class="mo">'+fmtMon(it.date)+'</span>'+(it.team?'<span class="wd" style="margin-top:4px;opacity:1">'+TEAMS[it.team].name.replace('Team ','TEAM ')+'</span>':'')+'</div><div class="p-people">'+
+      it.ids.map(id=>{const p=P(id);return '<div class="p-card"><span class="bar '+teamCls(p.team)+'"></span><div><div class="nick">'+esc(p.nick)+' <span class="badge '+teamCls(p.team)+'">'+teamName(p.team)+'</span></div><div class="meta">'+esc(p.name)+' · '+esc(p.role)+'</div>'+(p.tel?'<div class="tel">☎ '+esc(p.tel)+'</div>':'')+'</div></div>';}).join('')+
+      '</div></div>';}).join('');
+}
+function tableHTML(c){
+  let rows='';
+  c.items.forEach(it=>it.ids.forEach((id,i)=>{const p=P(id);
+    rows+='<tr>'+(i===0?'<td class="d" rowspan="'+it.ids.length+'">'+fmtDate(it.date)+'</td>':'')+'<td><b>'+esc(p.nick)+'</b><div class="small muted">'+esc(p.name)+'</div></td><td><span class="badge '+teamCls(p.team)+'">'+(TEAMS[p.team]?TEAMS[p.team].short:'–')+'</span></td><td class="mono">'+esc(p.tel||'-')+'</td></tr>';}));
+  return '<div class="tbl-wrap"><table class="t"><thead><tr><th>วันอาทิตย์</th><th>ผู้รับผิดชอบ</th><th>ทีม</th><th>โทร</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+}
+function teamHTML(c){
+  const teams=Object.keys(TEAMS).filter(k=>c.teams.includes(k)||c.items.some(it=>it.ids.some(id=>P(id).team===k)));
+  const cols=teams.map(k=>{
+    const list=[];c.items.forEach(it=>it.ids.forEach(id=>{if(P(id).team===k)list.push([it.date,P(id)]);}));
+    return '<div class="tb-col '+TEAMS[k].cls+'"><h3><span>'+TEAMS[k].name+'</span><span>'+list.length+'</span></h3>'+
+      (list.length?list.map(([d,p])=>'<div class="tb-item"><b>'+esc(p.nick)+'</b><span>'+fmtShort(d)+'</span></div>').join(''):'<div class="small muted">ไม่มีเวรในรอบนี้</div>')+'</div>';});
+  return '<div class="tb cols'+Math.min(3,teams.length)+'">'+cols.join('')+'</div>';
+}
+function calHTML(c){
+  const byDate={};c.items.forEach((it,i)=>byDate[it.date]={it,i});
+  const months=[...new Set(c.items.map(it=>it.date.slice(0,7)))];
+  const wk=['อา','จ','อ','พ','พฤ','ศ','ส'];
+  return months.map(m=>{
+    const [y,mo]=m.split('-').map(Number),first=new Date(y,mo-1,1),days=new Date(y,mo,0).getDate();
+    let cells=wk.map((w,i)=>'<div class="cal-h'+(i===0?' sun':'')+'">'+w+'</div>').join('');
+    for(let i=0;i<first.getDay();i++)cells+='<div></div>';
+    for(let d=1;d<=days;d++){
+      const dt=new Date(y,mo-1,d),ds=iso(dt),e=byDate[ds];
+      if(e)cells+='<div class="cal-c duty r'+(e.i%6)+'"><span class="n">'+d+'</span>'+e.it.ids.map(id=>{const p=P(id);return '<span class="nk"><i class="dot '+teamCls(p.team)+'"></i>'+esc(p.nick)+'</span>';}).join('')+'</div>';
+      else if(dt.getDay()===0)cells+='<div class="cal-c sunoff"><span class="n">'+d+'</span>'+((S.skip||[]).includes(ds)?'<span class="nk" style="color:var(--muted)">งด</span>':'')+'</div>';
+      else cells+='<div class="cal-c"><span class="n">'+d+'</span></div>';
+    }
+    return '<div class="cal-m"><h3>'+first.toLocaleDateString(LOC(),{month:'long',year:'numeric'})+'</h3><div class="cal">'+cells+'</div></div>';
+  }).join('');
+}
+function cardsHTML(c){
+  return '<div class="cards">'+c.items.map((it,i)=>{const d=parse(it.date);
+    return '<div class="cd"><div class="cd-top r'+(i%6)+'"><span class="cd-d">'+d.getDate()+'</span><span class="cd-m">อา. '+fmtMon(it.date)+'<br>'+(it.team?teamName(it.team):'')+'</span></div><div class="cd-b">'+
+      it.ids.map(id=>{const p=P(id);return '<div class="cd-p"><i class="dot '+teamCls(p.team)+'"></i><b>'+esc(p.nick)+'</b></div>';}).join('')+'</div></div>';}).join('')+'</div>';
+}
+function personHTML(c){
+  const m={};c.items.forEach(it=>it.ids.forEach(id=>(m[id]=m[id]||[]).push(it.date)));
+  const ord={A:0,B:1,IMP:2,'':3};
+  const rows=Object.keys(m).map(id=>({p:P(id),d:m[id]})).sort((a,b)=>((ord[a.p.team]??3)-(ord[b.p.team]??3))||a.d[0].localeCompare(b.d[0]));
+  return '<div class="pl">'+rows.map(r=>'<div class="pl-r"><span class="bar '+teamCls(r.p.team)+'"></span><div class="pl-n"><b>'+esc(r.p.nick)+'</b><span>'+esc(r.p.name)+(r.p.tel?' · '+esc(r.p.tel):'')+'</span></div><div class="pl-d">'+
+    r.d.map(d=>'<span class="badge '+teamCls(r.p.team)+'">'+fmtShort(d)+'</span>').join('')+'</div></div>').join('')+'</div>';
+}
+function statsHTML(c){
+  const sv=savedCounts(),pl={};
+  if(c&&!c.saved)c.items.forEach(it=>it.ids.forEach(id=>pl[id]=(pl[id]||0)+1));
+  const people=S.people.filter(p=>p.team&&p.active);
+  const rows=people.map(p=>({p,s:sv[p.id]||0,q:pl[p.id]||0})).sort((a,b)=>(b.s+b.q)-(a.s+a.q)||a.p.team.localeCompare(b.p.team));
+  const max=Math.max(1,...rows.map(r=>r.s+r.q));
+  const total=Object.values(sv).reduce((a,b)=>a+b,0),sundays=S.history.length,never=rows.filter(r=>r.s===0).length;
+  return '<div class="st-sum"><div><b>'+sundays+'</b><span>อาทิตย์ที่บันทึก</span></div><div><b>'+total+'</b><span>ครั้งรวม</span></div><div><b>'+never+'</b><span>คนยังไม่เคยทำ</span></div></div>'+
+   '<div class="st-legend"><span><i style="background:var(--imp)"></i>Improve</span><span><i style="background:var(--a)"></i>A</span><span><i style="background:var(--b)"></i>B</span><span><i style="background:var(--sunk);border:1.5px solid var(--muted)"></i>แผนที่ยังไม่บันทึก</span></div>'+
+   '<div class="st">'+rows.map(r=>{const cl=teamCls(r.p.team);
+     return '<div class="st-row"><span class="n">'+esc(r.p.nick)+'</span><div class="st-track">'+
+       (r.s?'<div class="st-seg '+cl+'" style="width:'+(r.s/max*100)+'%"></div>':'')+
+       (r.q?'<div class="st-seg plan '+cl+'" style="width:'+(r.q/max*100)+'%"></div>':'')+
+       '</div><span class="c">'+(r.s+r.q)+'</span></div>';}).join('')+'</div>';
+}
+
+/* ---------- export ---------- */
+function openModal(html){$('#modalC').innerHTML=html;$('#modal').hidden=false;}
+$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').hidden=true;};
+async function makeCanvas(width){
+  if(!window.html2canvas)throw new Error('ต้องต่ออินเทอร์เน็ตเพื่อโหลดตัว export');
+  if(document.fonts){try{await Promise.all(['400','600','700'].map(w=>document.fonts.load(w+' 20px "IBM Plex Sans Thai"','เวรวันอาทิตย์')));}catch(e){} await document.fonts.ready;}
+  const bd=$('#board'),bg=getComputedStyle(bd).getPropertyValue('--export').trim()||'#ffffff';
+  const old=bd.style.width;if(width)bd.style.width=width+'px';
+  try{const cv=await html2canvas(bd,{scale:3,backgroundColor:bg,useCORS:true,logging:false,windowWidth:Math.max(width||0,document.documentElement.clientWidth)+40});return{cv,bg};}
+  finally{bd.style.width=old;}
+}
+const toBlob=(cv,type,q)=>new Promise(r=>cv.toBlob(r,type,q));
+async function saveBlob(blob,fname){
+  let dl=null;
+  if(window.claude&&window.claude.use){try{dl=await window.claude.use('downloads');}catch(e){}}
+  if(dl){try{await dl.save({filename:fname,data:blob});toast('บันทึกแล้ว');}catch(e){if(e&&e.code!=='declined')toast('บันทึกไม่ได้ในหน้านี้');}return;}
+  try{const f=new File([blob],fname,{type:blob.type});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:fname});return;}}
+  catch(e){if(e&&e.name==='AbortError')return;}
+  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),8000);
+}
+const fileBase=()=>'PM-Sunday-'+(boardData()?.items?.[0]?.date||iso(new Date()))+'-'+S.style+'-'+(S.skin||'white');
+$('#btnJpg').onclick=async()=>{
+  const btn=$('#btnJpg');btn.disabled=true;
+  try{
+    const {cv}=await makeCanvas();const url=cv.toDataURL('image/jpeg',0.92),blob=await toBlob(cv,'image/jpeg',0.92),fname=fileBase()+'.jpg';
+    openModal('<div class="row between"><h2>ภาพพร้อมแล้ว</h2><button class="btn ghost" id="mClose">ปิด</button></div>'+
+      '<div class="notice small"><b>iPhone:</b> กดค้างที่รูป → <b>บันทึกลงในรูปภาพ</b> หรือกดปุ่มด้านล่างเพื่อแชร์ไป LINE</div>'+
+      '<img src="'+url+'" alt="Dashboard เวร PM">'+
+      '<button class="btn primary" id="mSave" style="justify-content:center">บันทึก / แชร์ .jpg</button>');
+    $('#mClose').onclick=()=>$('#modal').hidden=true;
+    $('#mSave').onclick=()=>saveBlob(blob,fname);
+  }catch(e){toast('สร้างรูปไม่สำเร็จ: '+e.message);}
+  btn.disabled=false;
+};
+function buildPdf(cv,bg){
+  const {jsPDF}=window.jspdf,pdf=new jsPDF({unit:'mm',format:'a4',orientation:'portrait'});
+  const W=210,H=297,m=10,iw=W-2*m,ih=H-2*m;
+  const fit=Math.min(iw/cv.width,ih/cv.height);
+  if(cv.width*fit>=iw*0.5){
+    const w=cv.width*fit,h=cv.height*fit;
+    pdf.setFillColor(bg);pdf.rect(0,0,W,H,'F');
+    pdf.addImage(cv.toDataURL('image/jpeg',0.92),'JPEG',(W-w)/2,m,w,h);return{pdf,pages:1};
+  }
+  const pxPerMm=cv.width/iw,pageH=Math.floor(ih*pxPerMm);let y=0,pages=0;
+  while(y<cv.height){
+    const h=Math.min(pageH,cv.height-y),c2=document.createElement('canvas');c2.width=cv.width;c2.height=h;
+    const g=c2.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,c2.width,h);g.drawImage(cv,0,y,cv.width,h,0,0,cv.width,h);
+    if(pages)pdf.addPage();pdf.setFillColor(bg);pdf.rect(0,0,W,H,'F');
+    pdf.addImage(c2.toDataURL('image/jpeg',0.92),'JPEG',m,m,iw,h/pxPerMm);y+=h;pages++;
+  }
+  return{pdf,pages};
+}
+$('#btnPdf').onclick=async()=>{
+  if(!window.jspdf){toast('โหลดตัวสร้าง PDF ไม่สำเร็จ ต้องต่ออินเทอร์เน็ต');return;}
+  const btn=$('#btnPdf');btn.disabled=true;
+  try{
+    const {cv,bg}=await makeCanvas(720);const {pdf,pages}=buildPdf(cv,bg);
+    const blob=pdf.output('blob'),fname=fileBase()+'.pdf';
+    openModal('<div class="row between"><h2>PDF พร้อมแล้ว</h2><button class="btn ghost" id="mClose">ปิด</button></div>'+
+      '<div class="notice small">ขนาด A4 · '+pages+' หน้า · '+Math.max(1,Math.round(blob.size/1024))+' KB<br>กดปุ่มด้านล่าง แล้วเลือก <b>บันทึกไปยังไฟล์</b>, <b>LINE</b> หรือ <b>พิมพ์</b></div>'+
+      '<img src="'+cv.toDataURL('image/jpeg',0.8)+'" alt="ตัวอย่าง PDF">'+
+      '<button class="btn primary" id="mSave" style="justify-content:center">บันทึก / แชร์ .pdf</button>');
+    $('#mClose').onclick=()=>$('#modal').hidden=true;
+    $('#mSave').onclick=()=>saveBlob(blob,fname);
+  }catch(e){toast('สร้าง PDF ไม่สำเร็จ: '+e.message);}
+  btn.disabled=false;
+};
+function lineText(){
+  const c=boardData();if(!c)return '';
+  let t='📋 เวร PM วันอาทิตย์ (ME/TE STF AUTO)\n';
+  c.items.forEach(it=>{t+='\n🗓 '+parse(it.date).toLocaleDateString(LOC(),{weekday:'long',day:'numeric',month:'long',year:'numeric'})+'\n';
+    it.ids.forEach(id=>{const p=P(id);t+='• '+p.nick+' ('+teamName(p.team)+')'+(p.tel?' '+p.tel:'')+'\n';});});
+  return TR(t);
+}
+$('#btnCopy').onclick=()=>{
+  const t=lineText();if(!t){toast('ยังไม่มีผลสุ่ม');return;}
+  const fallback=()=>{openModal('<div class="row between"><h2>ข้อความ</h2><button class="btn ghost" id="mClose">ปิด</button></div><textarea id="mTxt" readonly>'+esc(t)+'</textarea><div class="small muted">กดค้างในช่องแล้วเลือก "คัดลอก"</div>');$('#mClose').onclick=()=>$('#modal').hidden=true;const ta=$('#mTxt');ta.focus();ta.select();};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('คัดลอกแล้ว วางใน LINE ได้เลย'),fallback);else fallback();
+};
+
+/* ---------- teams ---------- */
+let openPerson=null;
+function renderTeams(){
+  const box=$('#teamLists');box.innerHTML='';const cnt=savedCounts(),last=lastDuty();
+  [...Object.keys(TEAMS),''].forEach(k=>{
+    const list=S.people.filter(p=>p.team===k);
+    const wrap=document.createElement('div');wrap.className='stack';wrap.style.gap='8px';
+    wrap.innerHTML='<div class="team-h"><h2><span class="badge '+teamCls(k)+'" style="font-size:13px">'+teamName(k)+'</span></h2><span class="small muted">'+list.filter(p=>p.active).length+' / '+list.length+' คนพร้อม</span></div>';
+    const pl=document.createElement('div');pl.className='plist';
+    if(!list.length)pl.innerHTML='<div class="small muted" style="padding:12px">ยังไม่มีคน</div>';
+    list.forEach(p=>{
+      const d=document.createElement('details');d.className='pr'+(p.active?'':' off');
+      d.innerHTML='<summary><div class="who"><b>'+esc(p.nick)+'</b><div>'+esc(p.name)+' · '+esc(p.role)+(cnt[p.id]?' · เวร '+cnt[p.id]+' ครั้ง':'')+(p.active?'':' · ปิดอยู่')+(((p.off||[]).filter(x=>x>=iso(new Date())).length)?' · ไม่ว่าง '+(p.off||[]).filter(x=>x>=iso(new Date())).length+' วัน':'')+'</div></div>'+
+        '<div class="tseg">'+[['IMP','I'],['A','A'],['B','B'],['','–']].map(([t,l])=>'<button data-t="'+t+'" class="'+teamCls(t)+'" aria-pressed="'+(p.team===t)+'" aria-label="ย้ายไป '+teamName(t)+'">'+l+'</button>').join('')+'</div></summary>'+
+        '<div class="pr-edit"><div class="row"><label class="field"><span class="small muted">ชื่อเล่น</span><input data-f="nick" id="e-nick-'+p.id+'" value="'+esc(p.nick)+'"></label><label class="field"><span class="small muted">ชื่อ</span><input data-f="name" id="e-name-'+p.id+'" value="'+esc(p.name)+'"></label></div>'+
+        '<div class="row"><label class="field"><span class="small muted">หน้าที่ / Line</span><input data-f="role" id="e-role-'+p.id+'" value="'+esc(p.role)+'"></label><label class="field"><span class="small muted">เบอร์โทร</span><input data-f="tel" id="e-tel-'+p.id+'" inputmode="tel" value="'+esc(p.tel)+'"></label></div>'+
+        '<label class="toggle"><input type="checkbox" data-f="active" id="e-act-'+p.id+'" '+(p.active?'checked':'')+'><span>พร้อมเข้าเวร <span class="small muted">(ปิดเมื่อลา / ไม่สะดวกช่วงนี้)</span>'+(last[p.id]?'<br><span class="small muted">ทำเวรล่าสุด '+fmtDate(last[p.id])+'</span>':'')+'</span></label>'+
+        '<div class="field"><span class="small muted">วันไม่ว่าง (ลา / ติดธุระ) — ตอนสุ่มจะข้ามคนนี้เฉพาะวันนั้น</span><div class="row" style="flex-wrap:nowrap"><input type="date" data-offin id="e-off-'+p.id+'" style="flex:1;min-width:0"><button class="btn" data-offadd style="flex:none">เพิ่ม</button></div>'+
+        '<div class="offchips">'+((p.off||[]).filter(x=>x>=iso(new Date())).sort().map(x=>'<button class="badge none skipchip" data-offrm="'+x+'">ไม่ว่าง '+fmtDate(x)+' ✕</button>').join('')||'<span class="small muted">ว่างทุกอาทิตย์</span>')+'</div></div>'+
+        '<div class="row"><button class="btn danger small" data-del>ลบคนนี้</button></div></div>';
+      if(p.id===openPerson)d.open=true;
+      d.addEventListener('toggle',()=>{if(d.open)openPerson=p.id;});
+      d.querySelector('[data-offadd]').onclick=()=>{const v=d.querySelector('[data-offin]').value;if(!v){toast('เลือกวันที่ก่อน');return;}
+        const x=iso(sundayOnOrAfter(parse(v)));p.off=[...new Set([...(p.off||[]),x])];save();openPerson=p.id;renderTeams();toast(p.nick+' ไม่ว่าง '+fmtDate(x));};
+      d.querySelectorAll('[data-offrm]').forEach(b=>b.onclick=()=>{p.off=(p.off||[]).filter(x=>x!==b.dataset.offrm);save();openPerson=p.id;renderTeams();});
+      d.querySelectorAll('.tseg button').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();p.team=b.dataset.t;save();renderTeams();toast(p.nick+' → '+teamName(p.team));});
+      d.querySelectorAll('input[data-f]').forEach(inp=>inp.onchange=()=>{const f=inp.dataset.f;p[f]=f==='active'?inp.checked:inp.value.trim();save();if(f==='active'){d.classList.toggle('off',!p.active);}});
+      const del=d.querySelector('[data-del]');
+      del.onclick=()=>{if(del.dataset.arm){snapshot('ก่อนลบ '+p.nick);S.people=S.people.filter(x=>x.id!==p.id);save();renderTeams();undoToast('ลบ '+p.nick+' แล้ว');}else{del.dataset.arm=1;del.textContent='แตะอีกครั้งเพื่อยืนยัน';setTimeout(()=>{delete del.dataset.arm;del.textContent='ลบคนนี้';},3000);}};
+      pl.appendChild(d);
+    });
+    wrap.appendChild(pl);box.appendChild(wrap);
+  });
+}
+$('#btnAdd').onclick=()=>{
+  const nick=$('#addNick').value.trim(),name=$('#addName').value.trim();
+  if(!nick&&!name){toast('ใส่ชื่อเล่นหรือชื่อก่อน');return;}
+  S.people.push({id:'p'+Date.now(),nick:nick||name,name:name||nick,role:$('#addRole').value.trim(),tel:$('#addTel').value.trim(),team:$('#addTeam').value,active:true});
+  ['#addNick','#addName','#addRole','#addTel'].forEach(s=>$(s).value='');save();renderTeams();toast('เพิ่ม '+(nick||name)+' แล้ว');
+};
+const armBtn=(btn,label,fn)=>{btn.onclick=()=>{if(btn.dataset.arm){fn();delete btn.dataset.arm;btn.textContent=label;}else{btn.dataset.arm=1;btn.textContent='แตะอีกครั้งเพื่อยืนยัน';setTimeout(()=>{delete btn.dataset.arm;btn.textContent=label;},3000);}};};
+armBtn($('#btnReset'),'คืนค่ารายชื่อเริ่มต้น',()=>{snapshot('ก่อนคืนค่ารายชื่อ');const keepTel={};S.people.forEach(p=>{if(p.tel)keepTel[p.id]=p.tel;});S.people=seedPeople().map(p=>Object.assign(p,{tel:keepTel[p.id]||''}));save();renderTeams();undoToast('คืนค่ารายชื่อแล้ว');});
+
+/* ---------- history ---------- */
+function renderHist(){
+  renderSwapLog();renderReport();
+  const box=$('#histList');
+  renderMore();renderRevLog();renderSnaps();
+  if(!S.history.length){$('#histCount').textContent='';box.innerHTML='<div class="panel"><div class="muted">ยังไม่มีประวัติ · สุ่มเวรแล้วกด "บันทึกลงประวัติ" ข้อมูลจะมาแสดงที่นี่ และใช้คำนวณให้คนที่ทำน้อยได้ก่อน</div></div>';$('#btnClear').hidden=true;return;}
+  $('#btnClear').hidden=false;const today=iso(new Date());$('#histCount').textContent=S.history.length+' อาทิตย์';
+  box.innerHTML='<div class="plist">'+[...S.history].reverse().map(h=>'<div class="h-item"><div class="d">'+fmtDate(h.date)+(h.date>=today?'<div class="small" style="color:var(--ok)">กำลังจะถึง</div>':'')+'</div><div class="ns" role="button" data-edit="'+h.date+'" aria-label="แก้ไขเวรวันนี้">'+
+    h.ids.map(id=>{const p=P(id);return '<span class="badge '+teamCls(p.team)+'">'+esc(p.nick)+'</span>';}).join(' ')+'</div><button class="reroll" data-date="'+h.date+'" aria-label="ลบ">✕</button></div>').join('')+'</div>';
+  box.querySelectorAll('[data-edit]').forEach(n=>n.onclick=()=>editHistory(n.dataset.edit));
+  box.querySelectorAll('[data-date]').forEach(b=>b.onclick=()=>{if(b.dataset.arm){snapshot('ก่อนลบเวร '+fmtDate(b.dataset.date));bumpRev('ลบเวร '+fmtDate(b.dataset.date),[b.dataset.date]);const dd=b.dataset.date;S.history=S.history.filter(h=>h.date!==dd);save();renderHist();undoToast('ลบเวร '+fmtDate(dd)+' แล้ว');}else{b.dataset.arm=1;b.textContent='?';b.style.color='var(--accent)';setTimeout(()=>{delete b.dataset.arm;b.textContent='✕';b.style.color='';},3000);}});
+}
+armBtn($('#btnClear'),'ลบประวัติทั้งหมด',()=>{snapshot('ก่อนลบประวัติทั้งหมด');S.history=[];S.rev=0;S.revAt=0;S.revLog=[];S.revPending=[];if(S.current)S.current.saved=false;save();renderHist();undoToast('ลบประวัติแล้ว');});
+
+
+/* ---------- backup / restore ---------- */
+function backupJSON(){return JSON.stringify({app:'pm-sunday',v:2,exported:new Date().toISOString(),data:{people:S.people,history:S.history,swaps:S.swaps,rev:S.rev,revAt:S.revAt,revLog:S.revLog,revPending:S.revPending,teams:S.teams,per:S.per,impPer:S.impPer,weeks:S.weeks,block:S.block,fair:S.fair,style:S.style,skin:S.skin,skip:S.skip}},null,1);}
+function markBackup(){S.lastBackup=Date.now();save();renderMore();}
+function renderMore(){
+  $('#lastBackup').textContent=S.lastBackup?'สำรองล่าสุด '+new Date(S.lastBackup).toLocaleString(LOC(),{day:'numeric',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'}):'ยังไม่เคยสำรองข้อมูล';
+  const h=$('#helpList');if(h.dataset.done)return;h.dataset.done=1;
+  const HELP=[
+   ['จัดทีม','<ul><li>แตะ <b>I / A / B / –</b> ท้ายชื่อเพื่อย้ายทีม (– = ไม่เข้าเวร)</li><li>แตะชื่อเพื่อแก้ชื่อเล่น ชื่อ หน้าที่ เบอร์โทร</li><li>ปิดสวิตช์ <b>พร้อมเข้าเวร</b> เมื่อคนนั้นลา จะไม่ถูกสุ่มจนกว่าจะเปิดกลับ</li><li>เพิ่มคนใหม่ได้ที่ล่างสุดของหน้า</li></ul>'],
+   ['ลำดับกะ A / B','<ul><li>ทีมที่แตะเลือก<b>ก่อน</b>ได้เลข 1 และเข้าเวรก่อน</li><li><b>อาทิตย์ต่อทีม</b> = จำนวนอาทิตย์ติดกันของแต่ละกะ เช่น 2 → A, A, B, B แล้ววนใหม่</li><li>อยากสลับลำดับ ให้แตะทีมออกแล้วแตะใหม่</li></ul>'],
+   ['Improve ร่วมทุกอาทิตย์','<ul><li>ทุกอาทิตย์จะมีคนจากทีม Improve ร่วมกับกะ ตามจำนวนที่ตั้ง (0–3 คน)</li><li>ตั้งเป็น 0 ถ้าไม่ต้องการ</li></ul>'],
+   ['สุ่มให้ยุติธรรม','<ul><li>เปิด <b>ให้คนที่ทำเวรน้อยได้ก่อน</b> ระบบนับจากประวัติที่บันทึก คนเดิมจะไม่ซ้ำจนกว่าทุกคนในทีมจะได้ครบ</li><li>ปิดเพื่อสุ่มแบบสุ่มล้วน</li><li>กด <b>↻</b> หลังชื่อเพื่อสุ่มเฉพาะคนนั้นใหม่ (จากทีมเดียวกัน)</li></ul>'],
+   ['แก้ไขเวรเอง (Manual)','<ul><li>หลังสุ่มแล้ว แตะ<b>ชื่อคน ✎</b> เพื่อเลือกคนอื่นแทน ค้นหาชื่อได้ และเลือกข้ามทีมได้</li><li>ในหน้าเลือกมีปุ่ม <b>เอาคนนี้ออกจากวันนี้</b></li><li>แตะ <b>+ เพิ่มคนในวันนี้</b> เพื่อเพิ่มคนพิเศษ</li><li>เวรที่บันทึกแล้ว แก้ได้ทั้งในแท็บสุ่มเวร และแตะแถวในประวัติ ✎ ระบบจะอัปเดตทั้งสองที่</li><li>วันที่แก้เองจะมีป้าย <b>✎ แก้ไขเอง</b></li></ul>'],
+   ['วันไม่ว่างรายคน','<ul><li>แท็บทีม → แตะชื่อ → <b>วันไม่ว่าง</b> → เลือกวัน → เพิ่ม</li><li>ตอนสุ่ม ระบบจะไม่เลือกคนนั้นในวันนั้น แต่ยังสุ่มได้ในอาทิตย์อื่น</li><li>ตอนแก้ไขเอง จะมีป้าย <b>ไม่ว่างวันนี้</b> เตือนไว้</li></ul>'],
+   ['แลกเวร','<ul><li>เพิ่มเติม → <b>แลกเวร</b> (หรือปุ่ม ⇄ ใต้ผลสุ่ม)</li><li>แตะคนที่ขอแลก แล้วแตะคนในอีกอาทิตย์ → ใส่เหตุผล → ยืนยัน</li><li>ระบบเตือนถ้าอีกฝ่ายลงวันไม่ว่างไว้ และเก็บประวัติการแลกไว้ทุกครั้ง</li></ul>'],
+   ['เพิ่มลงปฏิทิน iPhone','<ul><li>Dashboard → <b>📅 เพิ่มลงปฏิทิน</b> → เลือกคน หรือทั้งทีม → เลือกเวลาเตือน</li><li>เปิดไฟล์ .ics → <b>เพิ่มทั้งหมด</b></li><li>ส่งไฟล์ให้แต่ละคนใน LINE แล้วให้เขากดเพิ่มเองได้</li></ul>'],
+   ['รายงานสรุป Excel','<ul><li>เพิ่มเติม → <b>รายงานสรุป</b> → เลือกเดือน / ปี / ทั้งหมด</li><li><b>Export Excel (.csv)</b> → เปิดด้วย Excel หรือ Numbers ได้ ภาษาไทยไม่เพี้ยน</li><li>นับเฉพาะเวรที่กดบันทึกแล้ว</li></ul>'],
+   ['เลข Rev (เวอร์ชันตาราง)','<ul><li>กด <b>บันทึกลงประวัติ</b> = <b>Rev.00</b></li><li>หลังบันทึก แก้ไขเวร แลกเวร หรือลบวันได้หลายรายการ ระบบจะเก็บไว้เป็น <b>รอ Update</b></li><li>แก้ครบแล้วกด <b>อัปเดต → Rev.01</b> เลขจะเพิ่มครั้งเดียว ไม่ว่าจะแก้กี่รายการ</li><li>เลข Rev และวัน-เวลาที่แก้ล่าสุดแสดงที่<b>มุมขวาล่าง</b>ของ Dashboard รูป .jpg และ .pdf</li><li>ผลสุ่มที่ยังไม่บันทึกจะขึ้น <b>DRAFT</b> สีแดงแทน</li><li>ดูรายการแก้ไขย้อนหลังได้ที่ เพิ่มเติม → ประวัติการแก้ไข (Rev)</li></ul>'],
+   ['วันงดเวร','<ul><li>เพิ่มวันหยุดยาว / ปิดโรงงาน ระบบจะข้ามวันนั้นแล้วเลื่อนเวรไปอาทิตย์ถัดไป ลำดับกะไม่เสีย</li><li>เลือกวันไหนก็ได้ ระบบจะปัดเป็นวันอาทิตย์ให้</li><li>แตะป้ายวันงดเพื่อยกเลิก</li></ul>'],
+   ['บันทึก & เริ่มรอบต่อไป','<ul><li>ผลสุ่มเป็น <b>DRAFT</b> จนกว่าจะกด <b>บันทึกลงประวัติ</b></li><li>หลังบันทึก วันเริ่มรอบถัดไปจะตั้งเป็นอาทิตย์หลังเวรล่าสุดให้อัตโนมัติ</li><li>บันทึกทับวันเดิมได้ ข้อมูลเก่าของวันนั้นจะถูกแทนที่</li></ul>'],
+   ['Dashboard & Export','<ul><li>7 แบบ: <b>ประกาศ</b> / <b>ตาราง</b> / <b>แยกทีม</b> / <b>ปฏิทิน</b> / <b>การ์ด</b> / <b>รายคน</b> / <b>สถิติ</b> (เลื่อนแถบซ้าย-ขวา)</li><li>สีภาพ 9 แบบ: ขาว / เรนโบว์ / พาสเทล / ทะเล / ซันเซ็ต / ซากุระ / มิ้นต์ / กาแล็กซี / ดำ</li><li><b>Export .jpg</b> → กดค้างที่รูป → บันทึกลงรูปภาพ หรือแชร์ LINE</li><li><b>Export .pdf</b> → ไฟล์ A4 สำหรับพิมพ์ หรือส่งอีเมล / LINE</li><li><b>คัดลอกข้อความ</b> → วางในกลุ่ม LINE ได้ทันที</li></ul>'],
+   ['PIN ล็อก','<ul><li>PIN เริ่มต้นคือ <b>4444</b></li><li>ดู Dashboard ได้เลย ส่วนสุ่มเวร / ทีม / เพิ่มเติม ต้องใส่ PIN</li><li>ปุ่มแม่กุญแจมุมขวาบน: 🔒 = ล็อกอยู่ · 🔓 = ปลดล็อกแล้ว (แตะเพื่อล็อก)</li><li>เปลี่ยน PIN ที่ เพิ่มเติม → PIN ล็อกการแก้ไข</li><li>เปิด <b>ต้องใส่ PIN ก่อนเปิดแอป</b> ถ้าไม่อยากให้ใครเห็นตารางเลย</li><li>ไม่ได้ใช้เกิน 5 นาที จะล็อกเองอัตโนมัติ</li></ul>'],
+   ['ความปลอดภัยข้อมูล','<ul><li><b>เบอร์โทรเก็บเฉพาะในเครื่อง</b> ไม่ถูกส่งขึ้น GitHub · เครื่องอื่นนำเข้าได้ที่ ทีม → 📞 นำเข้าเบอร์โทร</li><li>ถ้า 2 เครื่องแก้ไขพร้อมกัน ระบบจะ<b>รวมการแก้ไข</b>ให้ ไม่ทับกัน (ถ้าแก้วันเดียวกัน ใช้ของเครื่องที่บันทึกทีหลัง)</li><li>ตั้ง <b>ผู้ใช้เครื่องนี้</b> ครั้งแรกที่ปลดล็อก ชื่อจะขึ้นในประวัติ Rev</li><li>ก่อนลบ กู้คืน แลกเวร หรือสุ่มทับ ระบบเก็บ<b>จุดคืนค่า</b>ให้ และมีปุ่ม <b>ย้อนกลับ</b> 7 วินาที</li></ul>'],
+   ['ใช้งานออฟไลน์ & อัปเดต','<ul><li>บนเว็บ GitHub แอปเก็บตัวเองไว้ในเครื่อง เปิดได้แม้ไม่มีเน็ต และ Export ได้หลังเคยเปิดออนไลน์ 1 ครั้ง</li><li>เมื่ออัปโหลดเวอร์ชันใหม่ จะมีแถบ <b>มีเวอร์ชันใหม่</b> ด้านบน แตะเพื่ออัปเดต</li></ul>'],
+   ['ซิงก์กับ GitHub','<ul><li>เมื่อเปิดจาก <b>github.io</b> ข้อมูลจะถูกเก็บในไฟล์ <b>data.json</b> ใน repo ทุกเครื่องที่เปิดลิงก์เห็นเหมือนกัน</li><li>เครื่องที่ใส่ <b>Token</b> แก้ไขได้ และบันทึกขึ้น GitHub อัตโนมัติทุกครั้งที่แก้</li><li>เครื่องที่ไม่มี Token เป็นโหมดดูอย่างเดียว</li><li>ทุกเครื่องเช็กข้อมูลใหม่ทุก 15 วินาทีขณะเปิดแอป · การแก้ไขจะไปถึงเครื่องอื่นภายในประมาณ 15–60 วินาที · แตะ ☁︎ ที่หัวแอปเพื่อโหลดทันที</li><li>ห้ามส่ง Token ให้ใคร และห้ามใส่ Token ลงในไฟล์ index.html</li></ul>'],
+   ['สำรอง / กู้คืน','<ul><li>ข้อมูลเก็บในเครื่องนี้เท่านั้น ควรสำรองหลังบันทึกเวรทุกครั้ง</li><li><b>บันทึกไฟล์สำรอง</b> → ได้ไฟล์ .json เก็บในแอป Files</li><li><b>คัดลอกข้อมูล</b> → ส่งเข้า LINE ตัวเอง (Keep)</li><li>เปลี่ยนเครื่อง: เปิดเว็บ → เพิ่มเติม → กู้คืน</li><li>ใช้ผ่านไอคอนหน้าจอโฮม ข้อมูลอยู่ทนกว่าเปิดใน Safari</li></ul>'],
+  ];
+  h.innerHTML=(LANG==='en'?HELP_EN:HELP).map(([t,b])=>'<details class="pr help"><summary>'+t+'</summary><div class="body">'+b+'</div></details>').join('');
+}
+$('#btnBackup').onclick=async()=>{
+  const txt=backupJSON(),fname='pm-sunday-backup-'+iso(new Date())+'.json';
+  let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;}catch(e){}
+  if(dl){try{await dl.save({filename:fname,data:txt});markBackup();toast('บันทึกไฟล์สำรองแล้ว');}catch(e){if(e&&e.code!=='declined')toast('บันทึกไม่ได้ ลองปุ่มคัดลอกข้อมูลแทน');}return;}
+  try{const url=URL.createObjectURL(new Blob([txt],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);markBackup();toast('เลือก "บันทึกไปยังไฟล์" เพื่อเก็บ');}
+  catch(e){toast('บันทึกไม่ได้ ลองปุ่มคัดลอกข้อมูลแทน');}
+};
+$('#btnBackupCopy').onclick=()=>{
+  const txt=backupJSON();
+  const fallback=()=>{openModal('<div class="row between"><h2>ข้อมูลสำรอง</h2><button class="btn ghost" id="mClose">ปิด</button></div><textarea id="mTxt" readonly>'+esc(txt)+'</textarea><div class="small muted">กดค้างในช่อง → เลือกทั้งหมด → คัดลอก</div>');$('#mClose').onclick=()=>$('#modal').hidden=true;const ta=$('#mTxt');ta.focus();ta.select();markBackup();};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(()=>{markBackup();toast('คัดลอกแล้ว วางเก็บใน LINE Keep ได้เลย');},fallback);else fallback();
+};
+function restoreFrom(text){
+  snapshot('ก่อนกู้คืน');
+  let o;try{o=JSON.parse(text);}catch(e){toast('อ่านข้อมูลไม่ได้ ตรวจว่าคัดลอกมาครบ');return false;}
+  const d=o&&o.data;if(!d||!Array.isArray(d.people)){toast('ไม่ใช่ไฟล์สำรองของเวร PM');return false;}
+  S=Object.assign(defaults(),d,{current:null,view:'hist',lastBackup:S.lastBackup,pinHash:S.pinHash,lockAll:S.lockAll});
+  S.teams=(S.teams||[]).filter(t=>t==='A'||t==='B');save();
+  $('#startDate').value='';$('#modal').hidden=true;show('hist');
+  toast('กู้คืนแล้ว: '+S.people.length+' คน · ประวัติ '+S.history.length+' อาทิตย์');return true;
+}
+function confirmRestore(text){
+  let o=null;try{o=JSON.parse(text);}catch(e){}
+  const d=o&&o.data;if(!d||!Array.isArray(d.people)){toast('ไม่ใช่ไฟล์สำรองของเวร PM');return;}
+  openModal('<h2>กู้คืนข้อมูล?</h2><div class="notice small">ไฟล์สำรองวันที่ '+(o.exported?new Date(o.exported).toLocaleString(LOC()):'-')+'<br>รายชื่อ '+d.people.length+' คน · ประวัติ '+(d.history||[]).length+' อาทิตย์</div><div class="small muted">ข้อมูลปัจจุบันในเครื่องนี้จะถูกแทนที่ทั้งหมด</div><div class="row"><button class="btn primary" id="mOk" style="flex:1;justify-content:center">กู้คืน</button><button class="btn" id="mNo" style="flex:1;justify-content:center">ยกเลิก</button></div>');
+  $('#mOk').onclick=()=>restoreFrom(text);$('#mNo').onclick=()=>$('#modal').hidden=true;
+}
+$('#restoreFile').onchange=e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>confirmRestore(String(r.result));r.readAsText(f);e.target.value='';};
+$('#btnPaste').onclick=()=>{
+  openModal('<div class="row between"><h2>วางข้อมูลสำรอง</h2><button class="btn ghost" id="mClose">ปิด</button></div><textarea id="mIn" placeholder="กดค้าง → วาง ข้อความที่คัดลอกไว้"></textarea><button class="btn primary" id="mGo" style="justify-content:center">ตรวจและกู้คืน</button>');
+  $('#mClose').onclick=()=>$('#modal').hidden=true;$('#mGo').onclick=()=>confirmRestore($('#mIn').value.trim());
+};
+
+
+/* ---------- 1) add to iPhone calendar (.ics) ---------- */
+function icsEsc(t){return String(t).replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');}
+function icsFold(l){const enc=new TextEncoder();let o='',cur='',n=0;for(const ch of l){const b=enc.encode(ch).length;if(n+b>72){o+=cur+'\r\n ';cur='';n=1;}cur+=ch;n+=b;}return o+cur;}
+function buildIcs(entries,alarm){
+  const stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+Z$/,'Z');
+  const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ME-TE STF AUTO//PM Sunday//TH','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+TR('เวร PM วันอาทิตย์')];
+  entries.forEach(e=>{
+    const d=e.date.replace(/-/g,''),n=parse(e.date);const nx=new Date(n.getFullYear(),n.getMonth(),n.getDate()+1);
+    const mates=e.ids.map(id=>{const p=P(id);return p.nick+' ('+teamName(p.team)+')'+(p.tel?' '+p.tel:'');}).join('\n');
+    L.push('BEGIN:VEVENT','UID:pm-'+d+'-'+(e.who||'all')+'@pm-sunday','DTSTAMP:'+stamp,'DTSTART;VALUE=DATE:'+d,'DTEND;VALUE=DATE:'+iso(nx).replace(/-/g,''),
+      icsFold('SUMMARY:'+icsEsc(TR('เวร PM วันอาทิตย์')+(e.who?'':' · '+e.ids.map(id=>P(id).nick).join(', ')))),
+      icsFold('DESCRIPTION:'+icsEsc(TR('ME/TE STF AUTO\nคนเข้าเวร:\n'+mates))),'TRANSP:TRANSPARENT');
+    if(alarm)L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(TR('พรุ่งนี้เวร PM วันอาทิตย์')),'TRIGGER:'+alarm,'END:VALARM');
+    L.push('END:VEVENT');
+  });
+  L.push('END:VCALENDAR');return L.join('\r\n')+'\r\n';
+}
+function upcomingSchedule(){
+  const today=iso(new Date()),m={};
+  S.history.forEach(h=>{if(h.date>=today)m[h.date]={date:h.date,ids:[...h.ids]};});
+  if(S.current)S.current.items.forEach(it=>{if(it.date>=today)m[it.date]={date:it.date,ids:[...it.ids]};});
+  return Object.values(m).sort((a,b)=>a.date<b.date?-1:1);
+}
+$('#btnIcs').onclick=()=>{
+  const sch=upcomingSchedule();if(!sch.length){toast('ยังไม่มีเวรที่กำลังจะถึง');return;}
+  const ppl=[...new Set(sch.flatMap(e=>e.ids))].map(P).sort((a,b)=>a.nick.localeCompare(b.nick));
+  openModal('<div class="row between"><h2>เพิ่มลงปฏิทิน</h2><button class="btn ghost" id="mClose">ปิด</button></div>'+
+    '<div class="ics-opt"><label class="field"><span class="small muted">ของใคร</span><select id="icsWho"><option value="">ทุกวันเวร (ทั้งทีม)</option>'+ppl.map(p=>'<option value="'+p.id+'">'+esc(p.nick)+' — '+esc(p.name)+'</option>').join('')+'</select></label>'+
+    '<label class="field"><span class="small muted">แจ้งเตือน</span><select id="icsAlarm"><option value="-PT6H">คืนวันเสาร์ 18:00</option><option value="PT6H">เช้าวันอาทิตย์ 06:00</option><option value="-P1D">เช้าวันเสาร์ 00:00</option><option value="">ไม่เตือน</option></select></label>'+
+    '<div class="notice small" id="icsInfo"></div>'+
+    '<button class="btn primary" id="icsGo" style="justify-content:center">ดาวน์โหลดไฟล์ปฏิทิน (.ics)</button>'+
+    '<div class="small muted">iPhone: เปิดไฟล์ → กด <b>เพิ่มทั้งหมด</b> (Add All) → เลือกปฏิทิน · ส่งไฟล์นี้ใน LINE ให้แต่ละคนกดเพิ่มเองได้</div></div>');
+  const info=()=>{const w=$('#icsWho').value,n=sch.filter(e=>!w||e.ids.includes(w)).length;$('#icsInfo').textContent=n+' วันเวร · '+(w?P(w).nick:'ทั้งทีม');};
+  $('#icsWho').onchange=info;info();
+  $('#mClose').onclick=()=>$('#modal').hidden=true;
+  $('#icsGo').onclick=async()=>{
+    const w=$('#icsWho').value,ent=sch.filter(e=>!w||e.ids.includes(w)).map(e=>Object.assign({who:w||''},e));
+    if(!ent.length){toast('คนนี้ยังไม่มีเวร');return;}
+    const txt=buildIcs(ent,$('#icsAlarm').value),fname='PM-Sunday-'+(w?P(w).nick:(LANG==='en'?'team':'ทั้งทีม'))+'.ics';
+    if(window.claude&&window.claude.use){
+      const blob=new Blob([txt],{type:'text/plain'});
+      try{const dl=await window.claude.use('downloads');if(dl){await dl.save({filename:fname.replace(/\.ics$/,'.ics.txt'),data:blob});toast('บันทึกแล้ว · เปลี่ยนนามสกุลเป็น .ics ก่อนเปิด');return;}}catch(e){}
+      toast('เพิ่มลงปฏิทินใช้ได้บนเว็บ GitHub Pages');return;
+    }
+    const url=URL.createObjectURL(new Blob([txt],{type:'text/calendar;charset=utf-8'}));
+    const a=document.createElement('a');a.href=url;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+  };
+};
+
+/* ---------- 3) swap duties ---------- */
+function setDayIds(date,ids){
+  const h=S.history.find(x=>x.date===date);if(h)h.ids=[...ids];
+  if(S.current){const it=S.current.items.find(x=>x.date===date);if(it){it.ids=[...ids];it.edited=true;}}
+}
+function openSwap(){
+  const sch=upcomingSchedule();
+  if(sch.length<2){toast('ต้องมีเวรที่กำลังจะถึงอย่างน้อย 2 อาทิตย์');return;}
+  let A=null;
+  const draw=()=>{
+    openModal('<div class="row between"><h2>แลกเวร</h2><button class="btn ghost" id="mClose">ปิด</button></div>'+
+      '<div class="notice small">'+(A?'แตะคนที่จะแลกกับ <b>'+esc(P(A.id).nick)+'</b> ('+fmtDate(A.date)+')':'แตะคนที่ <b>ขอแลก</b>')+'</div>'+
+      '<div class="sw-list">'+sch.map(e=>'<div class="sw-day"><h3>'+fmtDate(e.date)+'</h3><div class="sw-ppl">'+e.ids.map(id=>{
+        const sel=A&&A.id===id&&A.date===e.date,dis=A&&!sel&&(A.date===e.date||e.ids.includes(A.id)||sch.find(x=>x.date===A.date).ids.includes(id));
+        return '<button class="sw-p'+(sel?' sel':'')+'" data-d="'+e.date+'" data-id="'+id+'"'+(dis?' disabled':'')+'>'+esc(P(id).nick)+'</button>';}).join('')+'</div></div>').join('')+'</div>'+
+      (A?'<button class="btn" id="swReset" style="justify-content:center">เลือกใหม่</button>':''));
+    $('#mClose').onclick=()=>$('#modal').hidden=true;
+    if(A)$('#swReset').onclick=()=>{A=null;draw();};
+    $('#modalC').querySelectorAll('.sw-p:not([disabled])').forEach(b=>b.onclick=()=>{
+      const pick={id:b.dataset.id,date:b.dataset.d};
+      if(!A){A=pick;draw();return;}
+      if(A.id===pick.id&&A.date===pick.date){A=null;draw();return;}
+      confirmSwap(A,pick,()=>{A=null;draw();});
+    });
+  };
+  draw();
+}
+function confirmSwap(a,b,back){
+  const pa=P(a.id),pb=P(b.id);
+  const warn=[(pa.off||[]).includes(b.date)?pa.nick+' ลงไว้ว่าไม่ว่างวันที่ '+fmtDate(b.date):'',(pb.off||[]).includes(a.date)?pb.nick+' ลงไว้ว่าไม่ว่างวันที่ '+fmtDate(a.date):'',pa.team!==pb.team?'แลกต่างทีม: '+pa.nick+' ('+teamName(pa.team)+') ⇄ '+pb.nick+' ('+teamName(pb.team)+')':''].filter(Boolean);
+  openModal('<h2>ยืนยันแลกเวร</h2><div class="day"><div class="slot"><div class="nm"><b>'+esc(pa.nick)+'</b><div>'+fmtDate(a.date)+' → '+fmtDate(b.date)+'</div></div></div><div class="slot"><div class="nm"><b>'+esc(pb.nick)+'</b><div>'+fmtDate(b.date)+' → '+fmtDate(a.date)+'</div></div></div></div>'+
+    (warn.length?'<div class="notice warn small">'+warn.map(esc).join('<br>')+'</div>':'')+
+    '<label class="field"><span class="small muted">เหตุผล (ไม่บังคับ)</span><input id="swWhy" placeholder="เช่น ติดธุระต่างจังหวัด" autocomplete="off"></label>'+
+    '<div class="row"><button class="btn primary" id="swOk" style="flex:1;justify-content:center">แลกเวร</button><button class="btn" id="swNo" style="flex:1;justify-content:center">กลับ</button></div>');
+  $('#swNo').onclick=back;
+  $('#swOk').onclick=()=>{
+    const sch=upcomingSchedule(),da=sch.find(x=>x.date===a.date),db=sch.find(x=>x.date===b.date);
+    da.ids[da.ids.indexOf(a.id)]=b.id;db.ids[db.ids.indexOf(b.id)]=a.id;
+    setDayIds(a.date,da.ids);setDayIds(b.date,db.ids);
+    snapshot('ก่อนแลกเวร');S.swaps=[{ts:Date.now(),a:a.id,b:b.id,da:a.date,db:b.date,by:S.me||'',why:$('#swWhy').value.trim()},...(S.swaps||[])].slice(0,200);
+    bumpRev('แลกเวร '+pa.nick+' ⇄ '+pb.nick,[a.date,b.date]);save();$('#modal').hidden=true;undoToast(pa.nick+' ⇄ '+pb.nick+' แลกเวรแล้ว');
+    if(S.view==='draw')renderResult(false);if(S.view==='hist')renderHist();
+  };
+}
+function renderRevLog(){
+  const box=document.getElementById('revLog');if(!box)return;
+  $('#revNow').textContent=S.history.length?'ปัจจุบัน '+revLabel():'';
+  const pn=pendingN(),pb=document.getElementById('revPend');
+  pb.hidden=!pn;
+  if(pn)pb.innerHTML='<div class="small" style="font-weight:600">รายการที่รอ Update ('+pn+')</div><ul class="pend-l">'+S.revPending.map(x=>'<li>'+esc(x.note)+(x.by?' <span class="muted">· '+esc(x.by)+'</span>':'')+'</li>').join('')+'</ul><button class="btn primary update" id="btnRevUp2" style="justify-content:center">อัปเดต → '+nextRev()+'</button>';
+  if(pn)$('#btnRevUp2').onclick=commitRev;
+  const l=(S.revLog||[]).slice(0,10);
+  box.innerHTML=l.length?l.map(r=>'<div class="rev-row"><b>Rev.'+String(r.rev).padStart(2,'0')+'</b><span class="nt">'+esc(r.note)+(r.by?' <span class="muted">· โดย '+esc(r.by)+'</span>':'')+'</span><span class="tm">'+new Date(r.at).toLocaleString(LOC(),{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+'</span></div>').join(''):'<div class="small muted" style="padding:12px 16px">ยังไม่มีการแก้ไข · Rev.00 เริ่มเมื่อกดบันทึกลงประวัติ</div>';
+}
+function renderSwapLog(){
+  const el=$('#swapLog'),l=(S.swaps||[]).slice(0,8);
+  el.innerHTML=l.length?'<div class="log">'+l.map(x=>'<div><b>'+esc(P(x.a).nick)+' '+fmtShort(x.da)+' ⇄ '+esc(P(x.b).nick)+' '+fmtShort(x.db)+(x.why?' <span>· '+esc(x.why)+'</span>':'')+'</b><span>'+hm(x.ts)+'</span></div>').join('')+'</div>':'<div class="small muted">ยังไม่มีการแลกเวร</div>';
+}
+$('#btnSwap').onclick=openSwap;$('#btnSwap2').onclick=openSwap;
+
+/* ---------- 4) monthly report → CSV for Excel ---------- */
+function reportRows(range){
+  const hs=S.history.filter(h=>!range||(range.length===4?h.date.startsWith(range):h.date.slice(0,7)===range));
+  const m={};hs.forEach(h=>h.ids.forEach(id=>(m[id]=m[id]||[]).push(h.date)));
+  const ord={A:0,B:1,IMP:2,'':3};
+  return{weeks:hs.length,rows:Object.keys(m).map(id=>({p:P(id),d:m[id].sort()})).sort((a,b)=>((ord[a.p.team]??3)-(ord[b.p.team]??3))||b.d.length-a.d.length||a.p.nick.localeCompare(b.p.nick))};
+}
+function rangeLabel(r){if(!r)return 'ทั้งหมด';if(r.length===4)return LANG==='en'?'Year '+r:'ปี '+(+r+543);const [y,m]=r.split('-').map(Number);return new Date(y,m-1,1).toLocaleDateString(LOC(),{month:'long',year:'numeric'});}
+function renderReport(){
+  const sel=$('#repRange'),prev=sel.value;
+  const months=[...new Set(S.history.map(h=>h.date.slice(0,7)))].sort().reverse(),years=[...new Set(months.map(m=>m.slice(0,4)))];
+  sel.innerHTML=months.map(m=>'<option value="'+m+'">'+rangeLabel(m)+'</option>').join('')+years.map(y=>'<option value="'+y+'">'+rangeLabel(y)+'</option>').join('')+'<option value="">ทั้งหมด</option>';
+  if(prev!==''&&[...sel.options].some(o=>o.value===prev))sel.value=prev;
+  const {weeks,rows}=reportRows(sel.value);
+  $('#repView').innerHTML=!rows.length?'<div class="small muted">ยังไม่มีเวรที่บันทึกในช่วงนี้</div>':
+    '<div class="small muted" style="margin-bottom:6px">'+rangeLabel(sel.value)+' · '+weeks+' อาทิตย์ · '+rows.length+' คน</div><div class="tbl-wrap"><table class="rep"><thead><tr><th>ชื่อ</th><th>ทีม</th><th style="text-align:center">ครั้ง</th><th>วันที่</th></tr></thead><tbody>'+
+    rows.map(r=>'<tr><td><b>'+esc(r.p.nick)+'</b><div class="small muted">'+esc(r.p.name)+'</div></td><td><span class="badge '+teamCls(r.p.team)+'">'+(TEAMS[r.p.team]?TEAMS[r.p.team].short:'–')+'</span></td><td class="n">'+r.d.length+'</td><td class="d">'+r.d.map(fmtShort).join(', ')+'</td></tr>').join('')+'</tbody></table></div>';
+}
+$('#repRange').onchange=renderReport;
+$('#btnCsv').onclick=()=>{
+  const r=$('#repRange').value,{weeks,rows}=reportRows(r);
+  if(!rows.length){toast('ไม่มีข้อมูลในช่วงนี้');return;}
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const lines=[['รายงานเวร PM วันอาทิตย์ — ME/TE STF AUTO'],['ช่วง',rangeLabel(r)],['จำนวนอาทิตย์',weeks],[],
+    ['ลำดับ','ชื่อเล่น','ชื่อ','ทีม','หน้าที่ / Line','เบอร์โทร','จำนวนครั้ง','วันที่เข้าเวร']];
+  rows.forEach((x,i)=>lines.push([i+1,x.p.nick,x.p.name,teamName(x.p.team),x.p.role,x.p.tel,x.d.length,x.d.map(fmtDate).join(' / ')]));
+  lines.push([],['รายละเอียดรายวัน'],['วันที่','ชื่อเล่น','ทีม']);
+  S.history.filter(h=>!r||(r.length===4?h.date.startsWith(r):h.date.slice(0,7)===r)).forEach(h=>h.ids.forEach(id=>lines.push([fmtDate(h.date),P(id).nick,teamName(P(id).team)])));
+  const csv='\ufeff'+lines.map(l=>l.map(v=>q(TR(v))).join(',')).join('\r\n');
+  saveBlob(new Blob([csv],{type:'text/csv;charset=utf-8'}),(LANG==='en'?'PM-duty-report-'+(r||'all'):'รายงานเวรPM-'+(r||'ทั้งหมด'))+'.csv');
+};
+
+/* ---------- PIN lock ---------- */
+const LOCK_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+const OPEN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 7.5-2"/></svg>';
+function updateLockBtn(){const b=$('#lockBtn');b.innerHTML=unlocked?OPEN_SVG:LOCK_SVG;b.classList.toggle('open',unlocked);b.setAttribute('aria-label',unlocked?'ล็อกตอนนี้':'ปลดล็อก');}
+function setUnlocked(v){unlocked=v;try{v?sessionStorage.setItem('pm-unlocked','1'):sessionStorage.removeItem('pm-unlocked');}catch(e){}updateLockBtn();}
+let pinState=null;
+function askPin(o){
+  pinState=Object.assign({code:'',verify:true},o);
+  $('#lockTitle').textContent=o.title||'ใส่ PIN';
+  $('#lockSub').textContent=o.sub||'เพื่อแก้ไขเวร PM';
+  $('#lockCancel').hidden=!!o.force;
+  drawDots();$('#lock').hidden=false;
+}
+function drawDots(err){const d=$('#lockDots');[...d.children].forEach((i,k)=>i.classList.toggle('on',k<pinState.code.length));d.classList.toggle('err',!!err);}
+function pinKey(k){
+  if(!pinState)return;
+  if(k==='del'){pinState.code=pinState.code.slice(0,-1);drawDots();return;}
+  if(pinState.code.length>=4)return;
+  pinState.code+=k;drawDots();
+  if(pinState.code.length<4)return;
+  const st=pinState,code=st.code;
+  setTimeout(()=>{
+    if(st.verify&&phash(code)!==S.pinHash){st.code='';drawDots(true);if(navigator.vibrate)navigator.vibrate(120);setTimeout(()=>drawDots(),450);return;}
+    $('#lock').hidden=true;pinState=null;
+    if(st.verify){setUnlocked(true);if(!S.me)setTimeout(()=>askMe(true),400);}
+    if(st.onOk)st.onOk(code);
+  },120);
+}
+$('#lockKeys').innerHTML=['1','2','3','4','5','6','7','8','9','','0','del'].map(k=>'<button data-k="'+k+'" class="'+(k===''?'blank':k==='del'?'del':'')+'"'+(k===''?' tabindex="-1" aria-hidden="true"':'')+'>'+(k==='del'?'ลบ':k)+'</button>').join('');
+$('#lockKeys').querySelectorAll('button[data-k]').forEach(b=>b.onclick=()=>pinKey(b.dataset.k));
+document.addEventListener('keydown',e=>{if($('#lock').hidden)return;if(/^[0-9]$/.test(e.key))pinKey(e.key);else if(e.key==='Backspace')pinKey('del');else if(e.key==='Escape'&&!$('#lockCancel').hidden)$('#lockCancel').click();});
+$('#lockCancel').onclick=()=>{$('#lock').hidden=true;pinState=null;};
+$('#lockBtn').onclick=()=>{if(unlocked){setUnlocked(false);if(S.lockAll)askPin({force:true,sub:'เพื่อเปิดแอปเวร PM'});else show('dash');toast('ล็อกแล้ว');}else askPin({onOk:()=>toast('ปลดล็อกแล้ว')});};
+$('#btnLockNow').onclick=()=>$('#lockBtn').click();
+$('#optLockAll').checked=!!S.lockAll;
+$('#optLockAll').onchange=e=>{S.lockAll=e.target.checked;save();toast(S.lockAll?'ต้องใส่ PIN ก่อนเปิดแอป':'ดู Dashboard ได้โดยไม่ต้องใส่ PIN');};
+$('#btnChangePin').onclick=()=>{
+  askPin({title:'ใส่ PIN ปัจจุบัน',sub:'ยืนยันก่อนเปลี่ยน PIN',onOk:()=>{
+    askPin({title:'ตั้ง PIN ใหม่',sub:'ตัวเลข 4 หลัก',verify:false,onOk:p1=>{
+      askPin({title:'ยืนยัน PIN ใหม่',sub:'ใส่ PIN ใหม่อีกครั้ง',verify:false,onOk:p2=>{
+        if(p1!==p2){toast('PIN ไม่ตรงกัน ลองใหม่');return;}
+        S.pinHash=phash(p1);save();toast('เปลี่ยน PIN แล้ว');
+      }});
+    }});
+  }});
+};
+let hiddenAt=0;
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden'){hiddenAt=Date.now();return;}
+  if(unlocked&&hiddenAt&&Date.now()-hiddenAt>5*60*1000){setUnlocked(false);if(S.view!=='dash')show('dash');if(S.lockAll)askPin({force:true,sub:'เพื่อเปิดแอปเวร PM'});}
+});
+document.querySelectorAll('.logo-img').forEach(i=>i.src=LOGO);
+updateLockBtn();
+$('#ghSaveTok').onclick=async()=>{
+  const t=$('#ghTok').value.trim();if(!t){toast('วาง Token ก่อน');return;}
+  setSync('กำลังตรวจ Token…','wait');
+  try{
+    const r=await fetch('https://api.github.com/repos/'+GH.owner+'/'+GH.repo,{headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+t},cache:'no-store'});
+    if(!r.ok)throw new Error(r.status===401?'Token ไม่ถูกต้อง':'เข้าถึง repo ไม่ได้ (HTTP '+r.status+')');
+    const j=await r.json();if(j.permissions&&j.permissions.push===false)throw new Error('Token นี้ไม่มีสิทธิ์เขียน (ต้องตั้ง Contents: Read and write)');
+    ghToken=t;try{localStorage.setItem('pm-gh-token',t);}catch(e){}
+    renderSync();toast('บันทึก Token แล้ว');await ghPull(false);
+  }catch(e){setSync('ใช้ Token นี้ไม่ได้: '+e.message,'err');}
+};
+$('#ghPushBtn').onclick=()=>{S.updatedAt=Date.now();ghPush();};
+$('#ghPullBtn').onclick=()=>ghPull(true);
+$('#ghForget').onclick=()=>{ghToken='';try{localStorage.removeItem('pm-gh-token');}catch(e){}renderSync();setSync('ลบ Token แล้ว · เครื่องนี้เป็นโหมดดูอย่างเดียว','ro');};
+renderSync();
+if(GH){
+  ghPull(false);
+  const idle=()=>document.visibilityState==='visible'&&!ghBusy&&!pushTimer&&$('#lock').hidden&&$('#modal').hidden;
+  document.addEventListener('visibilitychange',()=>{if(idle())ghPull(false,true);});
+  setInterval(()=>{if(idle())ghPull(false,true);},15000);
+  $('#syncPill').style.cursor='pointer';$('#syncPill').onclick=()=>{if(!ghBusy)ghPull(true);};
+}
+
+/* ---------- boot ---------- */
+if(!S.current&&!S.history.length){const r=makePlan();if(typeof r!=='string')S.current=r;}
+if(!unlocked&&S.view!=='dash')S.view='dash';
+show(S.view||'dash');
+if(S.lockAll&&!unlocked)askPin({force:true,sub:'เพื่อเปิดแอปเวร PM'});
+/* ---------- who is using this device ---------- */
+function renderMe(){const n=document.getElementById('meName');if(n)n.textContent=S.me||'ยังไม่ได้ตั้งชื่อ';}
+function askMe(first){
+  openPicker({title:first?'คุณคือใคร? (ตั้งครั้งเดียว)':'เปลี่ยนผู้ใช้เครื่องนี้',current:null,dayIds:[],
+    onPick:id=>{S.me=P(id).nick;persist();renderMe();toast('เครื่องนี้: '+S.me);}});
+}
+$('#btnMe').onclick=()=>askMe(false);
+renderMe();
+/* ---------- restore points list ---------- */
+function renderSnaps(){
+  const box=document.getElementById('snapList');if(!box)return;const a=getSnaps();
+  box.innerHTML=a.length?a.map((x,i)=>'<div class="rev-row"><span class="nt">'+esc(x.label)+'</span><span class="tm">'+new Date(x.at).toLocaleString(LOC(),{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+'</span><button class="btn small" data-snap="'+i+'" style="min-height:32px;padding:4px 12px">คืนค่า</button></div>').join(''):'<div class="small muted" style="padding:12px 16px">ยังไม่มีจุดคืนค่า · ระบบจะเก็บให้เองก่อนลบ กู้คืน แลกเวร หรือสุ่มทับ</div>';
+  box.querySelectorAll('[data-snap]').forEach(b=>b.onclick=()=>{if(b.dataset.arm){restoreSnap(+b.dataset.snap);}else{b.dataset.arm=1;b.textContent='แตะอีกครั้ง';setTimeout(()=>{delete b.dataset.arm;b.textContent='คืนค่า';},3000);}});
+}
+/* ---------- phone import (stays on this device) ---------- */
+$('#btnTelImport').onclick=()=>{
+  openModal('<div class="row between"><h2>นำเข้าเบอร์โทร</h2><button class="btn ghost" id="mClose">ปิด</button></div>'+
+    '<div class="small muted">วางรายชื่อ บรรทัดละคน ต้องมีชื่อเล่นหรือชื่อ และเบอร์ เช่น<br>Somchai (Tom): STF_30, 081-234-5678</div>'+
+    '<textarea id="telIn" placeholder="วางรายชื่อที่นี่"></textarea><button class="btn primary" id="telGo" style="justify-content:center">นำเข้า</button>');
+  $('#mClose').onclick=()=>$('#modal').hidden=true;
+  $('#telGo').onclick=()=>{
+    const lines=$('#telIn').value.split(/\n+/);let n=0;const low=v=>String(v||'').toLowerCase();
+    lines.forEach(line=>{
+      const m=line.match(/0\d{1,2}[-\s.]?\d{3}[-\s.]?\d{4}/);if(!m)return;
+      const t=m[0].replace(/[\s.]/g,'-'),l=low(line);
+      const paren=(line.match(/\(([^)]+)\)/)||[])[1];
+      const hit=S.people.find(p=>paren&&low(p.nick)===low(paren).trim())||S.people.find(p=>new RegExp('(^|[^a-z0-9ก-๙])'+low(p.nick).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z0-9ก-๙]|$)').test(l))||S.people.find(p=>p.name&&l.includes(low(p.name)));
+      if(hit){hit.tel=t;n++;}
+    });
+    persist();$('#modal').hidden=true;renderTeams();toast('อัปเดตเบอร์โทร '+n+' คน');
+  };
+};
+/* ---------- new-version banner (GitHub Pages) ---------- */
+const APP_VERSION='3.0';
+async function checkVersion(){
+  if(!GH)return;
+  try{const r=await fetch(location.pathname+'?vcheck='+Date.now(),{cache:'no-store'});if(!r.ok)return;
+    const m=(await r.text()).match(/APP_VERSION='([^']+)'/);
+    if(m&&m[1]!==APP_VERSION){const b=$('#updBar');b.textContent='มีเวอร์ชันใหม่ v'+m[1]+' · แตะเพื่ออัปเดต';b.hidden=false;}}catch(e){}
+}
+$('#updBar').onclick=async()=>{try{const reg=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(reg)await reg.update();}catch(e){}location.reload();};
+if(GH){
+  setTimeout(checkVersion,4000);setInterval(checkVersion,10*60*1000);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkVersion();});
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+/* ---------- compact glass title on scroll ---------- */
+(()=>{const mb=$('#miniBar'),h1=$('#viewTitle');let on=false;
+  const chk=()=>{const v=h1.getBoundingClientRect().bottom<10;if(v!==on){on=v;mb.classList.toggle('show',v);}};
+  window.addEventListener('scroll',chk,{passive:true});chk();})();
+/* ---------- language ---------- */
+$('#langBtn').textContent=LANG==='en'?'ไทย':'EN';
+$('#langBtn').onclick=()=>{S.lang=LANG==='en'?'th':'en';try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}location.reload();};
+if(LANG==='en'){
+  document.documentElement.lang='en';document.title='PM Sunday Duty';
+  const ATTRS=['placeholder','aria-label','title','alt'];
+  const trNode=n=>{
+    if(n.nodeType===3){const v=n.nodeValue;if(hasThai(v)){const t=TR(v);if(t!==v)n.nodeValue=t;}return;}
+    if(n.nodeType!==1||/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.tagName))return;
+    ATTRS.forEach(a=>{const v=n.getAttribute(a);if(v&&hasThai(v)){const t=TR(v);if(t!==v)n.setAttribute(a,t);}});
+    n.childNodes.forEach(trNode);
+  };
+  trNode(document.body);
+  new MutationObserver(ms=>ms.forEach(m=>{if(m.type==='childList')m.addedNodes.forEach(trNode);else trNode(m.target);}))
+    .observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:ATTRS});
+}
+})();
+</script>
+
+</body>
+</html>
