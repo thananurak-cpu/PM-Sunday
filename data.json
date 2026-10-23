@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733212851,
+ "updatedAt": 1792733219275,
  "by": "TA",
  "data": {
   "people": [
@@ -358,7 +358,9 @@
     "batch": 1792732577438
    }
   ],
-  "teams": [],
+  "teams": [
+   "A"
+  ],
   "per": 3,
   "impPer": 2,
   "weeks": 1,
