@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792732451724,
+ "updatedAt": 1792732577439,
  "by": "TA",
  "data": {
   "people": [
@@ -352,17 +352,17 @@
   "fair": true,
   "skip": [],
   "current": {
-   "batch": 1792732449030,
+   "batch": 1792732577438,
    "items": [
     {
-     "date": "2027-01-24",
+     "date": "2027-01-31",
      "team": "A",
      "ids": [
-      "p14",
-      "p15",
-      "p13",
-      "p8",
-      "p6"
+      "p10",
+      "p12",
+      "p17",
+      "p3",
+      "p9"
      ]
     }
    ],
@@ -370,7 +370,7 @@
     "A",
     "B"
    ],
-   "saved": true
+   "saved": false
   },
   "pinHash": "788b2085",
   "lockAll": false,
