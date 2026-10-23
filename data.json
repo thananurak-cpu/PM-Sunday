@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733177643,
+ "updatedAt": 1792733180686,
  "by": "TA",
  "data": {
   "people": [
@@ -65,7 +65,7 @@
     "name": "Kotchakorn",
     "nick": "Beam",
     "role": "PM & Document",
-    "team": "A",
+    "team": "",
     "active": true
    },
    {
