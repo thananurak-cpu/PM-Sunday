@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733180686,
+ "updatedAt": 1792733182955,
  "by": "TA",
  "data": {
   "people": [
@@ -73,7 +73,7 @@
     "name": "Yuttapop",
     "nick": "Bost",
     "role": "TE Improvement",
-    "team": "A",
+    "team": "B",
     "active": true
    },
    {
