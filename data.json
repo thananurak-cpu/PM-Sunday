@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792733182955,
+ "updatedAt": 1792733198347,
  "by": "TA",
  "data": {
   "people": [
@@ -137,7 +137,7 @@
     "name": "Thanapa",
     "nick": "Tum",
     "role": "B Shift Leader",
-    "team": "A",
+    "team": "B",
     "active": true
    },
    {
