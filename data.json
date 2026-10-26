@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792984586418,
+ "updatedAt": 1792984590384,
  "by": "Joke",
  "data": {
   "people": [
@@ -189,7 +189,40 @@
     "active": true
    }
   ],
-  "history": [],
+  "history": [
+   {
+    "date": "2026-11-01",
+    "team": "A",
+    "ids": [
+     "p11",
+     "p14",
+     "p13",
+     "p6",
+     "p3"
+    ],
+    "teams": [
+     "A",
+     "B"
+    ],
+    "batch": 1792984586417
+   },
+   {
+    "date": "2026-11-08",
+    "team": "A",
+    "ids": [
+     "p12",
+     "p15",
+     "p10",
+     "p4",
+     "p5"
+    ],
+    "teams": [
+     "A",
+     "B"
+    ],
+    "batch": 1792984586417
+   }
+  ],
   "teams": [
    "A",
    "B"
@@ -230,7 +263,7 @@
     "A",
     "B"
    ],
-   "saved": false
+   "saved": true
   },
   "pinHash": "788b2085",
   "lockAll": false,
@@ -255,9 +288,16 @@
    }
   ],
   "rev": 0,
-  "revAt": 0,
-  "revBy": "TA",
-  "revLog": [],
+  "revAt": 1792984590384,
+  "revBy": "Joke",
+  "revLog": [
+   {
+    "rev": 0,
+    "at": 1792984590384,
+    "by": "Joke",
+    "note": "บันทึกครั้งแรก · 2 อาทิตย์"
+   }
+  ],
   "revPending": []
  }
 }
