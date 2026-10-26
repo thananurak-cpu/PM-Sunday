@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792993183617,
+ "updatedAt": 1792993245984,
  "by": "Joke",
  "data": {
   "people": [
@@ -105,7 +105,7 @@
     "name": "Natthawat",
     "nick": "Fluke",
     "role": "STF_36, STF_33",
-    "team": "A",
+    "team": "B",
     "active": true
    },
    {
