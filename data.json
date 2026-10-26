@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792984766878,
+ "updatedAt": 1792984775973,
  "by": "Joke",
  "data": {
   "people": [
@@ -129,7 +129,7 @@
     "name": "NINE",
     "nick": "น้อย",
     "role": "Programmer Support",
-    "team": "IMP",
+    "team": "A",
     "active": true
    },
    {
