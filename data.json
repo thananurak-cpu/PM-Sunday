@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792992755654,
+ "updatedAt": 1792992808963,
  "by": "Joke",
  "data": {
   "people": [
@@ -227,7 +227,7 @@
    "A",
    "B"
   ],
-  "per": 3,
+  "per": 1,
   "impPer": 2,
   "weeks": 2,
   "block": 2,
