@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792993327475,
+ "updatedAt": 1792993364025,
  "by": "Joke",
  "data": {
   "people": [
@@ -113,7 +113,7 @@
     "name": "Surasak",
     "nick": "Num",
     "role": "STF_35",
-    "team": "A",
+    "team": "B",
     "active": true
    },
    {
