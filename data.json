@@ -1,6 +1,6 @@
 {
  "app": "pm-sunday",
- "updatedAt": 1792984617691,
+ "updatedAt": 1792984766878,
  "by": "Joke",
  "data": {
   "people": [
@@ -65,7 +65,7 @@
     "name": "Kotchakorn",
     "nick": "Beam",
     "role": "PM & Document",
-    "team": "",
+    "team": "IMP",
     "active": true
    },
    {
@@ -73,7 +73,7 @@
     "name": "Yuttapop",
     "nick": "Bost",
     "role": "TE Improvement",
-    "team": "B",
+    "team": "IMP",
     "active": true
    },
    {
@@ -129,7 +129,7 @@
     "name": "NINE",
     "nick": "น้อย",
     "role": "Programmer Support",
-    "team": "",
+    "team": "IMP",
     "active": true
    },
    {
